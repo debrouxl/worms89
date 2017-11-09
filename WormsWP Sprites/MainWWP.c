@@ -244,7 +244,7 @@ void DrawScreen()
 			
 			drawtxt(30,85,"Proudly Presents...", 0);
 		}//end if gtronics
-	if(screen==team17)
+	else if(screen==team17)
 	  {
 	  	ClipSprite32_OR_R(35, 18, 52, t171, GrayDBufGetHiddenPlane(DARK_PLANE));
 			ClipSprite32_OR_R(35, 18, 52, t171, GrayDBufGetHiddenPlane(LIGHT_PLANE));
@@ -257,7 +257,7 @@ void DrawScreen()
 			
 			
 	  }//end if team17
-  if(screen==titus)
+  else if(screen==titus)
 	  {
 	  	ClipSprite32_OR_R(45, 23, 59, tit1, GrayDBufGetHiddenPlane(DARK_PLANE));
 			ClipSprite32_OR_R(45, 23, 59, tit1, GrayDBufGetHiddenPlane(LIGHT_PLANE));
@@ -268,7 +268,7 @@ void DrawScreen()
 			
 			drawtxt(60,5,"And By:",0);
 	  }//end if titus
-	if(screen==title)
+	else if(screen==title)
 	  {
 	  	//draws the animated clouds
 			ClipSprite32_OR_R(cx, cy, 17, cloud, GrayDBufGetHiddenPlane(DARK_PLANE));
@@ -299,7 +299,7 @@ void DrawScreen()
 			ClipSprite32_OR_R(5+128, 0, 85, tsi5, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 	  }//end if title
 	
-	if(screen==mainmenu)
+	else if(screen==mainmenu)
 	  {
 	  	ClipSprite32_OR_R(43, 30, 21, BttnVersus, GrayDBufGetHiddenPlane(DARK_PLANE));
 			ClipSprite32_OR_R(43, 30, 21, BttnVersus, GrayDBufGetHiddenPlane(LIGHT_PLANE));
@@ -325,7 +325,7 @@ void DrawScreen()
 			  	ClipSprite32_OR_R(44, 31, 21, BttnVersus, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 			  	drawtxt(25,90,"Make A Versus Game",0);
 			  }
-			if(sel>1)
+			else if(sel>1)
 			  {
 			  	ClipSprite32_OR_R(84, 31, 21, BttnTeams, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 			  	drawtxt(28,90,"Set Up Your Teams",0);
@@ -340,7 +340,7 @@ void DrawScreen()
 	  }//end if main menu
 	  
 	
-	if(screen==teamsetup)
+	else if(screen==teamsetup)
 	  {
 			drawokx();
 			
@@ -359,7 +359,7 @@ void DrawScreen()
 			  	drawtxt(10,25,"1) New Team",0);
 			  	drawtxt(33,90,"Make A New Team",0);
 			  }
-			if(sel==2 || sel>2)
+			else if(sel==2 || sel>2)
 			  {
 			  	sel=2;
 			  	drawtxt(10,36,"2) Edit Team",0);
@@ -368,7 +368,7 @@ void DrawScreen()
 			
 	  }//end if teamsetup
 	  
-	if(screen==newteam)
+	else if(screen==newteam)
 	  {  
 	    drawokx();
 	  
@@ -393,15 +393,15 @@ void DrawScreen()
 	    drawdropbox(6,48,60,names[9]);
 	    
 	    if(sel==1) drawtxtbox(6,28,60,"",0);
-	    if(sel==2) drawtxtbox(70,28,40,"",0);
-	    if(sel==3) drawtxtbox(70,38,40,"",0);
-	    if(sel==4) drawtxtbox(70,48,40,"",0);
-	    if(sel==5) drawtxtbox(70,58,40,"",0);
-	    if(sel==6) drawtxtbox(110,28,40,"",0);
-	    if(sel==7) drawtxtbox(110,38,40,"",0);
-	    if(sel==8) drawtxtbox(110,48,40,"",0);
-	    if(sel==9) drawtxtbox(110,58,40,"",0);
-	    if(sel>=10)
+	    else if(sel==2) drawtxtbox(70,28,40,"",0);
+	    else if(sel==3) drawtxtbox(70,38,40,"",0);
+	    else if(sel==4) drawtxtbox(70,48,40,"",0);
+	    else if(sel==5) drawtxtbox(70,58,40,"",0);
+	    else if(sel==6) drawtxtbox(110,28,40,"",0);
+	    else if(sel==7) drawtxtbox(110,38,40,"",0);
+	    else if(sel==8) drawtxtbox(110,48,40,"",0);
+	    else if(sel==9) drawtxtbox(110,58,40,"",0);
+	    else if(sel>=10)
 	      {
 	      	sel=10;
 	      	drawtxtbox(6,48,60,"",0);
@@ -410,7 +410,7 @@ void DrawScreen()
 	    
 	  }//end if newteam
 	  
-	  if(screen==editteam)
+	  else if(screen==editteam)
 	  {  
 
 	    drawokx();
@@ -436,15 +436,15 @@ void DrawScreen()
 	    drawdropbox(6,48,60,names[9]);
 	    
 	    if(sel==1) drawtxtbox(6,28,60,"",0);
-	    if(sel==2) drawtxtbox(70,28,40,"",0);
-	    if(sel==3) drawtxtbox(70,38,40,"",0);
-	    if(sel==4) drawtxtbox(70,48,40,"",0);
-	    if(sel==5) drawtxtbox(70,58,40,"",0);
-	    if(sel==6) drawtxtbox(110,28,40,"",0);
-	    if(sel==7) drawtxtbox(110,38,40,"",0);
-	    if(sel==8) drawtxtbox(110,48,40,"",0);
-	    if(sel==9) drawtxtbox(110,58,40,"",0);
-	    if(sel>=10)
+	    else if(sel==2) drawtxtbox(70,28,40,"",0);
+	    else if(sel==3) drawtxtbox(70,38,40,"",0);
+	    else if(sel==4) drawtxtbox(70,48,40,"",0);
+	    else if(sel==5) drawtxtbox(70,58,40,"",0);
+	    else if(sel==6) drawtxtbox(110,28,40,"",0);
+	    else if(sel==7) drawtxtbox(110,38,40,"",0);
+	    else if(sel==8) drawtxtbox(110,48,40,"",0);
+	    else if(sel==9) drawtxtbox(110,58,40,"",0);
+	    else if(sel>=10)
 	      {
 	      	sel=10;
 	      	drawtxtbox(6,48,60,"",0);
@@ -452,7 +452,7 @@ void DrawScreen()
 	      
 	  }//end if newteam
 	  
-	if(screen==setup)
+	else if(screen==setup)
 	{
 		drawokx();
 		FontSetSys(2);
@@ -475,26 +475,26 @@ void DrawScreen()
 		  	drawtxt(45,90,"Choose A Map",0);
         drawtxtbox(15,23,60,"",0);
 		  }
-		if(sel==2)
+		else if(sel==2)
 		  {
 		  	drawtxt(42,84,"Choose Team 1",0);
 		  	drawtxt(29,92,"+/- Worms On Team",0);
         drawtxtbox(15,44,60,"",0);
         drawtxtbox(82,44,60,"",0);
 		  }
-    if(sel==3)
+    else if(sel==3)
 		  {
 		  	drawtxt(42,84,"Choose Team 2",0);
 		  	drawtxt(29,92,"+/- Worms On Team",0);
         drawtxtbox(15,65,60,"",0);
         drawtxtbox(82,65,60,"",0);
 		  }
-		if(sel==4)
+		else if(sel==4)
 		  {
 		  	ClipSprite32_OR_R(79, 18, 21, BttnWeaps, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  	drawtxt(37,90,"Choose Weapons",0);
 		  }
-		if(sel>4)
+		else if(sel>4)
 		  {
 		  	ClipSprite32_OR_R(114, 18, 21, BttnOptions, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  	drawtxt(37,90,"Choose Options",0);
@@ -524,7 +524,7 @@ void DrawScreen()
 		  }
 	}//end if set up
 	
-	if(screen==weapons)
+	else if(screen==weapons)
 	  {
 	  	drawokx();
 			FontSetSys(2);
@@ -581,7 +581,7 @@ void DrawScreen()
 	    
 	    //draws instructions
 	  }//end if weapons
-	if(screen==options)
+	else if(screen==options)
 	  {
 	  	drawokx();
 			FontSetSys(2);
@@ -633,58 +633,58 @@ void DrawScreen()
 					DrawClipRect(&(WIN_RECT){31,24,48,39}, &(SCR_RECT){{0, 0, 159, 99}}, A_NORMAL);
 					drawtxt(34,85,"Starting Health",0);
 				}
-			if(sel==2) 
+			else if(sel==2) 
 				{
 					DrawClipRect(&(WIN_RECT){51,24,68,39}, &(SCR_RECT){{0, 0, 159, 99}}, A_NORMAL);
 					drawtxt(28,85,"Worms Selectable?",0);
 				}
-			if(sel==3) 
+			else if(sel==3) 
 				{
 					DrawClipRect(&(WIN_RECT){71,24,88,39}, &(SCR_RECT){{0, 0, 159, 99}}, A_NORMAL);
 					drawtxt(42,85,"Place Worms?",0);
 				}
-			if(sel==4) 
+			else if(sel==4) 
 				{
 					DrawClipRect(&(WIN_RECT){91,24,108,39}, &(SCR_RECT){{0, 0, 159, 99}}, A_NORMAL);
 					drawtxt(50,85,"Turn Time",0);
 				}
-			if(sel==5) 
+			else if(sel==5) 
 				{
 					DrawClipRect(&(WIN_RECT){111,24,128,39}, &(SCR_RECT){{0, 0, 159, 99}}, A_NORMAL);
 					drawtxt(40,85,"Artilery Mode",0);
 				}
-			if(sel==6) 
+			else if(sel==6) 
 				{
 					DrawClipRect(&(WIN_RECT){7,56,24,71}, &(SCR_RECT){{0, 0, 159, 99}}, A_NORMAL);
 					drawtxt(31,85,"Play With Mines?",0);
 				}
-			if(sel==7) 
+			else if(sel==7) 
 				{
 					DrawClipRect(&(WIN_RECT){27,56,44,71}, &(SCR_RECT){{0, 0, 159, 99}}, A_NORMAL);
 					drawtxt(31,85,"Mine Fuse Length",0);
 				}
-			if(sel==8) 
+			else if(sel==8) 
 				{
 					DrawClipRect(&(WIN_RECT){47,56,64,71}, &(SCR_RECT){{0, 0, 159, 99}}, A_NORMAL);
 					drawtxt(49,85,"Dud Mines?",0);
 				}
-			if(sel==9) 
+			else if(sel==9) 
 				{
 					DrawClipRect(&(WIN_RECT){67,56,84,71}, &(SCR_RECT){{0, 0, 159, 99}}, A_NORMAL);
 					drawtxt(52,82,"Play With",0);
 					drawtxt(45,91,"Oil Barrols?",0);
 				}
-			if(sel==10) 
+			else if(sel==10) 
 				{
 					DrawClipRect(&(WIN_RECT){95,56,112,71}, &(SCR_RECT){{0, 0, 159, 99}}, A_NORMAL);
 					drawtxt(42,85,"Tool Crates?",0);
 				}
-			if(sel==11) 
+			else if(sel==11) 
 				{
 					DrawClipRect(&(WIN_RECT){115,56,132,71}, &(SCR_RECT){{0, 0, 159, 99}}, A_NORMAL);
 					drawtxt(38,85,"Health Crates?",0);
 				}
-			if(sel>11)
+			else if(sel>11)
 			  {
 			  	DrawClipRect(&(WIN_RECT){135,56,152,71}, &(SCR_RECT){{0, 0, 159, 99}}, A_NORMAL);
 			  	drawtxt(38,85,"Weapon Crates?",0);
@@ -698,12 +698,12 @@ void DrawScreen()
 			  	ClipSprite16_OR_R(32, 25, 14, Health50, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(32, 25, 14, Health50, GrayDBufGetHiddenPlane(DARK_PLANE));
 			  }
-			if(Opt[0]==1)
+			else if(Opt[0]==1)
 			  {
 			  	ClipSprite16_OR_R(32, 25, 14, Health100, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(32, 25, 14, Health100, GrayDBufGetHiddenPlane(DARK_PLANE));
 			  }
-			if(Opt[0]==2)
+			else if(Opt[0]==2)
 			  {
 			  	ClipSprite16_OR_R(32, 25, 14, Health200, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(32, 25, 14, Health200, GrayDBufGetHiddenPlane(DARK_PLANE));
@@ -714,7 +714,7 @@ void DrawScreen()
 			  	ClipSprite16_OR_R(52, 25, 14, SelSel, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(52, 25, 14, SelSel, GrayDBufGetHiddenPlane(DARK_PLANE));
 			  }
-			if(Opt[1]==1)
+			else if(Opt[1]==1)
 			  {
 			  	ClipSprite16_OR_R(52, 25, 14, SelStat, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(52, 25, 14, SelStat, GrayDBufGetHiddenPlane(DARK_PLANE));
@@ -725,7 +725,7 @@ void DrawScreen()
 			  	ClipSprite16_OR_R(72, 25, 13, PlaceYes, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(72, 25, 13, PlaceYes, GrayDBufGetHiddenPlane(DARK_PLANE));
 			  }
-			if(Opt[2]==1)
+			else if(Opt[2]==1)
 			  {
 			  	ClipSprite16_OR_R(72, 25, 13, PlaceNo, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(72, 25, 13, PlaceNo, GrayDBufGetHiddenPlane(DARK_PLANE));
@@ -736,12 +736,12 @@ void DrawScreen()
 			  	ClipSprite16_OR_R(92, 25, 14, Time30, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(92, 25, 14, Time30, GrayDBufGetHiddenPlane(DARK_PLANE));
 			  }
-			if(Opt[3]==1)
+			else if(Opt[3]==1)
 			  {
 			  	ClipSprite16_OR_R(92, 25, 14, Time60, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(92, 25, 14, Time60, GrayDBufGetHiddenPlane(DARK_PLANE));
 			  }
-			if(Opt[3]==2)
+			else if(Opt[3]==2)
 			  {
 			  	ClipSprite16_OR_R(92, 25, 14, Time90, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(92, 25, 14, Time90, GrayDBufGetHiddenPlane(DARK_PLANE));
@@ -752,7 +752,7 @@ void DrawScreen()
 					ClipSprite16_OR_R(112, 25, 13, ArtileryNo, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(112, 25, 13, ArtileryNo, GrayDBufGetHiddenPlane(DARK_PLANE));
 				}
-			if(Opt[4]==1)
+			else if(Opt[4]==1)
 				{
 					ClipSprite16_OR_R(112, 25, 13, ArtileryYes, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(112, 25, 13, ArtileryYes, GrayDBufGetHiddenPlane(DARK_PLANE));
@@ -763,7 +763,7 @@ void DrawScreen()
 			  	ClipSprite16_OR_R(8, 57, 9, MinesYes, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(8, 57, 9, MinesYes, GrayDBufGetHiddenPlane(DARK_PLANE));
 			  }
-			if(Opt[5]==1)
+			else if(Opt[5]==1)
 			  {
 			  	ClipSprite16_OR_R(8, 57, 13, MinesNo, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(8, 57, 13, MinesNo, GrayDBufGetHiddenPlane(DARK_PLANE));
@@ -774,22 +774,22 @@ void DrawScreen()
 			  	ClipSprite16_OR_R(28, 57, 13, MineRnd, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(28, 57, 13, MineRnd, GrayDBufGetHiddenPlane(DARK_PLANE));
 			  }
-			if(Opt[6]==1)
+			else if(Opt[6]==1)
 			  {
 			  	ClipSprite16_OR_R(28, 57, 13, Mine0, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(28, 57, 13, Mine0, GrayDBufGetHiddenPlane(DARK_PLANE));
 			  }
-			if(Opt[6]==2)
+			else if(Opt[6]==2)
 			  {
 			  	ClipSprite16_OR_R(28, 57, 13, Mine1, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(28, 57, 13, Mine1, GrayDBufGetHiddenPlane(DARK_PLANE));
 			  }
-			if(Opt[6]==3)
+			else if(Opt[6]==3)
 			  {
 			  	ClipSprite16_OR_R(28, 57, 13, Mine2, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(28, 57, 13, Mine2, GrayDBufGetHiddenPlane(DARK_PLANE));
 			  }
-			if(Opt[6]==4)
+			else if(Opt[6]==4)
 			  {
 			  	ClipSprite16_OR_R(28, 57, 13, Mine3, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(28, 57, 13, Mine3, GrayDBufGetHiddenPlane(DARK_PLANE));
@@ -800,7 +800,7 @@ void DrawScreen()
 			  	ClipSprite16_OR_R(48, 57, 13, DudMineYes, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(48, 57, 13, DudMineYes, GrayDBufGetHiddenPlane(DARK_PLANE));
 			  }
-			if(Opt[7]==1)
+			else if(Opt[7]==1)
 			  {
 			  	ClipSprite16_OR_R(48, 57, 13, DudMineNo, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(48, 57, 13, DudMineNo, GrayDBufGetHiddenPlane(DARK_PLANE));
@@ -811,7 +811,7 @@ void DrawScreen()
 			  	ClipSprite16_OR_R(68, 57, 12, BarrolsYes, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(68, 57, 12, BarrolsYes, GrayDBufGetHiddenPlane(DARK_PLANE));
 			  }
-			if(Opt[8]==1)
+			else if(Opt[8]==1)
 			  {
 			  	ClipSprite16_OR_R(68, 57, 13, BarrolsNo, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(68, 57, 13, BarrolsNo, GrayDBufGetHiddenPlane(DARK_PLANE));
@@ -822,7 +822,7 @@ void DrawScreen()
 			  	ClipSprite16_OR_R(96, 57, 12, ToolYes, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(96, 57, 12, ToolYes, GrayDBufGetHiddenPlane(DARK_PLANE));
 			  }
-			if(Opt[9]==1)
+			else if(Opt[9]==1)
 			  {
 			  	ClipSprite16_OR_R(96, 57, 13, ToolNo, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(96, 57, 13, ToolNo, GrayDBufGetHiddenPlane(DARK_PLANE));
@@ -833,7 +833,7 @@ void DrawScreen()
 			  	ClipSprite16_OR_R(116, 57, 12, HealthYes, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(116, 57, 12, HealthYes, GrayDBufGetHiddenPlane(DARK_PLANE));
 			  }
-			if(Opt[10]==1)
+			else if(Opt[10]==1)
 			  {
 			  	ClipSprite16_OR_R(116, 57, 13, HealthNo, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(116, 57, 13, HealthNo, GrayDBufGetHiddenPlane(DARK_PLANE));
@@ -844,7 +844,7 @@ void DrawScreen()
 			  	ClipSprite16_OR_R(136, 57, 13, CratesYes, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(136, 57, 13, CratesYes, GrayDBufGetHiddenPlane(DARK_PLANE));
 			  }
-			if(Opt[11]==1)
+			else if(Opt[11]==1)
 			  {
 			  	ClipSprite16_OR_R(136, 57, 13, CratesNo, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 		  		ClipSprite16_OR_R(136, 57, 13, CratesNo, GrayDBufGetHiddenPlane(DARK_PLANE));
@@ -932,19 +932,19 @@ void KeyHandle()
 	  	  	while(_keytest(RR_2ND));
 	  	  	return;
 	  	  } //if gt screen, then change screen to team17
-      if(screen==team17)
+      else if(screen==team17)
 				{
 					screen=titus;
 	  	  	while(_keytest(RR_2ND));
 	  	  	return;
 	  	  } //if gt screen, then change screen to team17
-      if(screen==titus)
+      else if(screen==titus)
 				{
 					screen=title;
 	  	  	while(_keytest(RR_2ND));
 	  	  	return;
 	  	  } //if gt screen, then change screen to team17
-	  	if(screen==title)
+	  	else if(screen==title)
 				{
 					screen=mainmenu;
 	  	  	while(_keytest(RR_2ND));
@@ -962,14 +962,14 @@ void KeyHandle()
 			  	exitexe=true;
 			  }
 			if(screen==teamsetup) screen=mainmenu;
-			if(screen==newteam) screen=teamsetup;
-			if(screen==editteam) screen=teamsetup;
-			if(screen==scheme) screen=mainmenu;
-			if(screen==setup) screen=mainmenu;
-			if(screen==weapons) screen=setup;
-			if(screen==mapedit) screen=setup;
-			if(screen==teams) screen=setup;
-			if(screen==options) screen=setup;
+			else if(screen==newteam) screen=teamsetup;
+			else if(screen==editteam) screen=teamsetup;
+			else if(screen==scheme) screen=mainmenu;
+			else if(screen==setup) screen=mainmenu;
+			else if(screen==weapons) screen=setup;
+			else if(screen==mapedit) screen=setup;
+			else if(screen==teams) screen=setup;
+			else if(screen==options) screen=setup;
 			sel=1;
 		}
 		
@@ -1038,17 +1038,17 @@ void KeyHandle()
     	  {
     	  	Opt[sel-1]++;
     	  	if(sel==1 && Opt[sel-1]>2) Opt[sel-1]=0;
-    	  	if(sel==2 && Opt[sel-1]>1) Opt[sel-1]=0;
-    	  	if(sel==3 && Opt[sel-1]>1) Opt[sel-1]=0;
-    	  	if(sel==4 && Opt[sel-1]>2) Opt[sel-1]=0;
-    	  	if(sel==5 && Opt[sel-1]>1) Opt[sel-1]=0;
-    	  	if(sel==6 && Opt[sel-1]>1) Opt[sel-1]=0;
-    	  	if(sel==7 && Opt[sel-1]>4) Opt[sel-1]=0;
-    	  	if(sel==8 && Opt[sel-1]>1) Opt[sel-1]=0;
-    	  	if(sel==9 && Opt[sel-1]>1) Opt[sel-1]=0;
-    	  	if(sel==10 && Opt[sel-1]>1) Opt[sel-1]=0;
-    	  	if(sel==11 && Opt[sel-1]>1) Opt[sel-1]=0;
-    	  	if(sel==12 && Opt[sel-1]>1) Opt[sel-1]=0;
+    	  	else if(sel==2 && Opt[sel-1]>1) Opt[sel-1]=0;
+    	  	else if(sel==3 && Opt[sel-1]>1) Opt[sel-1]=0;
+    	  	else if(sel==4 && Opt[sel-1]>2) Opt[sel-1]=0;
+    	  	else if(sel==5 && Opt[sel-1]>1) Opt[sel-1]=0;
+    	  	else if(sel==6 && Opt[sel-1]>1) Opt[sel-1]=0;
+    	  	else if(sel==7 && Opt[sel-1]>4) Opt[sel-1]=0;
+    	  	else if(sel==8 && Opt[sel-1]>1) Opt[sel-1]=0;
+    	  	else if(sel==9 && Opt[sel-1]>1) Opt[sel-1]=0;
+    	  	else if(sel==10 && Opt[sel-1]>1) Opt[sel-1]=0;
+    	  	else if(sel==11 && Opt[sel-1]>1) Opt[sel-1]=0;
+    	  	else if(sel==12 && Opt[sel-1]>1) Opt[sel-1]=0;
     	  	
     	  	//waits for key up
     	  	while(_keytest(RR_PLUS) || _keytest(RR_ENTER) || _keytest(RR_2ND));
@@ -1059,7 +1059,7 @@ void KeyHandle()
     }
     
 	//handles keys for the setup screen
-	if(screen==setup)
+	else if(screen==setup)
 	  {
 	  	if(sel==2)
 	  	  {
@@ -1070,7 +1070,7 @@ void KeyHandle()
 	  	  	  if(Worms1-1>0) Worms1--;
 	  	  	while(_keytest(RR_PLUS) || _keytest(RR_MINUS));
 	  	  }//end if sel 2
-	  	if(sel==3)
+	  	else if(sel==3)
 	  	  {
 	  	  	//Changes worms on team 1
 	  	  	if(_keytest(RR_PLUS))
@@ -1100,26 +1100,26 @@ void KeyHandle()
 	  	   	    	if(PopResult>3)
 	  	   	    	  strcpy(map,&maps[PopResult-3]);
 	  	   	    }
-	  	   	  if(sel==2)
+	  	   	  else if(sel==2)
 	  	   	    {
 	  	   	    	//PopResult=DoPopUp(15,44,"This    \0Isn't   \0Done    \0Yet     \0", 4);
 	  	   	    	GetTeams(15,44);
 	  	   	    	strcpy(team1,names[0]);
 	  	   	    }
-	  	   	  if(sel==3)
+	  	   	  else if(sel==3)
 	  	   	    {
 	  	   	    	//PopResult=DoPopUp(15,59,"This    \0Isn't   \0Done    \0Yet     \0", 4);
 	  	   	    	GetTeams(15,59);
 	  	   	    	strcpy(team2,names[0]);
 	  	   	    }
-	  	   	  if(sel==4)
+	  	   	  else if(sel==4)
 	  	   	    {
 	  	   	    	screen=weapons;
 	  	   	    	WX=0;
 	  	   	    	WY=0;
 	  	   	    }
 	  	   	    
-	  	   	  if(sel==5)
+	  	   	  else if(sel==5)
 	  	   	    {
 	  	   	    	screen=options;
 	  	   	    	sel=1;
@@ -1131,29 +1131,29 @@ void KeyHandle()
 	  }//end if setup
 	  
 	//handles keys for the main screen..
-	if(screen==mainmenu)
+	else if(screen==mainmenu)
 	  {
 	  	if(_keytest(RR_F5) || _keytest(RR_2ND))
 	  	  {
 	  	  	while(_keytest(RR_F5) || _keytest(RR_2ND));
 	  	  	
 	  	  	if(sel==1) screen=setup;
-	  	  	if(sel==2) screen=teamsetup;
-	  	  	if(sel==3) screen=scheme;
+	  	  	else if(sel==2) screen=teamsetup;
+	  	  	else if(sel==3) screen=scheme;
 	  	  	
 	  	  	sel=1;
 	  	  }
 	  }//end if main menu
 	
 	//handles keys for the team setup screen..
-	if(screen==teamsetup)
+	else if(screen==teamsetup)
 	  {
 	  	if(_keytest(RR_F5) || _keytest(RR_2ND))
 	  	  {
 	  	  	while(_keytest(RR_F5) || _keytest(RR_2ND));
 	  	  	
 	  	  	if(sel==1) screen=newteam;
-	  	  	if(sel==2)
+	  	  	else if(sel==2)
 	  	  	  {
 	  	  	  	screen=editteam;
 	  	  	  	strcpy(names[0],"<Name>");
@@ -1166,7 +1166,7 @@ void KeyHandle()
 	  }//end if team setup
 	  
 	//handles keys for the new team screen..
-	if(screen==newteam || screen==editteam)
+	else if(screen==newteam || screen==editteam)
 	  {
 	  	if(_keytest(RR_F5))
 	  	  {
@@ -1191,13 +1191,13 @@ void KeyHandle()
 	  	  	if(sel==1 && screen==newteam) InputStr(7+1,29+2,names[sel-1],8);
 	  	  	if(sel>1 && !strcmp(names[0],"<Name>")  && screen==editteam) sel=1;
 			    if(sel==2) InputStr(71+1,29+2,names[sel-1],8);
-			    if(sel==3) InputStr(71+1,39+2,names[sel-1],8);
-			    if(sel==4) InputStr(71+1,49+2,names[sel-1],8);
-			    if(sel==5) InputStr(71+1,59+2,names[sel-1],8);
-			    if(sel==6) InputStr(111+1,29+2,names[sel-1],8);
-			    if(sel==7) InputStr(111+1,39+2,names[sel-1],8);
-			    if(sel==8) InputStr(111+1,49+2,names[sel-1],8);
-			    if(sel==9) InputStr(111+1,59+2,names[sel-1],8);
+			    else if(sel==3) InputStr(71+1,39+2,names[sel-1],8);
+			    else if(sel==4) InputStr(71+1,49+2,names[sel-1],8);
+			    else if(sel==5) InputStr(71+1,59+2,names[sel-1],8);
+			    else if(sel==6) InputStr(111+1,29+2,names[sel-1],8);
+			    else if(sel==7) InputStr(111+1,39+2,names[sel-1],8);
+			    else if(sel==8) InputStr(111+1,49+2,names[sel-1],8);
+			    else if(sel==9) InputStr(111+1,59+2,names[sel-1],8);
 				}//end if sel edit
 			if(sel>9)
 			  {
@@ -1208,15 +1208,15 @@ void KeyHandle()
 			  	  	PopResult=DoPopUp(6,48,"Pyrimid \0Cross   \0Worm    \0Stone   \0Rope    \0Skull   \0", 6);
 			  	  	if(PopResult==0)
 			  	  		strcpy(names[9],"Pyrimid");
-			  	  	if(PopResult==1)
+			  	  	else if(PopResult==1)
 			  	  		strcpy(names[9],"Cross");
-			  	  	if(PopResult==2)
+			  	  	else if(PopResult==2)
 			  	  		strcpy(names[9],"Worm");
-			  	  	if(PopResult==3)
+			  	  	else if(PopResult==3)
 			  	  		strcpy(names[9],"Stone");
-			  	  	if(PopResult==4)
+			  	  	else if(PopResult==4)
 			  	  		strcpy(names[9],"Rope");
-			  	  	if(PopResult==5)
+			  	  	else if(PopResult==5)
 			  	  		strcpy(names[9],"Skull");
 			  	  }
 			  }	

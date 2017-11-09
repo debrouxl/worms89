@@ -340,7 +340,7 @@ void MainLoop()
 			if((!_keytest(RR_SHIFT)) & (GameMode != M_Cursor) & (weapson==false) & (Lock==false))
 				{
 					if(team==TWhite) FocusWorm(white_w, TWhite);
-					if(team==TBlack) FocusWorm(black_w, TBlack);	
+					else /*if(team==TBlack)*/ FocusWorm(black_w, TBlack);	
 				}
 			
 			//if its cursor mode, it must focus on the cursor..
@@ -637,7 +637,7 @@ void makemap() //this function makes a random map in each of the buffers...
 		  
 		  //makes sure its not out of bounds
 		  if(height<0) height=0;
-		  if(height>LCD_HEIGHT) height=LCD_HEIGHT;
+		  else if(height>LCD_HEIGHT) height=LCD_HEIGHT;
 		  
 			DrawLine((short)x,LCD_HEIGHT-1,(short)x,LCD_HEIGHT-(short)height,A_NORMAL); //draws the map
 		}
@@ -649,7 +649,7 @@ void makemap() //this function makes a random map in each of the buffers...
 		  
 		  //makes sure its not out of bounds
 		  if(height<0) height=0;
-		  if(height>LCD_HEIGHT) height=LCD_HEIGHT;
+		  else if(height>LCD_HEIGHT) height=LCD_HEIGHT;
 		  
 			DrawLine((short)x,LCD_HEIGHT-1,(short)x,LCD_HEIGHT-(short)height,A_NORMAL); //draws the map
 		}
@@ -674,9 +674,9 @@ void makemap() //this function makes a random map in each of the buffers...
 		  	}
 		  //makes sure its not out of bounds
 		  if(height<0) height=0;
-		  if(height>LCD_HEIGHT) height=LCD_HEIGHT;
+		  else if(height>LCD_HEIGHT) height=LCD_HEIGHT;
 		  if(height2<0) height2=0;
-		  if(height2>LCD_HEIGHT) height2=LCD_HEIGHT;
+		  else if(height2>LCD_HEIGHT) height2=LCD_HEIGHT;
 		  
 			DrawLine((short)x,LCD_HEIGHT-height2,(short)x,LCD_HEIGHT-(short)height,A_NORMAL); //draws the map
 		}
@@ -689,9 +689,9 @@ void makemap() //this function makes a random map in each of the buffers...
 		  
 		  //makes sure its not out of bounds
 		  if(height<0) height=0;
-		  if(height>LCD_HEIGHT) height=LCD_HEIGHT;
+		  else if(height>LCD_HEIGHT) height=LCD_HEIGHT;
 		  if(height2<0) height2=0;
-		  if(height2>LCD_HEIGHT) height2=LCD_HEIGHT;
+		  else if(height2>LCD_HEIGHT) height2=LCD_HEIGHT;
 		  
 			DrawLine((short)x,LCD_HEIGHT-height2,(short)x,LCD_HEIGHT-(short)height,A_NORMAL); //draws the map
 		}
@@ -795,7 +795,7 @@ void KeyStuff()
 				    //MOVES THE WORM LEFT
 				    //resets the camera if nessicary
 						//if(team==TWhite) FocusWorm(white_w,team);
-				  	//if(team==TBlack) FocusWorm(black_w,team);
+				  	//else /*if(team==TBlack)*/ FocusWorm(black_w,team);
 				  	
 
 				  	walk++;
@@ -820,7 +820,7 @@ void KeyStuff()
 					  //MOVES THE WORM LEFT
 					  //resets the camera if nessicary
 	          //if(team==TWhite) FocusWorm(white_w,team);
-				  	//if(team==TBlack) FocusWorm(black_w,team);
+				  	//else /*if(team==TBlack)*/ FocusWorm(black_w,team);
 				  	
 	          walk++;
 				  	if(walk>2)
@@ -902,9 +902,9 @@ void KeyStuff()
 
 	    //makes sure its still in bounds..
 	    if(CursorX<0) CursorX=0;
-	    if(CursorX>310) CursorX=310;
+	    else if(CursorX>310) CursorX=310;
 	    if(CursorY<0) CursorY=0;
-	    if(CursorY>188) CursorY=188;
+	    else if(CursorY>188) CursorY=188;
 	    
 	    if(_keytest(RR_2ND))
 	    	CursorClick();
@@ -921,7 +921,7 @@ void KeyStuff()
 						white_w=0;
 					//FocusWorm(white_w,TWhite);
 				}//endif WHITE TEAM
-			if(team==TBlack)
+			else //if(team==TBlack)
 				{
 					black_w++;
 					if(black_w>=maxworms)
@@ -986,7 +986,7 @@ void KeyStuff()
   	{
   		if(team==TWhite)
   		  SetExp(white_x[white_w],white_y[white_w]+6,20);
-  		if(team==TBlack)
+  		else //if(team==TBlack)
   		  SetExp(black_x[black_w],black_y[black_w]+6,20);
   		
   	while(_keytest(RR_F2)); //waits until key is released..
@@ -1007,9 +1007,9 @@ void KeyStuff()
 				  if(_keytest(RR_DOWN))
 				    Wy++;
 				  if(Wy>4) Wy=0;
-				  if(Wy<0) Wy=4;
+				  else if(Wy<0) Wy=4;
 				  if(Wx>12) Wx=0;
-				  if(Wx<0) Wx=12;
+				  else if(Wx<0) Wx=12;
 				  
 				  while(_keytest(RR_LEFT) || _keytest(RR_RIGHT) || _keytest(RR_UP) || _keytest(RR_DOWN));
 		  	}
@@ -1027,21 +1027,21 @@ void ToggleWDir(int dir)
   		if((dir==0) & (jumping==-1))
 				{
 					if(white_dir[white_w]==2) white_dir[white_w]=0;
-					if(white_dir[white_w]==3) white_dir[white_w]=1;
-					if(white_dir[white_w]==5) white_dir[white_w]=0;
-					if(white_dir[white_w]==4) white_dir[white_w]=1;
-					if(white_dir[white_w]==6) white_dir[white_w]=1;
-					if(white_dir[white_w]==7) white_dir[white_w]=0;
-					if(white_dir[white_w]==8) white_dir[white_w]=1;
-					if(white_dir[white_w]==9) white_dir[white_w]=0;
-					if(white_dir[white_w]==10) white_dir[white_w]=1;
-					if(white_dir[white_w]==11) white_dir[white_w]=0;
-					if(white_dir[white_w]==12) white_dir[white_w]=1;
-					if(white_dir[white_w]==13) white_dir[white_w]=0;
+					else if(white_dir[white_w]==3) white_dir[white_w]=1;
+					else if(white_dir[white_w]==4) white_dir[white_w]=1;
+					else if(white_dir[white_w]==5) white_dir[white_w]=0;
+					else if(white_dir[white_w]==6) white_dir[white_w]=1;
+					else if(white_dir[white_w]==7) white_dir[white_w]=0;
+					else if(white_dir[white_w]==8) white_dir[white_w]=1;
+					else if(white_dir[white_w]==9) white_dir[white_w]=0;
+					else if(white_dir[white_w]==10) white_dir[white_w]=1;
+					else if(white_dir[white_w]==11) white_dir[white_w]=0;
+					else if(white_dir[white_w]==12) white_dir[white_w]=1;
+					else if(white_dir[white_w]==13) white_dir[white_w]=0;
 					
 					
 				}//endif reset
-			if(dir==1)
+			else if(dir==1)
 				{
 					switch(white_dir[white_w])
 						{
@@ -1063,24 +1063,24 @@ void ToggleWDir(int dir)
 				}//endif reset
   	}//endif white team
   
-	if(team==TBlack)
+	else //if(team==TBlack)
   	{
   		if((dir==0) & (jumping==-1))
 				{
 					if(black_dir[black_w]==2) black_dir[black_w]=0;
-					if(black_dir[black_w]==3) black_dir[black_w]=1;
-					if(black_dir[black_w]==5) black_dir[black_w]=0;
-					if(black_dir[black_w]==4) black_dir[black_w]=1;
-				  if(black_dir[black_w]==6) black_dir[black_w]=1;
-					if(black_dir[black_w]==7) black_dir[black_w]=0;
-					if(black_dir[black_w]==8) black_dir[black_w]=1;
-					if(black_dir[black_w]==9) black_dir[black_w]=0;
-					if(black_dir[black_w]==10) black_dir[black_w]=1;
-					if(black_dir[black_w]==11) black_dir[black_w]=0;
-					if(black_dir[black_w]==12) black_dir[black_w]=1;
-					if(black_dir[black_w]==13) black_dir[black_w]=0;
+					else if(black_dir[black_w]==3) black_dir[black_w]=1;
+					else if(black_dir[black_w]==4) black_dir[black_w]=1;
+					else if(black_dir[black_w]==5) black_dir[black_w]=0;
+				  else if(black_dir[black_w]==6) black_dir[black_w]=1;
+					else if(black_dir[black_w]==7) black_dir[black_w]=0;
+					else if(black_dir[black_w]==8) black_dir[black_w]=1;
+					else if(black_dir[black_w]==9) black_dir[black_w]=0;
+					else if(black_dir[black_w]==10) black_dir[black_w]=1;
+					else if(black_dir[black_w]==11) black_dir[black_w]=0;
+					else if(black_dir[black_w]==12) black_dir[black_w]=1;
+					else if(black_dir[black_w]==13) black_dir[black_w]=0;
 				}//endif reset
-			if(dir==1)
+			else if(dir==1)
 				{
 					switch(black_dir[black_w])
 						{
@@ -1614,7 +1614,7 @@ void MoveLeft()
 		  if(white_x[white_w]<0) white_x[white_w]=0;
   	}//endif WHITE TEAM
   
-  if(team==TBlack)
+  else //if(team==TBlack)
   	{ 
   		//makes the worm look left
 		  if((black_dir[black_w]!=1) & (black_dir[black_w]!=3)) black_dir[black_w]=1;
@@ -1662,7 +1662,7 @@ void MoveRight()
 		  if(white_x[white_w]>310) white_x[white_w]=310;
   	}//end if WHITE TEAM
 
-  if(team==TBlack)
+  else //if(team==TBlack)
   	{ 
   		//makes the worm look right
 		  if((black_dir[black_w]!=0) & (black_dir[black_w]!=2)) black_dir[black_w]=0;
@@ -1697,7 +1697,7 @@ void FocusWorm(int TheWorm, int teamzor)
 			temp=temp/8;
 			scrollx=temp-9;*/
 		}
-	if(teamzor==TBlack)
+	else //if(teamzor==TBlack)
   	{
   		scrolly=black_y[TheWorm]-50;
   		scrollx=black_x[TheWorm]-70;
@@ -1708,9 +1708,9 @@ void FocusWorm(int TheWorm, int teamzor)
 		}
 		
 	if(scrollx<0) scrollx=0;
-	if(scrollx>160) scrollx=160;
+	else if(scrollx>160) scrollx=160;
 	if(scrolly<0) scrolly=0;
-	if(scrolly>100) scrolly=100;
+	else if(scrolly>100) scrolly=100;
 }
 
 
@@ -1778,7 +1778,7 @@ void MoveJump()
   		if((jtime<15) || (jtime<30 && lowgrav))
 				{
 					if(team==TWhite) white_y[jumping]-=2;
-					if(team==TBlack) black_y[jumping]-=2;
+					else /*if(team==TBlack)*/ black_y[jumping]-=2;
 				}
 			if(team==TWhite)
 			  white_x[jumping]+=jdir;
@@ -1798,7 +1798,7 @@ void MoveJump()
 						  if(jdir==-1) white_dir[jumping]=7;
 						}
 						
-					if(team==TBlack)
+					else //if(team==TBlack)
 					  {
 					  	black_y[jumping]-=2;
 					  	if(jdir==1) black_dir[jumping]=6;
@@ -1813,7 +1813,7 @@ void MoveJump()
 					    if(jdir==1) white_dir[jumping]=8;
 						  if(jdir==-1) white_dir[jumping]=9;
 					  }
-					if(team==TBlack)
+					else //if(team==TBlack)
 					  {
 					  	black_x[jumping]+=jdir;
 					  	if(jdir==1) black_dir[jumping]=8;
@@ -1829,7 +1829,7 @@ void MoveJump()
 					    if(jdir==1) white_dir[jumping]=10;
 						  if(jdir==-1) white_dir[jumping]=11;
 					  }
-					if(team==TBlack)
+					else //if(team==TBlack)
 					  {
 					  	if(jdir==1) black_dir[jumping]=10;
 						  if(jdir==-1) black_dir[jumping]=11;
@@ -1842,7 +1842,7 @@ void MoveJump()
 					    if(jdir==1) white_dir[jumping]=12;
 						  if(jdir==-1) white_dir[jumping]=13;
 					  }
-					if(team==TBlack)
+					else //if(team==TBlack)
 					  {
 					  	if(jdir==1) black_dir[jumping]=12;
 						  if(jdir==-1) black_dir[jumping]=13;
@@ -1855,7 +1855,7 @@ void MoveJump()
 					    if(jdir==1) white_dir[jumping]=6;
 						  if(jdir==-1) white_dir[jumping]=7;
 					  }
-					if(team==TBlack)
+					else //if(team==TBlack)
 					  {
 					  	if(jdir==1) black_dir[jumping]=6;
 						  if(jdir==-1) black_dir[jumping]=7;
@@ -1915,7 +1915,7 @@ void CursorClick()
   GameMode=M_Game;
   
   if(team==TWhite) TheWeap=white_weap;
-	if(team==TBlack) TheWeap=black_weap;
+	else /*if(team==TBlack)*/ TheWeap=black_weap;
 	
 	while(_keytest(RR_2ND));
 	
@@ -1943,14 +1943,14 @@ void CursorClick()
 			charge=0;
 		}
 		
-  if((TheWeap==WAirStrike) || (TheWeap==WNapStrike) || (TheWeap==WMineStrike) || (TheWeap==WMoleStrike) || (TheWeap==WSheepStrike) || (TheWeap==WCarpet) || (TheWeap==WMailStrike) || (TheWeap==WDonkey) || (TheWeap==WMB))
+  else if((TheWeap==WAirStrike) || (TheWeap==WNapStrike) || (TheWeap==WMineStrike) || (TheWeap==WMoleStrike) || (TheWeap==WSheepStrike) || (TheWeap==WCarpet) || (TheWeap==WMailStrike) || (TheWeap==WDonkey) || (TheWeap==WMB))
     {
    	  xspotx=CursorX;
 	    xspoty=CursorY;
 	    UseWeapon();
     }//endif strike
     
-  if(TheWeap==WTeleport)
+  else if(TheWeap==WTeleport)
  		{
  			if((point(CursorX,CursorY)==0) && (point(CursorX,CursorY-15)==0))
  			  {
@@ -1959,7 +1959,7 @@ void CursorClick()
  			  	  	white_x[white_w]=CursorX;
  			  	  	white_y[white_w]=CursorY;
  			  	  }
- 			  	if(team==TBlack)
+ 			  	else //if(team==TBlack)
  			  	  {
  			  	  	black_x[black_w]=CursorX;
  			  	  	black_y[black_w]=CursorY;
@@ -2081,7 +2081,7 @@ void GetWeap()
 	
 	TheWeap=((Wx*5)+(Wy));
 	if(team==TWhite) white_weap=TheWeap;
-	if(team==TBlack) black_weap=TheWeap;
+	else /*if(team==TBlack)*/ black_weap=TheWeap;
 	
 	//nulls the target spot
 	xspotx=-1;
@@ -2124,7 +2124,7 @@ void GetWeap()
 	  	if(TheWeap==WGirder || TheWeap==WGirderPak)
 	  	  {
 	  	  	if(TheWeap==WGirder) girders=1;
-	  	  	if(TheWeap==WGirderPak) girders=5;
+	  	  	else if(TheWeap==WGirderPak) girders=5;
 	  	  	
 	  	  	girdermode=true;
 	  	  	girder=1;
@@ -2136,7 +2136,7 @@ void GetWeap()
 	  	  	CursorX=white_x[white_w];
 	  	  	CursorY=white_y[white_w];
 	  	  }//endif team white
-	  	if(team==TBlack)
+	  	else //if(team==TBlack)
 	  	  {
 	  	  	CursorX=black_x[black_w];
 	  	  	CursorY=black_y[black_w];
@@ -2163,7 +2163,7 @@ void UseWeapon()
 			WormTop=white_y[white_w];
 			WormWeapon=white_weap;
 		}//endif white team
-	if(team==TBlack)
+	else //if(team==TBlack)
 		{
 			zWormLeft=black_x[black_w];
 			WormTop=black_y[black_w];
@@ -2189,6 +2189,7 @@ void UseWeapon()
 	  }//end switch
 	
 	//TOOLS TOOLS TOOLS TOOLS TOOLS
+	// TODO probably add else
 	if(currw==WLowG)
 	  {
 	  	lowgrav=true;
@@ -2210,7 +2211,7 @@ void UseWeapon()
 	  	  	WeapsOff();
 	  			return;
 	  	  }
-	  	if(team==TBlack)
+	  	else //if(team==TBlack)
 	  	  {
 	  	  	blackinvis=true;
 	  	  	ToggleTeam();
@@ -2241,7 +2242,7 @@ void UseWeapon()
 			  	weap_y[x]=20;
 			  	weap_diry[x]=1;
 			  	if(CursorDir==1) weap_dirx[x]=2;
-			  	if(CursorDir==0) weap_dirx[x]=-2;
+			  	else if(CursorDir==0) weap_dirx[x]=-2;
 			  	weap_type[x]=WBazooka;
 	      	weap_time[x]=30;
 			  	weapson=true;
@@ -2260,7 +2261,7 @@ void UseWeapon()
 				  weap_y[x]=20;
 				  weap_diry[x]=1;
 				  if(CursorDir==1) weap_dirx[x]=2;
-				  if(CursorDir==0) weap_dirx[x]=-2;
+				  else if(CursorDir==0) weap_dirx[x]=-2;
 				  weap_type[x]=WNapStrike;
 		      weap_time[x]=160;
 				  weapson=true;
@@ -2279,7 +2280,7 @@ void UseWeapon()
 				  	weap_y[x]=20;
 				  	weap_diry[x]=1;
 				  	if(CursorDir==1) weap_dirx[x]=2;
-				  	if(CursorDir==0) weap_dirx[x]=-2;
+				  	else if(CursorDir==0) weap_dirx[x]=-2;
 				  	weap_type[x]=WMole2;
 		      	weap_time[x]=70;
 				  	weapson=true;
@@ -2298,7 +2299,7 @@ void UseWeapon()
 				  	weap_y[x]=20;
 				  	weap_diry[x]=1;
 				  	if(CursorDir==1) weap_dirx[x]=2;
-				  	if(CursorDir==0) weap_dirx[x]=-2;
+				  	else if(CursorDir==0) weap_dirx[x]=-2;
 				  	weap_type[x]=WSheepStrike;
 		      	weap_time[x]=70;
 				  	weapson=true;
@@ -2317,7 +2318,7 @@ void UseWeapon()
 				  	weap_y[x]=20;
 				  	weap_diry[x]=1;
 				  	if(CursorDir==1) weap_dirx[x]=2;
-				  	if(CursorDir==0) weap_dirx[x]=-2;
+				  	else if(CursorDir==0) weap_dirx[x]=-2;
 				  	weap_type[x]=WCarpet;
 		      	weap_time[x]=70;
 				  	weapson=true;
@@ -2337,7 +2338,7 @@ void UseWeapon()
 				  	weap_y[x]=20;
 				  	weap_diry[x]=1;
 				  	if(CursorDir==1) weap_dirx[x]=2;
-				  	if(CursorDir==0) weap_dirx[x]=-2;
+				  	else if(CursorDir==0) weap_dirx[x]=-2;
 				  	weap_type[x]=WMailStrike;
 		      	weap_time[x]=70;
 				  	weapson=true;
@@ -2423,13 +2424,13 @@ void UseWeapon()
       if(currw==WSheepLaunch)
         weap_type[0]=WSheep;
         
-      if(currw==WShotG || currw==WHandG || currw==WUzi || currw==WMiniG || currw==WBow || currw==WMorter)
+      else if(currw==WShotG || currw==WHandG || currw==WUzi || currw==WMiniG || currw==WBow || currw==WMorter)
         charge=15;
       
-      if(currw==WHomingP || currw==WMagicB)
+      else if(currw==WHomingP || currw==WMagicB)
         charge=5;
       
-      if(currw==WHoming) weap_time[0]=20;
+      else if(currw==WHoming) weap_time[0]=20;
       
       //give it the x component
       if(Facing()==0)
@@ -2484,7 +2485,7 @@ void MoveWeaps()
 			zWormLeft=white_x[white_w];
 			WormTop=white_y[white_w];
 		}//endif white team
-	if(team==TBlack)
+	else //if(team==TBlack)
 		{
 			zWormLeft=black_x[black_w];
 			WormTop=black_y[black_w];
@@ -2503,18 +2504,18 @@ void MoveWeaps()
 					  	if(weap_time[x]<0)
 					  	  TimeExpire(x);
 						}
-    	  	if(weap_type[x]==WMailStrike || weap_type[x]==WMB)
+    	  	else if(weap_type[x]==WMailStrike || weap_type[x]==WMB)
     	  	  {
     	  	  	weap_y[x]+=2;
     	  	  	weap_x[x]+=sin(weap_y[x])*5;
     	  	  }
-    	  	if(weap_type[x]==WBazooka || weap_type[x]==WHoming || weap_type[x]==WMorter || weap_type[x]==WGrenade || weap_type[x]==WCluster || weap_type[x]==WBanana || weap_type[x]==WSBanana || weap_type[x]==WHolyGrenade  || weap_type[x]==WMolotov || weap_type[x]==WCluster2 || weap_type[x]==WMing2 || weap_type[x]==WBowLeft || weap_type[x]==WBowRight || weap_type[x]==WMole2 || weap_type[x]==WLady2 || weap_type[x]==WSheepStrike || weap_type[x]==WSheepStrike2 || weap_type[x]==WCarpet || weap_type[x]==WCarpet2 || weap_type[x]==WDonkey)
+    	  	else if(weap_type[x]==WBazooka || weap_type[x]==WHoming || weap_type[x]==WMorter || weap_type[x]==WGrenade || weap_type[x]==WCluster || weap_type[x]==WBanana || weap_type[x]==WSBanana || weap_type[x]==WHolyGrenade  || weap_type[x]==WMolotov || weap_type[x]==WCluster2 || weap_type[x]==WMing2 || weap_type[x]==WBowLeft || weap_type[x]==WBowRight || weap_type[x]==WMole2 || weap_type[x]==WLady2 || weap_type[x]==WSheepStrike || weap_type[x]==WSheepStrike2 || weap_type[x]==WCarpet || weap_type[x]==WCarpet2 || weap_type[x]==WDonkey)
 					  {
 					  	weap_x[x]+=weap_dirx[x]/2;
 					  	weap_y[x]+=weap_diry[x]/2;
 					  	weap_diry[x]+=.5;
 					  	if(weap_diry[x]>10) weap_diry[x]=10;
-					  	if(weap_diry[x]<-10) weap_diry[x]=-10;
+					  	else if(weap_diry[x]<-10) weap_diry[x]=-10;
 					  	
 					  	weap_time[x]--;
 					  	if(weap_time[x]<0)
@@ -2523,7 +2524,7 @@ void MoveWeaps()
 					  	//CamFocus(weap_x[x],weap_y[x]);
 					  }//end if its a weapn
 					
-					if(weap_type[x]==WDyna || weap_type[x]==WMingVase)
+					else if(weap_type[x]==WDyna || weap_type[x]==WMingVase)
 					  {
 					  	weap_y[x]+=1;
 					  	weap_time[x]--;
@@ -2531,13 +2532,13 @@ void MoveWeaps()
 					  	  TimeExpire(x);
 					  }
 					  
-					if((weap_type[x]==WSheep) || (weap_type[x]==WCows) || (weap_type[x]==WSkunk) || (weap_type[x]==WMole) || (weap_type[x]==WOldLady) || (weap_type[x]==WSalArmy) || (weap_type[x]==WMole))
+					else if((weap_type[x]==WSheep) || (weap_type[x]==WCows) || (weap_type[x]==WSkunk) || (weap_type[x]==WMole) || (weap_type[x]==WOldLady) || (weap_type[x]==WSalArmy) || (weap_type[x]==WMole))
 					  {
 					  	weap_x[x]+=weap_dirx[x];
 					  	weap_y[x]+=weap_diry[x];
 				  		weap_diry[x]+=.5;
 					  	if(weap_diry[x]>10) weap_diry[x]=10;
-					  	if(weap_diry[x]<-10) weap_diry[x]=-10;
+					  	else if(weap_diry[x]<-10) weap_diry[x]=-10;
 					  	
 					  	weap_time[x]--;
 					  	if(weap_time[x]<0)
@@ -2576,22 +2577,22 @@ void MoveWeaps()
 					  }
 	  
 					//printf_xy(1,1,"%d  %d",weap_type[x], WUzi);
-				  if(weap_type[x]==WHoming2 || weap_type[x]==WHomingP || weap_type[x]==WMagicB)
+				  else if(weap_type[x]==WHoming2 || weap_type[x]==WHomingP || weap_type[x]==WMagicB)
 				    {
 				    	weap_time[x]--;
 				    	if(weap_time[x]<0)
 					  	  TimeExpire(x);
 				    	if(weap_x[x]<xspotx+4)
 				    	  weap_x[x]+=2;
-				    	if(weap_x[x]>xspotx+4)
+				    	else if(weap_x[x]>xspotx+4)
 				    	  weap_x[x]-=2;
 				    	if(weap_y[x]<xspoty+9)
 				    	  weap_y[x]+=2;
-				    	if(weap_y[x]>xspoty+9)
+				    	else if(weap_y[x]>xspoty+9)
 				    	  weap_y[x]-=2;
 				    }
 				    
-					if(weap_type[x]==WShotG || weap_type[x]==WHandG || weap_type[x]==WUzi || weap_type[x]==WMiniG || weap_type[x]==WFlame)
+					else if(weap_type[x]==WShotG || weap_type[x]==WHandG || weap_type[x]==WUzi || weap_type[x]==WMiniG || weap_type[x]==WFlame)
 					  {
 					  	weap_x[x]+=weap_dirx[x]/2;
 					  	weap_y[x]+=weap_diry[x]/2;
@@ -2626,7 +2627,7 @@ void MoveWeaps()
 					  	  }//endif uzi or minigun
 					  }
     	  }//endif on screen
-			if(weap_type[x]==WDrill)
+			else if(weap_type[x]==WDrill)
 			  {
 			  	short z;
 			  	for(z=0;z<12;z++)
@@ -2725,14 +2726,14 @@ void WeapCollide(short weap)
 				
 				SetExp(weap_x[weap],weap_y[weap],5);
   	}
-  if(weap_type[weap]==WDonkey)
+  else if(weap_type[weap]==WDonkey)
     {
     	SetExp(weap_x[weap],weap_y[weap],15);
     	weap_diry[weap]=-5;
     	ToggleTeam();
     	return;
     }
-  if(weap_type[weap]==WNapStrike)
+  else if(weap_type[weap]==WNapStrike)
 	  {
 	  	//short x;
 	  	//for(x=0;x<5;x++)
@@ -2744,7 +2745,7 @@ void WeapCollide(short weap)
 			return;
 	  }
 	  
-  if((weap_type[weap]==WSheep) || (weap_type[weap]==WCows) || (weap_type[weap]==WSkunk) || (weap_type[weap]==WMole) || (weap_type[weap]==WOldLady) || (weap_type[weap]==WSalArmy) || (weap_type[weap]==WMole))
+  else if((weap_type[weap]==WSheep) || (weap_type[weap]==WCows) || (weap_type[weap]==WSkunk) || (weap_type[weap]==WMole) || (weap_type[weap]==WOldLady) || (weap_type[weap]==WSalArmy) || (weap_type[weap]==WMole))
 	  {
 	  	weap_diry[weap]=0;
 	  	if(weap_dirx[weap]<0)
@@ -2752,11 +2753,11 @@ void WeapCollide(short weap)
 	  	else
 	  	  weap_dirx[weap]=1;	
 	  }
-	if(weap_type[weap]==WMole2)
+	else if(weap_type[weap]==WMole2)
 	  {
 	  	SetExp(weap_x[weap],weap_y[weap],3);
 	  }
-	if(weap_type[weap]==WBazooka || weap_type[weap]==WHoming || weap_type[weap]==WHoming2 || weap_type[weap]==WMing2 || weap_type[weap]==WMailStrike || weap_type[weap]==WSheepStrike2 || weap_type[weap]==WMagicB || weap_type[weap]==WCarpet2)
+	else if(weap_type[weap]==WBazooka || weap_type[weap]==WHoming || weap_type[weap]==WHoming2 || weap_type[weap]==WMing2 || weap_type[weap]==WMailStrike || weap_type[weap]==WSheepStrike2 || weap_type[weap]==WMagicB || weap_type[weap]==WCarpet2)
 	  {
       SetExp(weap_x[weap],weap_y[weap],10);
       if(cluster)
@@ -2771,7 +2772,7 @@ void WeapCollide(short weap)
 			EndWeap(weap);
 	  }
 	  
-	if(weap_type[weap]==WSheepStrike || weap_type[weap]==WCarpet)
+	else if(weap_type[weap]==WSheepStrike || weap_type[weap]==WCarpet)
 	  {
 	  	//simply bounces the sheep or whatever
 	  	if(point(weap_x[weap]+3,weap_y[weap])) 
@@ -2808,7 +2809,7 @@ void WeapCollide(short weap)
         weap_type[weap]=WCarpet2;
 	  }
 	  
-	if(weap_type[weap]==WCluster2 || weap_type[weap]==WShotG || weap_type[weap]==WHandG || weap_type[weap]==WUzi || weap_type[weap]==WMiniG)
+	else if(weap_type[weap]==WCluster2 || weap_type[weap]==WShotG || weap_type[weap]==WHandG || weap_type[weap]==WUzi || weap_type[weap]==WMiniG)
 	  {
       SetExp(weap_x[weap],weap_y[weap],4);
       //weap_y[weap]=-1;
@@ -2816,20 +2817,20 @@ void WeapCollide(short weap)
 			//CamFocus(weap_x[weap],weap_y[weap]);
 			EndWeap(weap);
 	  }
-	if(weap_type[weap]==WLady2 || weap_type[weap]==WMB)
+	else if(weap_type[weap]==WLady2 || weap_type[weap]==WMB)
 	  {
       SetExp(weap_x[weap],weap_y[weap],10);
       LockCam();
 			EndWeap(weap);
 	  }
-	if(weap_type[weap]==WMorter)
+	else if(weap_type[weap]==WMorter)
 	  {
 	  	SetExp(weap_x[weap],weap_y[weap],10);
 			CamFocus(weap_x[weap],weap_y[weap]);
 			SetCluster(weap_x[weap],weap_y[weap],WMorter);
 			LockCam();
 	  }
-	if(weap_type[weap]==WGrenade || weap_type[weap]==WCluster || weap_type[weap]==WBanana || weap_type[weap]==WSBanana || weap_type[weap]==WHolyGrenade  || weap_type[weap]==WMolotov)
+	else if(weap_type[weap]==WGrenade || weap_type[weap]==WCluster || weap_type[weap]==WBanana || weap_type[weap]==WSBanana || weap_type[weap]==WHolyGrenade  || weap_type[weap]==WMolotov)
 	  {
 	  	//simply bounces it..
 	  	if(point(weap_x[weap]+3,weap_y[weap])) 
@@ -2859,12 +2860,12 @@ void WeapCollide(short weap)
 	  	  }
 	  	return;
 	  }
-	if(weap_type[weap]==WBowLeft || weap_type[weap]==WBowRight)
+	else if(weap_type[weap]==WBowLeft || weap_type[weap]==WBowRight)
 	  {
 	  	MapArrow(weap_type[weap], weap_x[weap], weap_y[weap]);
 	  	EndWeap(weap);
 	  }
-	if((weap_type[weap]==WCows) || (weap_type[weap]==WSheep) || (weap_type[weap]==WSkunk) || (weap_type[weap]==WMole) || (weap_type[weap]==WOldLady) || (weap_type[weap]==WSalArmy) || (weap_type[weap]==WMole))
+	else if((weap_type[weap]==WCows) || (weap_type[weap]==WSheep) || (weap_type[weap]==WSkunk) || (weap_type[weap]==WMole) || (weap_type[weap]==WOldLady) || (weap_type[weap]==WSalArmy) || (weap_type[weap]==WMole))
 	  {
 	  	if((point(weap_x[weap]-3,weap_y[weap])) || (point(weap_x[weap]+3,weap_y[weap])))
 	  	  {
@@ -2891,51 +2892,51 @@ void TimeExpire(short weap)
 			canfire=true;
 			MsgBox("Boom","Grenade Exploded");
 		}
-	if(weap_type[weap]==WBanana)
+	else if(weap_type[weap]==WBanana)
 		{
 			SetExp(weap_x[weap],weap_y[weap],17);
 			weapson=false;
 			canfire=true;
 		}
-	if(weap_type[weap]==WHolyGrenade || weap_type[weap]==WDyna || weap_type[weap]==WSkunk || weap_type[weap]==WSheep || weap_type[weap]==WOldLady)
+	else if(weap_type[weap]==WHolyGrenade || weap_type[weap]==WDyna || weap_type[weap]==WSkunk || weap_type[weap]==WSheep || weap_type[weap]==WOldLady)
 		{
 			SetExp(weap_x[weap],weap_y[weap],15);
 			weapson=false;
 			canfire=true;
 		}
-	if(weap_type[weap]==WMingVase)
+	else if(weap_type[weap]==WMingVase)
 		{
 			SetExp(weap_x[weap],weap_y[weap],15);
 			SetCluster(weap_x[weap],weap_y[weap],WMingVase);
 		}
-	if(weap_type[weap]==WCluster)
+	else if(weap_type[weap]==WCluster)
 		{
 			SetExp(weap_x[weap],weap_y[weap],5);
 			SetCluster(weap_x[weap],weap_y[weap],WCluster);
 		}
-  if(weap_type[weap]==WSalArmy)
+  else if(weap_type[weap]==WSalArmy)
     {
     	SetExp(weap_x[weap],weap_y[weap],15);
 			SetCluster(weap_x[weap],weap_y[weap],WSalArmy);
     }
-	if(weap_type[weap]==WSBanana)
+	else if(weap_type[weap]==WSBanana)
 		{
 			SetExp(weap_x[weap],weap_y[weap],15);
 			SetCluster(weap_x[weap],weap_y[weap],WSBanana);
 		}
-  if(weap_type[weap]==WHoming)
+  else if(weap_type[weap]==WHoming)
 		{
 			weap_type[weap]=WHoming2;
 			weap_time[weap]=40;
 			return;
 		}
-  if(weap_type[weap]==WHoming2 || weap_type[weap]==WHomingP || weap_type[weap]==WMagicB)
+  else if(weap_type[weap]==WHoming2 || weap_type[weap]==WHomingP || weap_type[weap]==WMagicB)
 		{
 			SetExp(weap_x[weap],weap_y[weap],10);
 			weapson=false;
 			canfire=true;
 		}
-  if(weap_type[weap]==WCows)
+  else if(weap_type[weap]==WCows)
     {
     	SetExp(weap_x[weap],weap_y[weap],12);
       //weap_y[weap]=-1;
@@ -2943,21 +2944,21 @@ void TimeExpire(short weap)
 			//CamFocus(weap_x[weap],weap_y[weap]);
 			EndWeap(weap);
     }
-  if(weap_type[weap]==WNapStrike)
+  else if(weap_type[weap]==WNapStrike)
     {
       //LockCam();
       weap_y[weap]=-1;
 			//CamFocus(weap_x[weap],weap_y[weap]);
 			EndWeap(weap);
     }
-  if(weap_type[weap]==WMole)
+  else if(weap_type[weap]==WMole)
     {
     	weap_type[weap]=WMole2;
 			weap_time[weap]=40;
 			weap_diry[weap]=-5;
 			return;
     }
-  if(weap_type[weap]==WMole2)
+  else if(weap_type[weap]==WMole2)
     {
     	SetExp(weap_x[weap],weap_y[weap],12);
       //weap_y[weap]=-1;
@@ -2965,7 +2966,7 @@ void TimeExpire(short weap)
 			//CamFocus(weap_x[weap],weap_y[weap]);
 			EndWeap(weap);
     }
-  if(weap_type[weap]==WDrill)
+  else if(weap_type[weap]==WDrill)
     {
     	weapson=false;
 			canfire=true;
@@ -2994,13 +2995,13 @@ void SetCluster(short x, short y, short type)
 			
 			if(type==WSBanana)
 			  weap_type[z]=WBanana;
-			if(type==WCluster)
+			else if(type==WCluster)
 			  weap_type[z]=WCluster2;
-		  if(type==WMingVase)
+		  else if(type==WMingVase)
 		    weap_type[z]=WMing2;
-		  if(type==WSalArmy)
+		  else if(type==WSalArmy)
 		    weap_type[z]=WLady2;
-		  if(type==WMorter)
+		  else if(type==WMorter)
 		    {
 		    	weap_type[z]=WCluster2;
 		    	weap_diry[z]=1;
@@ -3113,7 +3114,7 @@ void LockWorm()
 			orgx=white_x[white_w];
 			orgy=white_y[white_w];
 		}//endif white team
-	if(team==TBlack)
+	else //if(team==TBlack)
 		{
 			orgx=black_x[black_w];
 			orgy=black_y[black_w];
@@ -3129,7 +3130,7 @@ void SetWorm()
 			white_x[white_w]=orgx;
 			white_y[white_w]=orgy;
 		}//endif white team
-	if(team==TBlack)
+	else //if(team==TBlack)
 		{
 			black_x[black_w]=orgx;
 			black_y[black_w]=orgy;
@@ -3161,7 +3162,7 @@ void ToggleTeam()
   
   if(team==TWhite)
     whiteinvis=false;
-  if(team==TBlack)
+  else //if(team==TBlack)
     blackinvis=false;
   
   if(team==TWhite)
@@ -3171,7 +3172,7 @@ void ToggleTeam()
 				white_w=0;
 			//FocusWorm(white_w,TWhite);
 		}//endif WHITE TEAM
-	if(team==TBlack)
+	else //if(team==TBlack)
 		{
 			black_w++;
 			if(black_w>=maxworms)
