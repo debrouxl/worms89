@@ -551,7 +551,7 @@ void DrawScreen()
 		  ScrRectFill(&(SCR_RECT){{2+12*WX, 16+12*WY, 2+12*WX+10, 16+12*WY+10}}, &(SCR_RECT){{0, 0, 159, 99}}, A_XOR);
 		  
 		  //draws the weapon title
-		  char Weaponz[5][14][20]={
+		  static const char Weaponz[5][14][20]={
 			{"Jet Pack", "Bazooka", "Grenade", "Shot Gun", "Fire Punch", "Dynamite", "Air Strike", "Blow Torch", "Ninja Rope", "Super Banana Bomb", "Petrol Bomb", "Mad Cow Herd", "Skip Turn"},
 			{"Low Gravity", "Homing Missle", "Cluster Bomb", "Hand Gun", "Dragon Ball", "Mine", "Napalm Strike", "Drill", "Bungee", "Holy Grenade", "Skunk", "Old Lady", "Surrender"},
 			{"Fast Walk", "Mortar", "Banana Bomb", "Uzi", "Kamakazee", "Sheep", "Mail Strike", "Girder", "Parachute", "Flame Thower", "Ming Vase", "Concrete Donkey", "Change Worm"},

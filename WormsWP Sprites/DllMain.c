@@ -3351,7 +3351,7 @@ void DrawWeaps()
   int x;
   char WeaponName[25], temp[5];
   
-  char Weaponz[5][14][20]={
+  static const char Weaponz[5][14][20]={
 	{"Jet Pack", "Bazooka", "Grenade", "Shot Gun", "Fire Punch", "Dynamite", "Air Strike", "Blow Torch", "Ninja Rope", "Super Banana Bomb", "Petrol Bomb", "Mad Cow Herd", "Skip Turn"},
 	{"Low Gravity", "Homing Missle", "Cluster Bomb", "Hand Gun", "Dragon Ball", "Mine", "Napalm Strike", "Drill", "Bungee", "Holy Grenade", "Skunk", "Old Lady", "Surrender"},
 	{"Fast Walk", "Mortar", "Banana Bomb", "Uzi", "Kamakazee", "Sheep", "Mail Strike", "Girder", "Parachute", "Flame Thower", "Ming Vase", "Concrete Donkey", "Change Worm"},
