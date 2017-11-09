@@ -924,7 +924,7 @@ void drawdropbox(int x, int y, int width, const char *cap)
 //HANDLES ALL THE KEY PRESSES!
 void KeyHandle()
 {
-	if(_keytest(RR_2ND)==true) //handles for every key press of second
+	if(_keytest(RR_2ND)) //handles for every key press of second
 	  {
 	  	if(screen==gtronics)
 				{

@@ -298,7 +298,7 @@ void MainLoop()
 { 
 	while((_keytest(RR_ESC)!=true) || (GameMode==M_Weapon))
 		{
-		  if(Lock==true)
+		  if(Lock)
 			  {
 			  	scrollx=LockX;//sets cam to locked pos
 			  	scrolly=LockY;
@@ -313,7 +313,7 @@ void MainLoop()
 			KeyStuff();
 			
 			//makes sure worm is locked
-			if(WormLock==true) SetWorm();
+			if(WormLock) SetWorm();
 			
 			drawgfx();
 			//printf_xy(0,0,"%d",mapptr[0]);
@@ -331,7 +331,7 @@ void MainLoop()
 				MoveJump();
 			
 			//if a weapon is active (like a bazooka moveing).. then..
-			if(weapson==true)
+			if(weapson)
 			  MoveWeaps();
 
 			  
@@ -727,7 +727,7 @@ void KeyStuff()
 	//checks for left and right WHILE SHIFT is down.. scrolls map
 	if(_keytest(RR_SHIFT))
 		{
-			if((_keytest(RR_LEFT)==true))
+			if((_keytest(RR_LEFT)))
 				{
 				  ScrollTmr++;
 				  if(ScrollTmr>hor)
@@ -739,7 +739,7 @@ void KeyStuff()
 								scrollx=0;
 						}//endnf timne to scroll
 				}//end if key left
-			if((_keytest(RR_RIGHT)==true))
+			if((_keytest(RR_RIGHT)))
 				{
 					ScrollTmr++;
 				  if(ScrollTmr>hor)
@@ -752,13 +752,13 @@ void KeyStuff()
 						}//endnf timne to scroll
 				}//end if key right
 				
-			if((_keytest(RR_DOWN)==true))
+			if((_keytest(RR_DOWN)))
 				{
 					scrolly+=ver;
 					if(scrolly>100)
 						scrolly=100;
 				}//end if key down
-			if((_keytest(RR_UP)==true))
+			if((_keytest(RR_UP)))
 				{
 					scrolly-=ver;
 					if(scrolly<0)
@@ -770,13 +770,13 @@ void KeyStuff()
       (_keytest(RR_SHIFT)!=true) 
         &
         (
-          (_keytest(RR_LEFT)==true)
+          (_keytest(RR_LEFT))
           ||
-          (_keytest(RR_RIGHT)==true)
+          (_keytest(RR_RIGHT))
           ||
-          (_keytest(RR_UP)==true)
+          (_keytest(RR_UP))
           ||
-          (_keytest(RR_DOWN)==true)
+          (_keytest(RR_DOWN))
         )
         &
         (jumping==-1)
@@ -788,10 +788,10 @@ void KeyStuff()
         (moving==false)
     )
   	{
-  		if((_keytest(RR_LEFT)==true))
+  		if((_keytest(RR_LEFT)))
 				{
 				  if(GameMode==M_Select && weapson==false) {GameMode=M_Game; changed=false;}
-				  if(GameMode==M_Select && weapson==true) return;
+				  if(GameMode==M_Select && weapson) return;
 				    //MOVES THE WORM LEFT
 				    //resets the camera if nessicary
 						//if(team==TWhite) FocusWorm(white_w,team);
@@ -813,10 +813,10 @@ void KeyStuff()
 				  		}//endif time to walk
 				  	
 				}//end if key left
-			if((_keytest(RR_RIGHT)==true))
+			if((_keytest(RR_RIGHT)))
 				{
 					if(GameMode==M_Select && weapson==false) {GameMode=M_Game; changed=false;}
-				  if(GameMode==M_Select && weapson==true) return;
+				  if(GameMode==M_Select && weapson) return;
 					  //MOVES THE WORM LEFT
 					  //resets the camera if nessicary
 	          //if(team==TWhite) FocusWorm(white_w,team);
@@ -836,10 +836,10 @@ void KeyStuff()
 									}//endif time to toggle pos
 							}//endif time to walk
 				}//end if key right
-			if((_keytest(RR_UP)==true))
+			if((_keytest(RR_UP)))
 				{
 					if(GameMode==M_Select) GameMode=M_Game;
-					if(crosshair==true)
+					if(crosshair)
 						{
 							xhpos+=0.1;
 							if(xhpos>3.1) xhpos=3.1;
@@ -847,7 +847,7 @@ void KeyStuff()
 							XHy=cos(xhpos)*15;
 						}
 				}//end if key down
-			if((_keytest(RR_DOWN)==true))
+			if((_keytest(RR_DOWN)))
 				{
 					if(GameMode==M_Select) GameMode=M_Game;
 						{
@@ -864,7 +864,7 @@ void KeyStuff()
 	
 	if(GameMode==M_Cursor)
 	  {
-	  	if(girdermode==true)
+	  	if(girdermode)
 	  	  {
 	  	  	//tests to see if you are roatating the girder right or left..
 	  	  	if(_keytest(RR_PLUS))
@@ -884,17 +884,17 @@ void KeyStuff()
 	  	  }//end if girder mode
 	  	  
 	  	//mvoes the cursor...
-	  	if(_keytest(RR_UP)==true)
+	  	if(_keytest(RR_UP))
 	  		CursorY-=4;
-	  	if(_keytest(RR_DOWN)==true)
+	  	if(_keytest(RR_DOWN))
 	  		CursorY+=4;
-	    if(_keytest(RR_LEFT)==true)
+	    if(_keytest(RR_LEFT))
 	  		{
 	  			CursorX-=4;
 	  			CursorDir=0; //it faces left
 	  		}
 	  		
-	  	if(_keytest(RR_RIGHT)==true)
+	  	if(_keytest(RR_RIGHT))
 	  		{
 	  			CursorX+=4;
 	  			CursorDir=1; //it faces Right
@@ -906,13 +906,13 @@ void KeyStuff()
 	    if(CursorY<0) CursorY=0;
 	    if(CursorY>188) CursorY=188;
 	    
-	    if(_keytest(RR_2ND)==true)
+	    if(_keytest(RR_2ND))
 	    	CursorClick();
 	    	
 	  }//endif GAMEMODE IS M_CURSOR
 	  
 	//if its select worm, and you press [APPS] you cycle worms
-	if((GameMode==M_Select) & (_keytest(RR_APPS)==true))
+	if((GameMode==M_Select) & (_keytest(RR_APPS)))
 		{
 			if(team==TWhite)
 				{
@@ -931,7 +931,7 @@ void KeyStuff()
 			while(_keytest(RR_APPS));      
 		}//end if choose worm
 		
-	if((GameMode==M_Game) & (_keytest(RR_APPS)==true))
+	if((GameMode==M_Game) & (_keytest(RR_APPS)))
 	  {
 	  	ToggleTeam();
 	  }
@@ -946,50 +946,50 @@ void KeyStuff()
 		BackFlip();
 
   //if you press F1 or Catalog you get weapons...
-  if((_keytest(RR_F1)==true) || (_keytest(RR_CATALOG)) & (GameMode==M_Game))
+  if((_keytest(RR_F1)) || (_keytest(RR_CATALOG)) & (GameMode==M_Game))
  		GameMode=M_Weapon;
   
   //if you press ESC during weapong mode it exits the weapong screen..
-  if((_keytest(RR_ESC)==true) & (GameMode==M_Weapon))
+  if((_keytest(RR_ESC)) & (GameMode==M_Weapon))
  		{
  			GameMode=M_Game;
- 			while(_keytest(RR_ESC)==true);
+ 			while(_keytest(RR_ESC));
  		}
  	
  	//if you press ENTER or 2ND durig weapon mode, then you select the weapong the cursor is on..
- 	if(((_keytest(RR_2ND)==true) || (_keytest(RR_ENTER)==true)) && ((GameMode==M_Weapon) || (GameMode==M_Cursor)))
+ 	if(((_keytest(RR_2ND)) || (_keytest(RR_ENTER))) && ((GameMode==M_Weapon) || (GameMode==M_Cursor)))
 		{
-		  while((_keytest(RR_2ND)==true) || (_keytest(RR_ENTER)==true));
+		  while((_keytest(RR_2ND)) || (_keytest(RR_ENTER)));
 			GetWeap();
 		}
 		
   //if you press 2ND it will use the current weapon you have selected (if you are in game mode) NOT CHARGE MODE
-  if((_keytest(RR_2ND)==true) && (GameMode==M_Game) && (chargew==false) && (canfire==true))
+  if((_keytest(RR_2ND)) && (GameMode==M_Game) && (chargew==false) && (canfire))
     UseWeapon();
   
   //if you press 2ND it will charge the current weapon you have selected (if you are in game mode) IS CHARGE MODE
-  if((_keytest(RR_2ND)==true) && (GameMode==M_Game) && (chargew==true) && (charge<=15) && (canfire==true))
+  if((_keytest(RR_2ND)) && (GameMode==M_Game) && (chargew) && (charge<=15) && (canfire))
     charge++;
   
   //if you release 2ND it will use the current weapon you have selected (if you are in game mode) IS CHARGE MODE
-  if((((_keytest(RR_2ND)==false) && (GameMode==M_Game) && (chargew==true) && (charge>0)) || (charge>15)) && (canfire==true))
+  if((((_keytest(RR_2ND)==false) && (GameMode==M_Game) && (chargew) && (charge>0)) || (charge>15)) && (canfire))
     UseWeapon();
   
-  if((_keytest(RR_2ND)==true) && (weapson==true))
+  if((_keytest(RR_2ND)) && (weapson))
     {
     	SecondWeap();
     	
     }//endif 2nd during weapon
     
   //if the user presses F1 then the were be an explosio where the worm was...
-  if(_keytest(RR_F2)==true)
+  if(_keytest(RR_F2))
   	{
   		if(team==TWhite)
   		  SetExp(white_x[white_w],white_y[white_w]+6,20);
   		if(team==TBlack)
   		  SetExp(black_x[black_w],black_y[black_w]+6,20);
   		
-  	while(_keytest(RR_F2)==true); //waits until key is released..
+  	while(_keytest(RR_F2)); //waits until key is released..
   	}//endif pressed f1
   
   //move\choose weapon..
@@ -1118,7 +1118,7 @@ void Gravity(int TheWorm)
   static short grav=0;
   Falling=false;
   
-  grav++; if(grav>1) grav=0; if(grav==0 && lowgrav==true) return;
+  grav++; if(grav>1) grav=0; if(grav==0 && lowgrav) return;
   //saves the original position of the worm (just the vertical value)
   WOrg=white_y[white_w];
   BOrg=black_y[black_w];
@@ -1234,7 +1234,7 @@ void Gravity(int TheWorm)
 		  {
 		  	if(WOrg != white_y[white_w]) //if the original position doesn not match the new one, then it must be falling..
 		  	  Falling=true;
-		  	else if(ParaMode==true)//otherwise it must have landed..
+		  	else if(ParaMode)//otherwise it must have landed..
 		  	  {
 		  	  	ParaMode=false;
   	  			EndWeap(0);
@@ -1244,7 +1244,7 @@ void Gravity(int TheWorm)
 		  {
 		  	if(BOrg != black_y[black_w]) //if the original position doesn not match the new one, then it must be falling..
 		  	  Falling=true;
-		  	else if(ParaMode==true)//otherwise it must have landed..
+		  	else if(ParaMode)//otherwise it must have landed..
 		  	  {
 		  	  	ParaMode=false;
   	  			EndWeap(0);
@@ -1505,7 +1505,7 @@ void CollDetect()
 		  {
 		  	if(WOrg==white_y[white_w]) //if the original position doesn not match the new one, then it must be falling..
 		  	  Falling=true;
-		  	else if(ParaMode==true) //otherwise it must have landed..
+		  	else if(ParaMode) //otherwise it must have landed..
 		  	  {
 		  	  	ParaMode=false;
   	  			EndWeap(0);
@@ -1515,7 +1515,7 @@ void CollDetect()
 		  {
 		  	if(BOrg==black_y[black_w]) //if the original position doesn not match the new one, then it must be falling..
 		  	  Falling=true;
-		  	else if(ParaMode==true)//otherwise it must have landed..
+		  	else if(ParaMode)//otherwise it must have landed..
 		  	  {
 		  	  	ParaMode=false;
   	  			EndWeap(0);
@@ -1600,13 +1600,13 @@ void MoveLeft()
 		  
 		  //TEST CODE
   	  white_x[white_w]-=1;
-  	  if(fastwalk==true) white_x[white_w]-=2;
+  	  if(fastwalk) white_x[white_w]-=2;
   	  
   	  white_y[white_w]=white_y[white_w]-15;
   	  for(x=0;x<15;x++)
   	    {
   	    	Gravity(white_w);
-  	    	if(lowgrav==true) Gravity(white_w);
+  	    	if(lowgrav) Gravity(white_w);
   	    }
   	    
 
@@ -1621,13 +1621,13 @@ void MoveLeft()
 		  
 		  //TEST CODE
   	  black_x[black_w]-=1;
-  	  if(fastwalk==true) black_x[black_w]-=2;
+  	  if(fastwalk) black_x[black_w]-=2;
   	  
   	  black_y[black_w]=black_y[black_w]-15;
   	  for(x=0;x<15;x++)
   	    {
 	  	    Gravity(black_w);
-					if(lowgrav==true) Gravity(white_w);
+					if(lowgrav) Gravity(white_w);
   	    }
 		  //makes sure they didnt go off screen
 		  if(black_x[black_w]<0) black_x[black_w]=0;
@@ -1648,13 +1648,13 @@ void MoveRight()
 		  
 		  //TEST CODE
   	  white_x[white_w]+=1;
-  	  if(fastwalk==true) white_x[white_w]+=2;
+  	  if(fastwalk) white_x[white_w]+=2;
   	  
   	  white_y[white_w]=white_y[white_w]-15;
   	  for(x=0;x<15;x++)
   	    {
   	    	Gravity(white_w);
-  	    	if(lowgrav==true) Gravity(white_w);
+  	    	if(lowgrav) Gravity(white_w);
   	    }
   	    
 
@@ -1669,13 +1669,13 @@ void MoveRight()
 		  
 		  //TEST CODE
   	  black_x[black_w]+=1;
-  	  if(fastwalk==true) black_x[black_w]+=2;
+  	  if(fastwalk) black_x[black_w]+=2;
   	  
   	  black_y[black_w]=black_y[black_w]-15;
   	  for(x=0;x<15;x++)
   	    {
   	    	Gravity(black_w);
-  	    	if(lowgrav==true) Gravity(black_w);
+  	    	if(lowgrav) Gravity(black_w);
   	    }
   	    
 
@@ -1775,7 +1775,7 @@ void MoveJump()
   
   if(backflip==false)
   	{
-  		if((jtime<15) || (jtime<30 && lowgrav==true))
+  		if((jtime<15) || (jtime<30 && lowgrav))
 				{
 					if(team==TWhite) white_y[jumping]-=2;
 					if(team==TBlack) black_y[jumping]-=2;
@@ -1787,7 +1787,7 @@ void MoveJump()
 			  
   	}//endif NOT BACK FLIP
   	
-  if(backflip==true)
+  if(backflip)
   	{
   		if(jtime<23)
 				{
@@ -1919,7 +1919,7 @@ void CursorClick()
 	
 	while(_keytest(RR_2ND));
 	
-	if(girdermode==true)
+	if(girdermode)
 	  {
 	  	MapGirder();
 	  	girders--;
@@ -2671,15 +2671,15 @@ void MoveWeaps()
 			if(weap_y[x]!=-1)
 			  {
 			  	if(
-			  	    (point(weap_x[x],weap_y[x])==true)
+			  	    (point(weap_x[x],weap_y[x]))
 			  	    ||
-			  	    (point(weap_x[x]-3,weap_y[x]-3)==true)
+			  	    (point(weap_x[x]-3,weap_y[x]-3))
 			  	    ||
-			  	    (point(weap_x[x]-3,weap_y[x]+3)==true)
+			  	    (point(weap_x[x]-3,weap_y[x]+3))
 			  	    ||
-			  	    (point(weap_x[x]+3,weap_y[x]-3)==true)
+			  	    (point(weap_x[x]+3,weap_y[x]-3))
 			  	    ||
-			  	    (point(weap_x[x]+3,weap_y[x]+3)==true)
+			  	    (point(weap_x[x]+3,weap_y[x]+3))
 			  	  )
 			  	  WeapCollide(x);
 			  }//endif weapon is onscreen
@@ -2759,7 +2759,7 @@ void WeapCollide(short weap)
 	if(weap_type[weap]==WBazooka || weap_type[weap]==WHoming || weap_type[weap]==WHoming2 || weap_type[weap]==WMing2 || weap_type[weap]==WMailStrike || weap_type[weap]==WSheepStrike2 || weap_type[weap]==WMagicB || weap_type[weap]==WCarpet2)
 	  {
       SetExp(weap_x[weap],weap_y[weap],10);
-      if(cluster==true)
+      if(cluster)
         {
         	EndWeap(weap);
         	ToggleTeam();
@@ -2774,26 +2774,26 @@ void WeapCollide(short weap)
 	if(weap_type[weap]==WSheepStrike || weap_type[weap]==WCarpet)
 	  {
 	  	//simply bounces the sheep or whatever
-	  	if(point(weap_x[weap]+3,weap_y[weap])==true) 
+	  	if(point(weap_x[weap]+3,weap_y[weap])) 
 	  	  {
 	  	  	weap_dirx[weap]*=-1;
 	  	  	weap_dirx[weap]*=.7;
 	  	  	weap_dirx[weap]*=.9;
 	  	  	
 	  	  }
-	  	if(point(weap_x[weap]-3,weap_y[weap])==true)
+	  	if(point(weap_x[weap]-3,weap_y[weap]))
 	  	  {
 	  	  	weap_dirx[weap]*=-1;
 	  	  	weap_dirx[weap]*=.7;
 	  	  	weap_diry[weap]*=.9;
 	  	  }
-	  	if(point(weap_x[weap],weap_y[weap]+3)==true)
+	  	if(point(weap_x[weap],weap_y[weap]+3))
 	  	  {
 	  	  	weap_diry[weap]*=-1;
 	  	  	weap_diry[weap]*=.7;
 	  	  	weap_dirx[weap]*=.9;
 	  	  }
-	  	if(point(weap_x[weap],weap_y[weap]-3)==true)
+	  	if(point(weap_x[weap],weap_y[weap]-3))
 	  	  {
 	  	  	weap_diry[weap]*=-1;
 	  	  	weap_diry[weap]*=.7;
@@ -2832,26 +2832,26 @@ void WeapCollide(short weap)
 	if(weap_type[weap]==WGrenade || weap_type[weap]==WCluster || weap_type[weap]==WBanana || weap_type[weap]==WSBanana || weap_type[weap]==WHolyGrenade  || weap_type[weap]==WMolotov)
 	  {
 	  	//simply bounces it..
-	  	if(point(weap_x[weap]+3,weap_y[weap])==true) 
+	  	if(point(weap_x[weap]+3,weap_y[weap])) 
 	  	  {
 	  	  	weap_dirx[weap]*=-1;
 	  	  	weap_dirx[weap]*=.7;
 	  	  	weap_dirx[weap]*=.9;
 	  	  	
 	  	  }
-	  	if(point(weap_x[weap]-3,weap_y[weap])==true)
+	  	if(point(weap_x[weap]-3,weap_y[weap]))
 	  	  {
 	  	  	weap_dirx[weap]*=-1;
 	  	  	weap_dirx[weap]*=.7;
 	  	  	weap_diry[weap]*=.9;
 	  	  }
-	  	if(point(weap_x[weap],weap_y[weap]+3)==true)
+	  	if(point(weap_x[weap],weap_y[weap]+3))
 	  	  {
 	  	  	weap_diry[weap]*=-1;
 	  	  	weap_diry[weap]*=.7;
 	  	  	weap_dirx[weap]*=.9;
 	  	  }
-	  	if(point(weap_x[weap],weap_y[weap]-3)==true)
+	  	if(point(weap_x[weap],weap_y[weap]-3))
 	  	  {
 	  	  	weap_diry[weap]*=-1;
 	  	  	weap_diry[weap]*=.7;
@@ -2866,7 +2866,7 @@ void WeapCollide(short weap)
 	  }
 	if((weap_type[weap]==WCows) || (weap_type[weap]==WSheep) || (weap_type[weap]==WSkunk) || (weap_type[weap]==WMole) || (weap_type[weap]==WOldLady) || (weap_type[weap]==WSalArmy) || (weap_type[weap]==WMole))
 	  {
-	  	if((point(weap_x[weap]-3,weap_y[weap])==true) || (point(weap_x[weap]+3,weap_y[weap])==true))
+	  	if((point(weap_x[weap]-3,weap_y[weap])) || (point(weap_x[weap]+3,weap_y[weap])))
 	  	  {
 	  	  	if(weap_dirx[weap]==-1)
 	  	  	  weap_dirx[weap]=1;
@@ -3044,7 +3044,7 @@ void EndWeap(short weap)
 			canfire=true;
 			cluster=false;
     }
-	if(((cluster==true) && (ClusterOver()==true)) || (cluster==false))
+	if(((cluster) && (ClusterOver())) || (cluster==false))
 		{
 	  	weapson=false;
 			canfire=true;
@@ -3145,7 +3145,7 @@ void UnLockWorm()
 void ToggleTeam()
 {
   //if the team has already been changed or a cluser is still in progress, then dont change again until the user moves the worm...
-  if(changed==true || ClusterOver==false) return;
+  if(changed || ClusterOver==false) return;
 
 	lowgrav=false;
   fastwalk=false;

@@ -2495,7 +2495,7 @@ void DrawWorms()
       
       
       //IF THE PARACHUTE IS BEING USED, DRAW IT OVER THE CURRENT WORMS HEAD
-      if((Falling==true) && (ParaMode==true))
+      if((Falling) && (ParaMode))
         {
         	if(team==TWhite) //if its the white team, draw parachut over the whities
         	  {//extgraph spriteage
@@ -2510,7 +2510,7 @@ void DrawWorms()
         	
         }
       
-      if(whiteinvis==true) goto drblack; //if the team is invisible, dont draw them!
+      if(whiteinvis) goto drblack; //if the team is invisible, dont draw them!
 	  	//drwas the worms
 	  	//if(((white_w!=x) & (team==TWhite)) || (team==TBlack)) TextOut(white_x[x]-(fixs(scrollx)*8)-5-min,white_y[x]-scrolly-8,"100");
 	  	//WHAT POSITION IS THE WORM IN? JUMPING? BACKFLIP? WALKING? white_dir holds this info, and thus we draw it
@@ -2595,7 +2595,7 @@ void DrawWorms()
 	  	//drwas the worms
 	  	//DOES THE SAME FOR THE BLACK WORKS
 	  	drblack:
-	  	if(blackinvis==true) continue; //if the team is invisible, dont draw them!
+	  	if(blackinvis) continue; //if the team is invisible, dont draw them!
 	  	if(black_dir[x]==0)
 	  	  {
 	  	  	ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 15, WormRight, GrayDBufGetHiddenPlane(LIGHT_PLANE));
@@ -3124,7 +3124,7 @@ void DrawSel()
 	static short Frame=0;
 	static short UntilF=0;
 	
-	if(weapson==true) return; //dont draw it until weapon mode is OVER
+	if(weapson) return; //dont draw it until weapon mode is OVER
 	
 	UntilF++; //ups the timer until frame changes
 	if(UntilF>4) //if its time for a new frame...
@@ -3191,7 +3191,7 @@ void DrawCursor()
 {
   int min=(scrollx%8);
   
-  if(girdermode==true)
+  if(girdermode)
     {
     	switch(girder)
     	  {
@@ -3599,7 +3599,7 @@ void DrawWeap()
 					  {
 					  	//if(x==0)
 					  	  //{
-					  	  	if(cluster==true)
+					  	  	if(cluster)
 							  	  CamFocusY(wepy);
 							  	else
 							    	CamFocus2(wepx,wepy);
@@ -3870,7 +3870,7 @@ void DrawWeap()
 
 void CamFocus(int x, int y)
 {
-  if((Lock==true) || (((cluster==true) && (weap_type[0]!=WCows)) && ((cluster==true) && (weap_type[0]!=WBazooka)))) return; //it should be able to fouc is the cam is locked..
+  if((Lock) || (((cluster) && (weap_type[0]!=WCows)) && ((cluster) && (weap_type[0]!=WBazooka)))) return; //it should be able to fouc is the cam is locked..
   
   scrolly=y-50;
   scrollx=x-70;
@@ -3891,7 +3891,7 @@ void CamFocusY(int y)
 
 void CamFocus2(short x, short y)
 {
-  //if((Lock==true) || ((cluster==true) && (weap_type[0]!=WCows))) return; //it should be able to fouc is the cam is locked..
+  //if((Lock) || ((cluster) && (weap_type[0]!=WCows))) return; //it should be able to fouc is the cam is locked..
   
   scrolly=y-50;
   scrollx=x-70;
@@ -3960,15 +3960,15 @@ void drawgfx()
   if(xspoty!=-1) DrawXSpot();
   
   //if its a charge weapon, and your caring it.. it needs to draw charge
-  if((chargew==true) & (charge>0))
+  if((chargew) & (charge>0))
     DrawCharge();
     
   //if its a cross hair type weapon selected, then it draws the xhair, if you arent moving
-  if((crosshair==true) & (moving==false) & (_keytest(RR_LEFT)==false) & (_keytest(RR_RIGHT)==false) & (_keytest(RR_SHIFT)==false) & (weapson==false)) 
+  if((crosshair) & (moving==false) & (_keytest(RR_LEFT)==false) & (_keytest(RR_RIGHT)==false) & (_keytest(RR_SHIFT)==false) & (weapson==false)) 
     DrawXHair();
   
   //if a weapn is being fired, it has to draw those grafx..
-  if(weapson==true)
+  if(weapson)
     DrawWeap();
   
   //if its choose weapong mode, then it draws the weapons...
