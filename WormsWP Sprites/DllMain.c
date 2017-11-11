@@ -102,7 +102,9 @@ void DrawWorms()
   short zWormLeft=0, WormTop=0, WormWeapon=0;
   void * lplane = GrayDBufGetHiddenPlane(LIGHT_PLANE);
   void * dplane = GrayDBufGetHiddenPlane(DARK_PLANE);
-  
+  short xcoord;
+  short ycoord;
+
 	for(x=0;x<maxworms;x++)
 		{
 	  	//makes sure its the correct min (
@@ -127,65 +129,67 @@ void DrawWorms()
 	  	//drwas the worms
 	  	//if(((white_w!=x) & (team==TWhite)) || (team==TBlack)) TextOut(white_x[x]-(fixs(scrollx)*8)-5-min,white_y[x]-scrolly-8,"100");
 	  	//WHAT POSITION IS THE WORM IN? JUMPING? BACKFLIP? WALKING? white_dir holds this info, and thus we draw it
+	  	xcoord = white_x[x] - (fixs(scrollx) * 8) - 5 - min;
+	  	ycoord = white_y[x] - scrolly + 1;
 	  	if(white_dir[x]==0)
 	  	  {
-	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 15, WormRightI, WormRight, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 15, WormRightI, WormRight, lplane, dplane);
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==1)
 	  	  {
-	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 15, WormLeftI, WormLeft, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 15, WormLeftI, WormLeft, lplane, dplane);
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==2)
 	  	  {
-	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 15, WormRight2I, WormRight2, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 15, WormRight2I, WormRight2, lplane, dplane);
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==3)
 	  	  {
-	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 15, WormLeft2I, WormLeft2, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 15, WormLeft2I, WormLeft2, lplane, dplane);
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==4)
 	  	  {
-	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 17, WormLeftJumpI, WormLeftJump, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 17, WormLeftJumpI, WormLeftJump, lplane, dplane);
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==5)
 	  	  {
-	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 17, WormRightJumpI, WormRightJump, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 17, WormRightJumpI, WormRightJump, lplane, dplane);
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==6) //straight jump left
 	  	  {
-	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 17, WormLeftJump2I, WormLeftJump2, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 17, WormLeftJump2I, WormLeftJump2, lplane, dplane);
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==7) //straight jump right
 	  	  {
-	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 17, WormRightJump2I, WormRightJump2, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 17, WormRightJump2I, WormRightJump2, lplane, dplane);
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==8) //on side, left up
 	  	  {
-	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 13, WormLeftSideUI, WormLeftSideU, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 13, WormLeftSideUI, WormLeftSideU, lplane, dplane);
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==9) //on side, right up
 	  	  {
-	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 13, WormRightSideUI, WormRightSideU, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 13, WormRightSideUI, WormRightSideU, lplane, dplane);
 	  	  }//endif dir 0
 			else if(white_dir[x]==10) //upside down left 
 	  	  {
-	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 15, WormRightUI, WormRightU, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 15, WormRightUI, WormRightU, lplane, dplane);
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==11) //upside down right
 	  	  {
-	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 15, WormLeftUI, WormLeftU, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 15, WormLeftUI, WormLeftU, lplane, dplane);
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==13) //upside down left side
 	  	  {
-	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 13, WormRightSideI, WormRightSide, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 13, WormRightSideI, WormRightSide, lplane, dplane);
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==12) //upside down right side
 	  	  {
-	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 13, WormLeftSideI, WormLeftSide, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 13, WormLeftSideI, WormLeftSide, lplane, dplane);
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==14) //jack hammer
 	  	  {
-	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 20, WormHammerI, WormHammer, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 20, WormHammerI, WormHammer, lplane, dplane);
 	  	  }//endif dir 0
 	  	
 	  	  
@@ -194,66 +198,68 @@ void DrawWorms()
 	  	//DOES THE SAME FOR THE BLACK WORKS
 	  	drblack:
 	  	if(blackinvis) continue; //if the team is invisible, dont draw them!
+	  	xcoord = black_x[x] - (fixs(scrollx) * 8) - 5 - min;
+	  	ycoord = black_y[x] - scrolly + 1;
 	  	if(black_dir[x]==0)
 	  	  {
-	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 15, WormRight, WormRightI, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 15, WormRight, WormRightI, lplane, dplane);
 	  	  }//endif dir 0
 	  	else if(black_dir[x]==1)
 	  	  {
-	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 15, WormLeft, WormLeftI, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 15, WormLeft, WormLeftI, lplane, dplane);
 	  	  }//endif dir 0
 	  	//drwas the worms
 	  	else if(black_dir[x]==2)
 	  	  {
-	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 15, WormRight2, WormRight2I, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 15, WormRight2, WormRight2I, lplane, dplane);
 	  	  }//endif dir 0
 	  	else if(black_dir[x]==3)
 	  	  {
-	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 15, WormLeft2, WormLeft2I, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 15, WormLeft2, WormLeft2I, lplane, dplane);
 	  	  }//endif dir 0
 	  	else if(black_dir[x]==4)
 	  	  {
-	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 17, WormLeftJump, WormLeftJumpI, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 17, WormLeftJump, WormLeftJumpI, lplane, dplane);
 	  	  }//endif dir 0
 	  	else if(black_dir[x]==5)
 	  	  {
-	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 17, WormRightJump, WormRightJumpI, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 17, WormRightJump, WormRightJumpI, lplane, dplane);
 	  	  }//endif dir 0
 	  	else if(black_dir[x]==6) //straight jump left
 	  	  {
-	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 17, WormLeftJump2, WormLeftJump2I, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 17, WormLeftJump2, WormLeftJump2I, lplane, dplane);
 	  	  }//endif dir 0
 	  	else if(black_dir[x]==7) //straight jump right
 	  	  {
-	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 17, WormRightJump2, WormRightJump2I, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 17, WormRightJump2, WormRightJump2I, lplane, dplane);
 	  	  }//endif dir 0
 	  	else if(black_dir[x]==8) //on side, left up
 	  	  {
-	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 13, WormLeftSideU, WormLeftSideUI, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 13, WormLeftSideU, WormLeftSideUI, lplane, dplane);
 	  	  }//endif dir 0
 	  	else if(black_dir[x]==9) //on side, right up
 	  	  {
-	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 13, WormRightSideU, WormRightSideUI, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 13, WormRightSideU, WormRightSideUI, lplane, dplane);
 	  	  }//endif dir 0
 			else if(black_dir[x]==10) //upside down left 
 	  	  {
-	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 15, WormRightU, WormRightUI, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 15, WormRightU, WormRightUI, lplane, dplane);
 	  	  }//endif dir 0
 	  	else if(black_dir[x]==11) //upside down right
 	  	  {
-	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 15, WormLeftU, WormLeftUI, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 15, WormLeftU, WormLeftUI, lplane, dplane);
 	  	  }//endif dir 0
 	  	else if(black_dir[x]==13) //upside down left side
 	  	  {
-	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 13, WormRightSide, WormRightSideI, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 13, WormRightSide, WormRightSideI, lplane, dplane);
 	  	  }//endif dir 0
 	  	else if(black_dir[x]==12) //upside down right side
 	  	  {
-	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 13, WormLeftSide, WormLeftSideI, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 13, WormLeftSide, WormLeftSideI, lplane, dplane);
 	  	  }//endif dir 0
 	    else if(black_dir[x]==14) //jack hammer
 	  	  {
-	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 20, WormHammer, WormHammerI, lplane, dplane);
+	  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 20, WormHammer, WormHammerI, lplane, dplane);
 	  	  }//endif dir 0
 		}//next x
 	
@@ -655,41 +661,45 @@ void DrawSel()
 	
 	if(team==TWhite)
 		{
+			short xcoord = white_x[white_w] - 4 - (fixs(scrollx) * 8) - (scrollx & 7);
+			short ycoord = white_y[white_w] - 17 - scrolly;
 			if(Frame==1)
 				{
-					GrayClipSprite16_OR_R(white_x[white_w] - 4 - (fixs(scrollx) * 8) - (scrollx & 7), white_y[white_w] - 17 - scrolly, 15, Rot1, Rot1, lplane, dplane);
+					GrayClipSprite16_OR_R(xcoord, ycoord, 15, Rot1, Rot1, lplane, dplane);
 				}//endif frame 1
 			else if(Frame==2)
 				{
-					GrayClipSprite16_OR_R(white_x[white_w] - 4 - (fixs(scrollx) * 8) - (scrollx & 7), white_y[white_w] - 17 - scrolly, 15, Rot2, Rot2, lplane, dplane);
+					GrayClipSprite16_OR_R(xcoord, ycoord, 15, Rot2, Rot2, lplane, dplane);
 				}//endif frame 2
 			else if(Frame==3)
 				{
-					GrayClipSprite16_OR_R(white_x[white_w] - 4 - (fixs(scrollx) * 8) - (scrollx & 7), white_y[white_w] - 17 - scrolly, 11, Rot3, Rot3, lplane, dplane);
+					GrayClipSprite16_OR_R(xcoord, ycoord, 11, Rot3, Rot3, lplane, dplane);
 				}//endif frame 3
 			else if(Frame==4)
 				{
-					GrayClipSprite16_OR_R(white_x[white_w] - 4 - (fixs(scrollx) * 8) - (scrollx & 7), white_y[white_w] - 17 - scrolly, 11, Rot4, Rot4, lplane, dplane);
+					GrayClipSprite16_OR_R(xcoord, ycoord, 11, Rot4, Rot4, lplane, dplane);
 				}//endif frame 4
 		}//endif WHITE TEAM
 	
 	else //if(team==TBlack)
 		{
+			short xcoord = black_x[black_w] - 4 - (fixs(scrollx) * 8) - (scrollx & 7);
+			short ycoord = black_y[black_w] - 17 - scrolly;
 			if(Frame==1)
 				{
-					GrayClipSprite16_OR_R(black_x[black_w] - 4 - (fixs(scrollx) * 8) - (scrollx & 7), black_y[black_w] - 17 - scrolly, 15, Rot1, Rot1, lplane, dplane);
+					GrayClipSprite16_OR_R(xcoord, ycoord, 15, Rot1, Rot1, lplane, dplane);
 				}//endif frame 1
 			else if(Frame==2)
 				{
-					GrayClipSprite16_OR_R(black_x[black_w] - 4 - (fixs(scrollx) * 8) - (scrollx & 7), black_y[black_w] - 17 - scrolly, 15, Rot2, Rot2, lplane, dplane);
+					GrayClipSprite16_OR_R(xcoord, ycoord, 15, Rot2, Rot2, lplane, dplane);
 				}//endif frame 2
 			else if(Frame==3)
 				{
-					GrayClipSprite16_OR_R(black_x[black_w] - 4 - (fixs(scrollx) * 8) - (scrollx & 7), black_y[black_w] - 17 - scrolly, 11, Rot3, Rot3, lplane, dplane);
+					GrayClipSprite16_OR_R(xcoord, ycoord, 11, Rot3, Rot3, lplane, dplane);
 				}//endif frame 3
 			else if(Frame==4)
 				{
-					GrayClipSprite16_OR_R(black_x[black_w] - 4 - (fixs(scrollx) * 8) - (scrollx & 7), black_y[black_w] - 17 - scrolly, 11, Rot4, Rot4, lplane, dplane);
+					GrayClipSprite16_OR_R(xcoord, ycoord, 11, Rot4, Rot4, lplane, dplane);
 				}//endif frame 4
 		}//endif BLACK TEAM
 	
@@ -703,48 +713,50 @@ void DrawCursor()
   void *lplane = GrayDBufGetHiddenPlane(LIGHT_PLANE);
   void *dplane = GrayDBufGetHiddenPlane(DARK_PLANE);
   
+  short xcoord = CursorX - (fixs(scrollx) * 8) - 5 - min;
+  short ycoord = CursorY - scrolly + 1;
   if(girdermode)
     {
     	switch(girder)
     	  {
 	    	  case 0:
 	    	    {
-	    	    	GrayClipSprite8_OR_R(CursorX - (fixs(scrollx) * 8) - 5 - min, CursorY - scrolly + 1, 3, Girder0, Girder0, lplane, dplane);
+	    	    	GrayClipSprite8_OR_R(xcoord, ycoord, 3, Girder0, Girder0, lplane, dplane);
 							break;
 	    	    }
 	    	  case 1:
 	    	    {
-	    	    	GrayClipSprite8_OR_R(CursorX - (fixs(scrollx) * 8) - 5 - min, CursorY - scrolly + 1, 7, Girder45, Girder45, lplane, dplane);
+	    	    	GrayClipSprite8_OR_R(xcoord, ycoord, 7, Girder45, Girder45, lplane, dplane);
 							break;
 	    	    }
 	    	  case 2:
 	    	    {
-	    	    	GrayClipSprite8_OR_R(CursorX - (fixs(scrollx) * 8) - 5 - min, CursorY - scrolly + 1, 8, Girder90, Girder90, lplane, dplane);
+	    	    	GrayClipSprite8_OR_R(xcoord, ycoord, 8, Girder90, Girder90, lplane, dplane);
 							break;
 	    	    }
 	    	  case 3:
 	    	    {
-	    	    	GrayClipSprite8_OR_R(CursorX - (fixs(scrollx) * 8) - 5 - min, CursorY - scrolly + 1, 7, GirderN45, GirderN45, lplane, dplane);
+	    	    	GrayClipSprite8_OR_R(xcoord, ycoord, 7, GirderN45, GirderN45, lplane, dplane);
 							break;
 	    	    }
 	    	  case 4:
 	    	    {
-	    	    	GrayClipSprite16_OR_R(CursorX - (fixs(scrollx) * 8) - 5 - min, CursorY - scrolly + 1, 3, BigGirder0, BigGirder0, lplane, dplane);
+	    	    	GrayClipSprite16_OR_R(xcoord, ycoord, 3, BigGirder0, BigGirder0, lplane, dplane);
 							break;
 	    	    }
 	    	  case 5:
 	    	    {
-	    	    	GrayClipSprite16_OR_R(CursorX - (fixs(scrollx) * 8) - 5 - min, CursorY - scrolly + 1, 12, BigGirder45, BigGirder45, lplane, dplane);
+	    	    	GrayClipSprite16_OR_R(xcoord, ycoord, 12, BigGirder45, BigGirder45, lplane, dplane);
 							break;
 	    	    }
 	    	  case 6:
 	    	    {
-	    	    	GrayClipSprite8_OR_R(CursorX - (fixs(scrollx) * 8) - 5 - min, CursorY - scrolly + 1, 15, BigGirder90, BigGirder90, lplane, dplane);
+	    	    	GrayClipSprite8_OR_R(xcoord, ycoord, 15, BigGirder90, BigGirder90, lplane, dplane);
 							break;
 	    	    }
 	    	  case 7:
 	    	    {
-	    	    	GrayClipSprite16_OR_R(CursorX - (fixs(scrollx) * 8) - 5 - min, CursorY - scrolly + 1, 12, BigGirderN45, BigGirderN45, lplane, dplane);
+	    	    	GrayClipSprite16_OR_R(xcoord, ycoord, 12, BigGirderN45, BigGirderN45, lplane, dplane);
 							break;
 	    	    }
 	    	  default:
@@ -756,11 +768,11 @@ void DrawCursor()
     
 	if(CursorDir==0)
 	  {
-	  	GrayClipSprite16_OR_R(CursorX - (fixs(scrollx) * 8) - 5 - min, CursorY - scrolly + 1, 11, CursorLeft, CursorLeftI, lplane, dplane);
+	  	GrayClipSprite16_OR_R(xcoord, ycoord, 11, CursorLeft, CursorLeftI, lplane, dplane);
 	  }
 	else
 	  {
-	  	GrayClipSprite16_OR_R(CursorX - (fixs(scrollx) * 8) - 5 - min, CursorY - scrolly + 1, 11, CursorRight, CursorRightI, lplane, dplane);
+	  	GrayClipSprite16_OR_R(xcoord, ycoord, 11, CursorRight, CursorRightI, lplane, dplane);
 	  }
 }
 
@@ -797,17 +809,19 @@ void DrawObjects()
 	  		}//endif MINE
 	  	if(crate_y[x]!=-1)
 	  		{
+	  			short xcoord = crate_x[x] - (fixs(scrollx) * 8) - min;
+	  			short ycoord = crate_y[x] - scrolly + 1;
 	  			if(crate_type[x]==1)
 	  			  {
-	  			  	GrayClipSprite16_OR_R(crate_x[x] - (fixs(scrollx) * 8) - min, crate_y[x] - scrolly + 1, 11, Health, Health, lplane, dplane);
+	  			  	GrayClipSprite16_OR_R(xcoord, ycoord, 11, Health, Health, lplane, dplane);
 	  			  }
 	  			else if(crate_type[x]==2)
 	  			  {
-	  			  	GrayClipSprite16_OR_R(crate_x[x] - (fixs(scrollx) * 8) - min, crate_y[x] - scrolly + 1, 11, CrateI, Crate, lplane, dplane);
+	  			  	GrayClipSprite16_OR_R(xcoord, ycoord, 11, CrateI, Crate, lplane, dplane);
 	  			  }
 	  			else if(crate_type[x]==3)
 	  			  {
-	  			  	GrayClipSprite16_OR_R(crate_x[x] - (fixs(scrollx) * 8) - min, crate_y[x] - scrolly + 1, 11, ToolzI, Toolz, lplane, dplane);
+	  			  	GrayClipSprite16_OR_R(xcoord, ycoord, 11, ToolzI, Toolz, lplane, dplane);
 	  			  }
 	  		}
 	  }//next x
