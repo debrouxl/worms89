@@ -2597,16 +2597,18 @@ void MoveWeaps()
 		{
 			if(weap_y[x]!=-1)
 			  {
+					short weapx = weap_x[x];
+					short weapy = weap_y[x];
 			  	if(
-			  	    (point(weap_x[x],weap_y[x]))
+			  	    (point(weapx,weapy))
 			  	    ||
-			  	    (point(weap_x[x]-3,weap_y[x]-3))
+			  	    (point(weapx-3,weapy-3))
 			  	    ||
-			  	    (point(weap_x[x]-3,weap_y[x]+3))
+			  	    (point(weapx-3,weapy+3))
 			  	    ||
-			  	    (point(weap_x[x]+3,weap_y[x]-3))
+			  	    (point(weapx+3,weapy-3))
 			  	    ||
-			  	    (point(weap_x[x]+3,weap_y[x]+3))
+			  	    (point(weapx+3,weapy+3))
 			  	  )
 			  	  WeapCollide(x);
 			  }//endif weapon is onscreen
@@ -2615,7 +2617,29 @@ void MoveWeaps()
 }
 
 
-
+static void bounce(short weapx, short weapy, short weap)
+{
+	if(point(weapx+3,weapy))
+		{
+			weap_dirx[weap]*=-.7;
+			weap_dirx[weap]*=.9;
+		}
+	if(point(weapx-3,weapy))
+		{
+			weap_dirx[weap]*=-.7;
+			weap_diry[weap]*=.9;
+		}
+	if(point(weapx,weapy+3))
+		{
+			weap_diry[weap]*=-.7;
+			weap_dirx[weap]*=.9;
+		}
+	if(point(weapx,weapy-3))
+		{
+			weap_diry[weap]*=-.7;
+			weap_dirx[weap]*=.9;
+		}
+}
 
 void WeapCollide(short weap)
 {
@@ -2664,10 +2688,12 @@ void WeapCollide(short weap)
 	  	//short x;
 	  	//for(x=0;x<5;x++)
 	  	  weap_y[weap]-=.8;
-	  	  
-	  	SetExp(weap_x[weap]+random(4)-5,weap_y[weap]+2,random(2)+1);
-	  	SetExp(weap_x[weap]+random(4)-5,weap_y[weap]+2,random(2)+1);
-	  	SetExp(weap_x[weap]+random(4)-5,weap_y[weap]+2,random(2)+1);	
+
+			short weapx = weap_x[weap];
+			short weapy = weap_y[weap];
+	  	SetExp(weapx+random(4)-5,weapy+2,random(2)+1);
+	  	SetExp(weapx+random(4)-5,weapy+2,random(2)+1);
+	  	SetExp(weapx+random(4)-5,weapy+2,random(2)+1);
 			return;
 	  }
 	  
@@ -2701,33 +2727,10 @@ void WeapCollide(short weap)
 	else if(weap_type[weap]==WSheepStrike || weap_type[weap]==WCarpet)
 	  {
 	  	//simply bounces the sheep or whatever
-	  	if(point(weap_x[weap]+3,weap_y[weap])) 
-	  	  {
-	  	  	weap_dirx[weap]*=-1;
-	  	  	weap_dirx[weap]*=.7;
-	  	  	weap_dirx[weap]*=.9;
-	  	  	
-	  	  }
-	  	if(point(weap_x[weap]-3,weap_y[weap]))
-	  	  {
-	  	  	weap_dirx[weap]*=-1;
-	  	  	weap_dirx[weap]*=.7;
-	  	  	weap_diry[weap]*=.9;
-	  	  }
-	  	if(point(weap_x[weap],weap_y[weap]+3))
-	  	  {
-	  	  	weap_diry[weap]*=-1;
-	  	  	weap_diry[weap]*=.7;
-	  	  	weap_dirx[weap]*=.9;
-	  	  }
-	  	if(point(weap_x[weap],weap_y[weap]-3))
-	  	  {
-	  	  	weap_diry[weap]*=-1;
-	  	  	weap_diry[weap]*=.7;
-	  	  	weap_dirx[weap]*=.9;
-	  	  }
-	  	  
-      SetExp(weap_x[weap],weap_y[weap],8);
+			short weapx = weap_x[weap];
+			short weapy = weap_y[weap];
+			bounce(weapx, weapy, weap);
+      SetExp(weapx,weapy,8);
       
       if(weap_type[weap]==WSheepStrike)
       	weap_type[weap]=WSheepStrike2;
@@ -2759,31 +2762,9 @@ void WeapCollide(short weap)
 	else if(weap_type[weap]==WGrenade || weap_type[weap]==WCluster || weap_type[weap]==WBanana || weap_type[weap]==WSBanana || weap_type[weap]==WHolyGrenade  || weap_type[weap]==WMolotov)
 	  {
 	  	//simply bounces it..
-	  	if(point(weap_x[weap]+3,weap_y[weap])) 
-	  	  {
-	  	  	weap_dirx[weap]*=-1;
-	  	  	weap_dirx[weap]*=.7;
-	  	  	weap_dirx[weap]*=.9;
-	  	  	
-	  	  }
-	  	if(point(weap_x[weap]-3,weap_y[weap]))
-	  	  {
-	  	  	weap_dirx[weap]*=-1;
-	  	  	weap_dirx[weap]*=.7;
-	  	  	weap_diry[weap]*=.9;
-	  	  }
-	  	if(point(weap_x[weap],weap_y[weap]+3))
-	  	  {
-	  	  	weap_diry[weap]*=-1;
-	  	  	weap_diry[weap]*=.7;
-	  	  	weap_dirx[weap]*=.9;
-	  	  }
-	  	if(point(weap_x[weap],weap_y[weap]-3))
-	  	  {
-	  	  	weap_diry[weap]*=-1;
-	  	  	weap_diry[weap]*=.7;
-	  	  	weap_dirx[weap]*=.9;
-	  	  }
+			short weapx = weap_x[weap];
+			short weapy = weap_y[weap];
+			bounce(weapx, weapy, weap);
 	  	return;
 	  }
 	else if(weap_type[weap]==WBowLeft || weap_type[weap]==WBowRight)
@@ -2793,7 +2774,9 @@ void WeapCollide(short weap)
 	  }
 	else if((weap_type[weap]==WCows) || (weap_type[weap]==WSheep) || (weap_type[weap]==WSkunk) || (weap_type[weap]==WMole) || (weap_type[weap]==WOldLady) || (weap_type[weap]==WSalArmy) || (weap_type[weap]==WMole))
 	  {
-	  	if((point(weap_x[weap]-3,weap_y[weap])) || (point(weap_x[weap]+3,weap_y[weap])))
+			short weapx = weap_x[weap];
+			short weapy = weap_y[weap];
+	  	if((point(weapx-3,weapy)) || (point(weapx+3,weapy)))
 	  	  {
 	  	  	if(weap_dirx[weap]==-1)
 	  	  	  weap_dirx[weap]=1;
@@ -2811,44 +2794,47 @@ void WeapCollide(short weap)
 //if a weapons fuse ends..
 void TimeExpire(short weap)
 {
+	// Caching these variables is valid as long as the call tree underneath this function doesn't modify the values.
+	short weapx = weap_x[weap];
+	short weapy = weap_y[weap];
 	if(weap_type[weap]==WGrenade)
 		{
-			SetExp(weap_x[weap],weap_y[weap],10);
+			SetExp(weapx,weapy,10);
 			weapson=false;
 			canfire=true;
 			MsgBox("Boom","Grenade Exploded");
 		}
 	else if(weap_type[weap]==WBanana)
 		{
-			SetExp(weap_x[weap],weap_y[weap],17);
+			SetExp(weapx,weapy,17);
 			weapson=false;
 			canfire=true;
 		}
 	else if(weap_type[weap]==WHolyGrenade || weap_type[weap]==WDyna || weap_type[weap]==WSkunk || weap_type[weap]==WSheep || weap_type[weap]==WOldLady)
 		{
-			SetExp(weap_x[weap],weap_y[weap],15);
+			SetExp(weapx,weapy,15);
 			weapson=false;
 			canfire=true;
 		}
 	else if(weap_type[weap]==WMingVase)
 		{
-			SetExp(weap_x[weap],weap_y[weap],15);
-			SetCluster(weap_x[weap],weap_y[weap],WMingVase);
+			SetExp(weapx,weapy,15);
+			SetCluster(weapx,weapy,WMingVase);
 		}
 	else if(weap_type[weap]==WCluster)
 		{
-			SetExp(weap_x[weap],weap_y[weap],5);
-			SetCluster(weap_x[weap],weap_y[weap],WCluster);
+			SetExp(weapx,weapy,5);
+			SetCluster(weapx,weapy,WCluster);
 		}
   else if(weap_type[weap]==WSalArmy)
     {
-    	SetExp(weap_x[weap],weap_y[weap],15);
-			SetCluster(weap_x[weap],weap_y[weap],WSalArmy);
+    	SetExp(weapx,weapy,15);
+			SetCluster(weapx,weapy,WSalArmy);
     }
 	else if(weap_type[weap]==WSBanana)
 		{
-			SetExp(weap_x[weap],weap_y[weap],15);
-			SetCluster(weap_x[weap],weap_y[weap],WSBanana);
+			SetExp(weapx,weapy,15);
+			SetCluster(weapx,weapy,WSBanana);
 		}
   else if(weap_type[weap]==WHoming)
 		{
@@ -2858,23 +2844,23 @@ void TimeExpire(short weap)
 		}
   else if(weap_type[weap]==WHoming2 || weap_type[weap]==WHomingP || weap_type[weap]==WMagicB)
 		{
-			SetExp(weap_x[weap],weap_y[weap],10);
+			SetExp(weapx,weapy,10);
 			weapson=false;
 			canfire=true;
 		}
   else if(weap_type[weap]==WCows)
     {
-    	SetExp(weap_x[weap],weap_y[weap],12);
-      //weap_y[weap]=-1;
+    	SetExp(weapx,weapy,12);
+      //weapy=-1;
       LockCam();
-			//CamFocus(weap_x[weap],weap_y[weap]);
+			//CamFocus(weapx,weapy);
 			EndWeap(weap);
     }
   else if(weap_type[weap]==WNapStrike)
     {
       //LockCam();
-      weap_y[weap]=-1;
-			//CamFocus(weap_x[weap],weap_y[weap]);
+      weapy=-1;
+			//CamFocus(weapx,weapy);
 			EndWeap(weap);
     }
   else if(weap_type[weap]==WMole)
@@ -2886,10 +2872,10 @@ void TimeExpire(short weap)
     }
   else if(weap_type[weap]==WMole2)
     {
-    	SetExp(weap_x[weap],weap_y[weap],12);
-      //weap_y[weap]=-1;
+    	SetExp(weapx,weapy,12);
+      //weapy=-1;
       LockCam();
-			//CamFocus(weap_x[weap],weap_y[weap]);
+			//CamFocus(weapx,weapy);
 			EndWeap(weap);
     }
   else if(weap_type[weap]==WDrill)
@@ -3072,7 +3058,7 @@ void UnLockWorm()
 void ToggleTeam()
 {
   //if the team has already been changed or a cluser is still in progress, then dont change again until the user moves the worm...
-  if(changed || ClusterOver==false) return;
+  if(changed || ClusterOver()==false) return;
 
 	lowgrav=false;
   fastwalk=false;
