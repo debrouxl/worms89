@@ -112,13 +112,11 @@ void DrawWorms()
         {
         	if(team==TWhite) //if its the white team, draw parachut over the whities
         	  {//extgraph spriteage
-        	  	ClipSprite16_OR_R(white_x[white_w]-(fixs(scrollx)*8)-6-min, white_y[white_w]-scrolly-10, 9, Chute, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_OR_R(white_x[white_w]-(fixs(scrollx)*8)-6-min, white_y[white_w]-scrolly-10, 9, Chute, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+        	  	GrayClipSprite16_OR_R(white_x[white_w] - (fixs(scrollx) * 8) - 6 - min, white_y[white_w] - scrolly - 10, 9, Chute, Chute, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
         	  }
         	else //else draw it over the blackies
         	  {//extgraph spriteage
-        	  	ClipSprite16_OR_R(black_x[black_w]-(fixs(scrollx)*8)-6-min, black_y[black_w]-scrolly-10, 9, Chute, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_OR_R(black_x[black_w]-(fixs(scrollx)*8)-6-min, black_y[black_w]-scrolly-10, 9, Chute, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+        	  	GrayClipSprite16_OR_R(black_x[black_w] - (fixs(scrollx) * 8) - 6 - min, black_y[black_w] - scrolly - 10, 9, Chute, Chute, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
         	  }
         	
         }
@@ -129,78 +127,63 @@ void DrawWorms()
 	  	//WHAT POSITION IS THE WORM IN? JUMPING? BACKFLIP? WALKING? white_dir holds this info, and thus we draw it
 	  	if(white_dir[x]==0)
 	  	  {
-	  	  	ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 15, WormRight, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 15, WormRightI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 15, WormRightI, WormRight, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==1)
 	  	  {
-	  	  	ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 15, WormLeft, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 15, WormLeftI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 15, WormLeftI, WormLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==2)
 	  	  {
-	  	  	ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 15, WormRight2, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 15, WormRight2I, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 15, WormRight2I, WormRight2, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==3)
 	  	  {
-	  	  	ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 15, WormLeft2, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 15, WormLeft2I, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 15, WormLeft2I, WormLeft2, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==4)
 	  	  {
-	  	  	ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 17, WormLeftJump, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 17, WormLeftJumpI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 17, WormLeftJumpI, WormLeftJump, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==5)
 	  	  {
-	  	  	ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 17, WormRightJump, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 17, WormRightJumpI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 17, WormRightJumpI, WormRightJump, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==6) //straight jump left
 	  	  {
-	  	  	ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 17, WormLeftJump2, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 17, WormLeftJump2I, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 17, WormLeftJump2I, WormLeftJump2, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==7) //straight jump right
 	  	  {
-	  	  	ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 17, WormRightJump2, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 17, WormRightJump2I, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 17, WormRightJump2I, WormRightJump2, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==8) //on side, left up
 	  	  {
-	  	  	ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 13, WormLeftSideU, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 13, WormLeftSideUI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 13, WormLeftSideUI, WormLeftSideU, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==9) //on side, right up
 	  	  {
-	  	  	ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 13, WormRightSideU, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 13, WormRightSideUI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 13, WormRightSideUI, WormRightSideU, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 			else if(white_dir[x]==10) //upside down left 
 	  	  {
-	  	  	ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 15, WormRightU, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 15, WormRightUI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 15, WormRightUI, WormRightU, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==11) //upside down right
 	  	  {
-	  	  	ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 15, WormLeftU, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 15, WormLeftUI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 15, WormLeftUI, WormLeftU, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==13) //upside down left side
 	  	  {
-	  	  	ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 13, WormRightSide, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 13, WormRightSideI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 13, WormRightSideI, WormRightSide, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==12) //upside down right side
 	  	  {
-	  	  	ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 13, WormLeftSide, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 13, WormLeftSideI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 13, WormLeftSideI, WormLeftSide, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	else if(white_dir[x]==14) //jack hammer
 	  	  {
-	  	  	ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 20, WormHammer, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(white_x[x]-(fixs(scrollx)*8)-5-min, white_y[x]-scrolly+1, 20, WormHammerI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+	  	  	GrayClipSprite16_OR_R(white_x[x] - (fixs(scrollx) * 8) - 5 - min, white_y[x] - scrolly + 1, 20, WormHammerI, WormHammer, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	
 	  	  
@@ -211,79 +194,64 @@ void DrawWorms()
 	  	if(blackinvis) continue; //if the team is invisible, dont draw them!
 	  	if(black_dir[x]==0)
 	  	  {
-	  	  	ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 15, WormRight, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-					ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 15, WormRightI, GrayDBufGetHiddenPlane(DARK_PLANE));
+	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 15, WormRight, WormRightI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	else if(black_dir[x]==1)
 	  	  {
-	  	  	ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 15, WormLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-					ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 15, WormLeftI, GrayDBufGetHiddenPlane(DARK_PLANE));
+	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 15, WormLeft, WormLeftI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	//drwas the worms
 	  	else if(black_dir[x]==2)
 	  	  {
-	  	  	ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 15, WormRight2, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-					ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 15, WormRight2I, GrayDBufGetHiddenPlane(DARK_PLANE));
+	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 15, WormRight2, WormRight2I, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	else if(black_dir[x]==3)
 	  	  {
-	  	  	ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 15, WormLeft2, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-					ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 15, WormLeft2I, GrayDBufGetHiddenPlane(DARK_PLANE));
+	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 15, WormLeft2, WormLeft2I, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	else if(black_dir[x]==4)
 	  	  {
-	  	  	ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 17, WormLeftJump, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-					ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 17, WormLeftJumpI, GrayDBufGetHiddenPlane(DARK_PLANE));
+	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 17, WormLeftJump, WormLeftJumpI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	else if(black_dir[x]==5)
 	  	  {
-	  	  	ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 17, WormRightJump, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-					ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 17, WormRightJumpI, GrayDBufGetHiddenPlane(DARK_PLANE));
+	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 17, WormRightJump, WormRightJumpI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	else if(black_dir[x]==6) //straight jump left
 	  	  {
-	  	  	ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 17, WormLeftJump2, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-					ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 17, WormLeftJump2I, GrayDBufGetHiddenPlane(DARK_PLANE));
+	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 17, WormLeftJump2, WormLeftJump2I, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	else if(black_dir[x]==7) //straight jump right
 	  	  {
-	  	  	ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 17, WormRightJump2, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-					ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 17, WormRightJump2I, GrayDBufGetHiddenPlane(DARK_PLANE));
+	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 17, WormRightJump2, WormRightJump2I, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	else if(black_dir[x]==8) //on side, left up
 	  	  {
-	  	  	ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 13, WormLeftSideU, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-					ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 13, WormLeftSideUI, GrayDBufGetHiddenPlane(DARK_PLANE));
+	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 13, WormLeftSideU, WormLeftSideUI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	else if(black_dir[x]==9) //on side, right up
 	  	  {
-	  	  	ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 13, WormRightSideU, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-					ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 13, WormRightSideUI, GrayDBufGetHiddenPlane(DARK_PLANE));
+	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 13, WormRightSideU, WormRightSideUI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 			else if(black_dir[x]==10) //upside down left 
 	  	  {
-	  	  	ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 15, WormRightU, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-					ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 15, WormRightUI, GrayDBufGetHiddenPlane(DARK_PLANE));
+	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 15, WormRightU, WormRightUI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	else if(black_dir[x]==11) //upside down right
 	  	  {
-	  	  	ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 15, WormLeftU, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-					ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 15, WormLeftUI, GrayDBufGetHiddenPlane(DARK_PLANE));
+	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 15, WormLeftU, WormLeftUI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	else if(black_dir[x]==13) //upside down left side
 	  	  {
-	  	  	ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 13, WormRightSide, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-					ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 13, WormRightSideI, GrayDBufGetHiddenPlane(DARK_PLANE));
+	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 13, WormRightSide, WormRightSideI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	  	else if(black_dir[x]==12) //upside down right side
 	  	  {
-	  	  	ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 13, WormLeftSide, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-					ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 13, WormLeftSideI, GrayDBufGetHiddenPlane(DARK_PLANE));
+	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 13, WormLeftSide, WormLeftSideI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 	    else if(black_dir[x]==14) //jack hammer
 	  	  {
-	  	  	ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 20, WormHammer, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-					ClipSprite16_OR_R(black_x[x]-(fixs(scrollx)*8)-5-min, black_y[x]-scrolly+1, 20, WormHammerI, GrayDBufGetHiddenPlane(DARK_PLANE));
+	  	  	GrayClipSprite16_OR_R(black_x[x] - (fixs(scrollx) * 8) - 5 - min, black_y[x] - scrolly + 1, 20, WormHammer, WormHammerI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  	  }//endif dir 0
 		}//next x
 	
@@ -362,16 +330,12 @@ void DrawWorms()
 					ClipSprite8_OR_R(zWormLeft-(fixs(scrollx)*8)-2-min, WormTop-scrolly+1+4, 11, Bat, GrayDBufGetHiddenPlane(LIGHT_PLANE));
 					break;
 			  case WBatLeft:
-				  ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)-5-min, WormTop-scrolly+1+10, 4, BatLeft, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)-5-min, WormTop-scrolly+1+10, 4, BatLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-		      ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)-5-min, WormTop-scrolly+1+10, 4, BatLeft, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)-5-min, WormTop-scrolly+1+10, 4, BatLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+				  GrayClipSprite16_AND_R(zWormLeft - (fixs(scrollx) * 8) - 5 - min, WormTop - scrolly + 1 + 10, 4, BatLeft, BatLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+		      GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) - 5 - min, WormTop - scrolly + 1 + 10, 4, BatLeft, BatLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 					break;
 			  case WBatRight:
-				  ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)-2-min, WormTop-scrolly+1+10, 4, BatRight, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)-2-min, WormTop-scrolly+1+10, 4, BatRight, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-		      ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)-2-min, WormTop-scrolly+1+10, 4, BatRight, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)-2-min, WormTop-scrolly+1+10, 4, BatRight, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+				  GrayClipSprite16_AND_R(zWormLeft - (fixs(scrollx) * 8) - 2 - min, WormTop - scrolly + 1 + 10, 4, BatRight, BatRight, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+		      GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) - 2 - min, WormTop - scrolly + 1 + 10, 4, BatRight, BatRight, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 					break;
 			  
 			  case WAxe:
@@ -396,81 +360,61 @@ void DrawWorms()
 				case WShotG:
 				  if(Facing()==1)
 				    {
-				    	ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)-15-min, WormTop-scrolly+1+8, 5, ShotGLeftI, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)-15-min, WormTop-scrolly+1+8, 5, ShotGLeftI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-				      ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)-15-min, WormTop-scrolly+1+8, 5, ShotGLeft, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)-15-min, WormTop-scrolly+1+8, 5, ShotGLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+				    	GrayClipSprite16_AND_R(zWormLeft - (fixs(scrollx) * 8) - 15 - min, WormTop - scrolly + 1 + 8, 5, ShotGLeftI, ShotGLeftI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+				      GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) - 15 - min, WormTop - scrolly + 1 + 8, 5, ShotGLeft, ShotGLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 				    }
 				    else
 				    {
-				    	ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)+7-min, WormTop-scrolly+1+8, 5, ShotGRightI, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)+7-min, WormTop-scrolly+1+8, 5, ShotGRightI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-				      ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)+7-min, WormTop-scrolly+1+8, 5, ShotGRight, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)+7-min, WormTop-scrolly+1+8, 5, ShotGRight, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+				    	GrayClipSprite16_AND_R(zWormLeft - (fixs(scrollx) * 8) + 7 - min, WormTop - scrolly + 1 + 8, 5, ShotGRightI, ShotGRightI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+				      GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) + 7 - min, WormTop - scrolly + 1 + 8, 5, ShotGRight, ShotGRight, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 				    }
 				    break;
 				case WHandG:
 				  if(Facing()==1)
 				    {
-				    	ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)-15-min, WormTop-scrolly+1+8, 7, HandGLeftI, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)-15-min, WormTop-scrolly+1+8, 7, HandGLeftI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-				      ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)-15-min, WormTop-scrolly+1+8, 7, HandGLeft, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)-15-min, WormTop-scrolly+1+8, 7, HandGLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+				    	GrayClipSprite16_AND_R(zWormLeft - (fixs(scrollx) * 8) - 15 - min, WormTop - scrolly + 1 + 8, 7, HandGLeftI, HandGLeftI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+				      GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) - 15 - min, WormTop - scrolly + 1 + 8, 7, HandGLeft, HandGLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 				    }
 				    else
 				    {
-				    	ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)+8-min, WormTop-scrolly+1+8, 7, HandGRightI, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)+8-min, WormTop-scrolly+1+8, 7, HandGRightI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-				      ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)+8-min, WormTop-scrolly+1+8, 7, HandGRight, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)+8-min, WormTop-scrolly+1+8, 7, HandGRight, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+				    	GrayClipSprite16_AND_R(zWormLeft - (fixs(scrollx) * 8) + 8 - min, WormTop - scrolly + 1 + 8, 7, HandGRightI, HandGRightI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+				      GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) + 8 - min, WormTop - scrolly + 1 + 8, 7, HandGRight, HandGRight, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 				    }
 					  break;
 				case WMiniG:
 				  if(Facing()==1)
 				    {
-				    	ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)-17-min, WormTop-scrolly+1+8, 6, MiniGLeftI, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)-17-min, WormTop-scrolly+1+8, 6, MiniGLeftI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-				      ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)-17-min, WormTop-scrolly+1+8, 6, MiniGLeft, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)-17-min, WormTop-scrolly+1+8, 6, MiniGLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+				    	GrayClipSprite16_AND_R(zWormLeft - (fixs(scrollx) * 8) - 17 - min, WormTop - scrolly + 1 + 8, 6, MiniGLeftI, MiniGLeftI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+				      GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) - 17 - min, WormTop - scrolly + 1 + 8, 6, MiniGLeft, MiniGLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 				    }
 				    else
 				    {
-				    	ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)+6-min, WormTop-scrolly+1+8, 6, MiniGRightI, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)+6-min, WormTop-scrolly+1+8, 6, MiniGRightI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-				      ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)+6-min, WormTop-scrolly+1+8, 6, MiniGRight, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)+6-min, WormTop-scrolly+1+8, 6, MiniGRight, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+				    	GrayClipSprite16_AND_R(zWormLeft - (fixs(scrollx) * 8) + 6 - min, WormTop - scrolly + 1 + 8, 6, MiniGRightI, MiniGRightI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+				      GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) + 6 - min, WormTop - scrolly + 1 + 8, 6, MiniGRight, MiniGRight, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 				    }
 					break;
 				case WUzi:
 				  if(Facing()==1)
 				    {
-				    	ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)-15-min, WormTop-scrolly+1+5, 10, UziLeftI, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)-15-min, WormTop-scrolly+1+5, 10, UziLeftI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-				      ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)-15-min, WormTop-scrolly+1+5, 10, UziLeft, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)-15-min, WormTop-scrolly+1+5, 10, UziLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+				    	GrayClipSprite16_AND_R(zWormLeft - (fixs(scrollx) * 8) - 15 - min, WormTop - scrolly + 1 + 5, 10, UziLeftI, UziLeftI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+				      GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) - 15 - min, WormTop - scrolly + 1 + 5, 10, UziLeft, UziLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 				    }
 				    else
 				    {
-				    	ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)+8-min, WormTop-scrolly+1+5, 10, UziRightI, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)+8-min, WormTop-scrolly+1+5, 10, UziRightI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-				      ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)+8-min, WormTop-scrolly+1+5, 10, UziRight, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)+8-min, WormTop-scrolly+1+5, 10, UziRight, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+				    	GrayClipSprite16_AND_R(zWormLeft - (fixs(scrollx) * 8) + 8 - min, WormTop - scrolly + 1 + 5, 10, UziRightI, UziRightI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+				      GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) + 8 - min, WormTop - scrolly + 1 + 5, 10, UziRight, UziRight, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 				    }
 					  break;
 				case WBow:
 				  if(Facing()==1)
 				    {
-				    	ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)-15-min, WormTop-scrolly+1+4, 11, BowLeftI, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)-15-min, WormTop-scrolly+1+4, 11, BowLeftI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-				      ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)-15-min, WormTop-scrolly+1+4, 11, BowLeft, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)-15-min, WormTop-scrolly+1+4, 11, BowLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+				    	GrayClipSprite16_AND_R(zWormLeft - (fixs(scrollx) * 8) - 15 - min, WormTop - scrolly + 1 + 4, 11, BowLeftI, BowLeftI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+				      GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) - 15 - min, WormTop - scrolly + 1 + 4, 11, BowLeft, BowLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 				    }
 				    else
 				    {
-				    	ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)+7-min, WormTop-scrolly+1+4, 11, BowRightI, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)+7-min, WormTop-scrolly+1+4, 11, BowRightI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-				      ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)+7-min, WormTop-scrolly+1+4, 11, BowRight, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)+7-min, WormTop-scrolly+1+4, 11, BowRight, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+				    	GrayClipSprite16_AND_R(zWormLeft - (fixs(scrollx) * 8) + 7 - min, WormTop - scrolly + 1 + 4, 11, BowRightI, BowRightI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+				      GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) + 7 - min, WormTop - scrolly + 1 + 4, 11, BowRight, BowRight, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 				    }
 					break;
 				case WBlow:
@@ -508,17 +452,13 @@ void DrawWorms()
 				case WFlame:
 				  if(Facing()==1)
 				    {
-				    	ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)-9-min, WormTop-scrolly+1+2, 12, FlameLeftI, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)-9-min, WormTop-scrolly+1+2, 12, FlameLeftI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-				      ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)-9-min, WormTop-scrolly+1+2, 12, FlameLeft, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)-9-min, WormTop-scrolly+1+2, 12, FlameLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+				    	GrayClipSprite16_AND_R(zWormLeft - (fixs(scrollx) * 8) - 9 - min, WormTop - scrolly + 1 + 2, 12, FlameLeftI, FlameLeftI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+				      GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) - 9 - min, WormTop - scrolly + 1 + 2, 12, FlameLeft, FlameLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 				    }
 				    else
 				    {
-				    	ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)+0-min, WormTop-scrolly+1+2, 12, FlameRightI, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_AND_R(zWormLeft-(fixs(scrollx)*8)+0-min, WormTop-scrolly+1+2, 12, FlameRightI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-				      ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)+0-min, WormTop-scrolly+1+2, 12, FlameRight, GrayDBufGetHiddenPlane(DARK_PLANE));
-							ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)+0-min, WormTop-scrolly+1+2, 12, FlameRight, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+				    	GrayClipSprite16_AND_R(zWormLeft - (fixs(scrollx) * 8) + 0 - min, WormTop - scrolly + 1 + 2, 12, FlameRightI, FlameRightI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+				      GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) + 0 - min, WormTop - scrolly + 1 + 2, 12, FlameRight, FlameRight, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 				    }
 					break;
 				//special cases
@@ -747,23 +687,19 @@ void DrawSel()
 		{
 			if(Frame==1)
 				{
-					ClipSprite16_OR_R(white_x[white_w]-4-(fixs(scrollx)*8)-(scrollx&7), white_y[white_w]-17-scrolly, 15, Rot1, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(white_x[white_w]-4-(fixs(scrollx)*8)-(scrollx&7), white_y[white_w]-17-scrolly, 15, Rot1, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+					GrayClipSprite16_OR_R(white_x[white_w] - 4 - (fixs(scrollx) * 8) - (scrollx & 7), white_y[white_w] - 17 - scrolly, 15, Rot1, Rot1, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 				}//endif frame 1
 			else if(Frame==2)
 				{
-					ClipSprite16_OR_R(white_x[white_w]-4-(fixs(scrollx)*8)-(scrollx&7), white_y[white_w]-17-scrolly, 15, Rot2, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(white_x[white_w]-4-(fixs(scrollx)*8)-(scrollx&7), white_y[white_w]-17-scrolly, 15, Rot2, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+					GrayClipSprite16_OR_R(white_x[white_w] - 4 - (fixs(scrollx) * 8) - (scrollx & 7), white_y[white_w] - 17 - scrolly, 15, Rot2, Rot2, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 				}//endif frame 2
 			else if(Frame==3)
 				{
-					ClipSprite16_OR_R(white_x[white_w]-4-(fixs(scrollx)*8)-(scrollx&7), white_y[white_w]-17-scrolly, 11, Rot3, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(white_x[white_w]-4-(fixs(scrollx)*8)-(scrollx&7), white_y[white_w]-17-scrolly, 11, Rot3, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+					GrayClipSprite16_OR_R(white_x[white_w] - 4 - (fixs(scrollx) * 8) - (scrollx & 7), white_y[white_w] - 17 - scrolly, 11, Rot3, Rot3, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 				}//endif frame 3
 			else if(Frame==4)
 				{
-					ClipSprite16_OR_R(white_x[white_w]-4-(fixs(scrollx)*8)-(scrollx&7), white_y[white_w]-17-scrolly, 11, Rot4, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(white_x[white_w]-4-(fixs(scrollx)*8)-(scrollx&7), white_y[white_w]-17-scrolly, 11, Rot4, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+					GrayClipSprite16_OR_R(white_x[white_w] - 4 - (fixs(scrollx) * 8) - (scrollx & 7), white_y[white_w] - 17 - scrolly, 11, Rot4, Rot4, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 				}//endif frame 4
 		}//endif WHITE TEAM
 	
@@ -771,23 +707,19 @@ void DrawSel()
 		{
 			if(Frame==1)
 				{
-					ClipSprite16_OR_R(black_x[black_w]-4-(fixs(scrollx)*8)-(scrollx&7), black_y[black_w]-17-scrolly, 15, Rot1, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(black_x[black_w]-4-(fixs(scrollx)*8)-(scrollx&7), black_y[black_w]-17-scrolly, 15, Rot1, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+					GrayClipSprite16_OR_R(black_x[black_w] - 4 - (fixs(scrollx) * 8) - (scrollx & 7), black_y[black_w] - 17 - scrolly, 15, Rot1, Rot1, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 				}//endif frame 1
 			else if(Frame==2)
 				{
-					ClipSprite16_OR_R(black_x[black_w]-4-(fixs(scrollx)*8)-(scrollx&7), black_y[black_w]-17-scrolly, 15, Rot2, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(black_x[black_w]-4-(fixs(scrollx)*8)-(scrollx&7), black_y[black_w]-17-scrolly, 15, Rot2, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+					GrayClipSprite16_OR_R(black_x[black_w] - 4 - (fixs(scrollx) * 8) - (scrollx & 7), black_y[black_w] - 17 - scrolly, 15, Rot2, Rot2, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 				}//endif frame 2
 			else if(Frame==3)
 				{
-					ClipSprite16_OR_R(black_x[black_w]-4-(fixs(scrollx)*8)-(scrollx&7), black_y[black_w]-17-scrolly, 11, Rot3, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(black_x[black_w]-4-(fixs(scrollx)*8)-(scrollx&7), black_y[black_w]-17-scrolly, 11, Rot3, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+					GrayClipSprite16_OR_R(black_x[black_w] - 4 - (fixs(scrollx) * 8) - (scrollx & 7), black_y[black_w] - 17 - scrolly, 11, Rot3, Rot3, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 				}//endif frame 3
 			else if(Frame==4)
 				{
-					ClipSprite16_OR_R(black_x[black_w]-4-(fixs(scrollx)*8)-(scrollx&7), black_y[black_w]-17-scrolly, 11, Rot4, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(black_x[black_w]-4-(fixs(scrollx)*8)-(scrollx&7), black_y[black_w]-17-scrolly, 11, Rot4, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+					GrayClipSprite16_OR_R(black_x[black_w] - 4 - (fixs(scrollx) * 8) - (scrollx & 7), black_y[black_w] - 17 - scrolly, 11, Rot4, Rot4, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 				}//endif frame 4
 		}//endif BLACK TEAM
 	
@@ -829,14 +761,12 @@ void DrawCursor()
 	    	    }
 	    	  case 4:
 	    	    {
-	    	    	ClipSprite16_OR_R(CursorX-(fixs(scrollx)*8)-5-min, CursorY-scrolly+1, 3, BigGirder0, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-							ClipSprite16_OR_R(CursorX-(fixs(scrollx)*8)-5-min, CursorY-scrolly+1, 3, BigGirder0, GrayDBufGetHiddenPlane(DARK_PLANE));
+	    	    	GrayClipSprite16_OR_R(CursorX - (fixs(scrollx) * 8) - 5 - min, CursorY - scrolly + 1, 3, BigGirder0, BigGirder0, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 							break;
 	    	    }
 	    	  case 5:
 	    	    {
-	    	    	ClipSprite16_OR_R(CursorX-(fixs(scrollx)*8)-5-min, CursorY-scrolly+1, 12, BigGirder45, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-							ClipSprite16_OR_R(CursorX-(fixs(scrollx)*8)-5-min, CursorY-scrolly+1, 12, BigGirder45, GrayDBufGetHiddenPlane(DARK_PLANE));
+	    	    	GrayClipSprite16_OR_R(CursorX - (fixs(scrollx) * 8) - 5 - min, CursorY - scrolly + 1, 12, BigGirder45, BigGirder45, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 							break;
 	    	    }
 	    	  case 6:
@@ -847,8 +777,7 @@ void DrawCursor()
 	    	    }
 	    	  case 7:
 	    	    {
-	    	    	ClipSprite16_OR_R(CursorX-(fixs(scrollx)*8)-5-min, CursorY-scrolly+1, 12, BigGirderN45, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-							ClipSprite16_OR_R(CursorX-(fixs(scrollx)*8)-5-min, CursorY-scrolly+1, 12, BigGirderN45, GrayDBufGetHiddenPlane(DARK_PLANE));
+	    	    	GrayClipSprite16_OR_R(CursorX - (fixs(scrollx) * 8) - 5 - min, CursorY - scrolly + 1, 12, BigGirderN45, BigGirderN45, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 							break;
 	    	    }
 	    	  default:
@@ -860,13 +789,11 @@ void DrawCursor()
     
 	if(CursorDir==0)
 	  {
-	  	ClipSprite16_OR_R(CursorX-(fixs(scrollx)*8)-5-min, CursorY-scrolly+1, 11, CursorLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-			ClipSprite16_OR_R(CursorX-(fixs(scrollx)*8)-5-min, CursorY-scrolly+1, 11, CursorLeftI, GrayDBufGetHiddenPlane(DARK_PLANE));
+	  	GrayClipSprite16_OR_R(CursorX - (fixs(scrollx) * 8) - 5 - min, CursorY - scrolly + 1, 11, CursorLeft, CursorLeftI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  }
 	else
 	  {
-	  	ClipSprite16_OR_R(CursorX-(fixs(scrollx)*8)-5-min, CursorY-scrolly+1, 11, CursorRight, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-			ClipSprite16_OR_R(CursorX-(fixs(scrollx)*8)-5-min, CursorY-scrolly+1, 11, CursorRightI, GrayDBufGetHiddenPlane(DARK_PLANE));
+	  	GrayClipSprite16_OR_R(CursorX - (fixs(scrollx) * 8) - 5 - min, CursorY - scrolly + 1, 11, CursorRight, CursorRightI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  }
 }
 
@@ -899,25 +826,21 @@ void DrawObjects()
 	  		}//endif MINE
 	  	if((oil_y[x]!=-1) & (x<8))
 	  		{
-	  			ClipSprite16_OR_R(oil_x[x]-(fixs(scrollx)*8)-min-5, oil_y[x]-scrolly+1, 11, Oil, GrayDBufGetHiddenPlane(DARK_PLANE));
-					ClipSprite16_OR_R(oil_x[x]-(fixs(scrollx)*8)-min-5, oil_y[x]-scrolly+1, 11, OilI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+	  			GrayClipSprite16_OR_R(oil_x[x] - (fixs(scrollx) * 8) - min - 5, oil_y[x] - scrolly + 1, 11, OilI, Oil, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  		}//endif MINE
 	  	if(crate_y[x]!=-1)
 	  		{
 	  			if(crate_type[x]==1)
 	  			  {
-	  			  	ClipSprite16_OR_R(crate_x[x]-(fixs(scrollx)*8)-min, crate_y[x]-scrolly+1, 11, Health, GrayDBufGetHiddenPlane(DARK_PLANE));
-					    ClipSprite16_OR_R(crate_x[x]-(fixs(scrollx)*8)-min, crate_y[x]-scrolly+1, 11, Health, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+	  			  	GrayClipSprite16_OR_R(crate_x[x] - (fixs(scrollx) * 8) - min, crate_y[x] - scrolly + 1, 11, Health, Health, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  			  }
 	  			else if(crate_type[x]==2)
 	  			  {
-	  			  	ClipSprite16_OR_R(crate_x[x]-(fixs(scrollx)*8)-min, crate_y[x]-scrolly+1, 11, Crate, GrayDBufGetHiddenPlane(DARK_PLANE));
-					    ClipSprite16_OR_R(crate_x[x]-(fixs(scrollx)*8)-min, crate_y[x]-scrolly+1, 11, CrateI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+	  			  	GrayClipSprite16_OR_R(crate_x[x] - (fixs(scrollx) * 8) - min, crate_y[x] - scrolly + 1, 11, CrateI, Crate, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  			  }
 	  			else if(crate_type[x]==3)
 	  			  {
-	  			  	ClipSprite16_OR_R(crate_x[x]-(fixs(scrollx)*8)-min, crate_y[x]-scrolly+1, 11, Toolz, GrayDBufGetHiddenPlane(DARK_PLANE));
-					    ClipSprite16_OR_R(crate_x[x]-(fixs(scrollx)*8)-min, crate_y[x]-scrolly+1, 11, ToolzI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+	  			  	GrayClipSprite16_OR_R(crate_x[x] - (fixs(scrollx) * 8) - min, crate_y[x] - scrolly + 1, 11, ToolzI, Toolz, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 	  			  }
 	  		}
 	  }//next x
@@ -944,13 +867,11 @@ void DrawXHair()
 	
 	if(Facing()==0)
 		{
-			ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)-min + XHx, WormTop-scrolly+1 + XHy, 9, XHair, GrayDBufGetHiddenPlane(DARK_PLANE));
-			ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)-min + XHx, WormTop-scrolly+1 + XHy, 9, XHair, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+			GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) - min + XHx, WormTop - scrolly + 1 + XHy, 9, XHair, XHair, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 		}
 	else
 		{
-			ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)-min - XHx -6, WormTop-scrolly+1 + XHy, 9, XHair, GrayDBufGetHiddenPlane(DARK_PLANE));
-			ClipSprite16_OR_R(zWormLeft-(fixs(scrollx)*8)-min - XHx -6, WormTop-scrolly+1 + XHy, 9, XHair, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+			GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) - min - XHx - 6, WormTop - scrolly + 1 + XHy, 9, XHair, XHair, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 		}
 }
 
@@ -1065,20 +986,17 @@ void DrawWaves()
 		{
 			if(wave[x]==0)
 			  {
-			  	ClipSprite16_OR_R((x*16)-(scrollx&15),192-scrolly, 9, Wave1, GrayDBufGetHiddenPlane(DARK_PLANE));
-			  	ClipSprite16_OR_R((x*16)-(scrollx&15),192-scrolly, 9, Wave1, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+			  	GrayClipSprite16_OR_R((x * 16) - (scrollx & 15), 192 - scrolly, 9, Wave1, Wave1, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 			  	ClipSprite16_XOR_R((x*16)-(scrollx&15),192-scrolly, 9, Wave1I, GrayDBufGetHiddenPlane(DARK_PLANE));
 			  }
 			else if(wave[x]==1)
 			  {
-			  	ClipSprite16_OR_R((x*16)-(scrollx&15),192-scrolly, 9, Wave2, GrayDBufGetHiddenPlane(DARK_PLANE));
-			  	ClipSprite16_OR_R((x*16)-(scrollx&15),192-scrolly, 9, Wave2, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+			  	GrayClipSprite16_OR_R((x * 16) - (scrollx & 15), 192 - scrolly, 9, Wave2, Wave2, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 			  	ClipSprite16_XOR_R((x*16)-(scrollx&15),192-scrolly, 9, Wave2I, GrayDBufGetHiddenPlane(DARK_PLANE));
 			  }
 			else if(wave[x]==2)
 			  {
-			  	ClipSprite16_OR_R((x*16)-(scrollx&15),192-scrolly, 9, Wave3, GrayDBufGetHiddenPlane(DARK_PLANE));
-			  	ClipSprite16_OR_R((x*16)-(scrollx&15),192-scrolly, 9, Wave3, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+			  	GrayClipSprite16_OR_R((x * 16) - (scrollx & 15), 192 - scrolly, 9, Wave3, Wave3, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 			  	ClipSprite16_XOR_R((x*16)-(scrollx&15),192-scrolly, 9, Wave3I, GrayDBufGetHiddenPlane(DARK_PLANE));
 			  } 
 			
@@ -1236,15 +1154,13 @@ void DrawWeap()
 					  {
 							CamFocusY(wepy);
 
-							ClipSprite16_OR_R(wepx-5-(scrollx), wepy-scrolly-5, 15, MBBomb, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-							ClipSprite16_OR_R(wepx-5-(scrollx), wepy-scrolly-5, 15, MBBomb, GrayDBufGetHiddenPlane(DARK_PLANE));
+							GrayClipSprite16_OR_R(wepx - 5 - (scrollx), wepy - scrolly - 5, 15, MBBomb, MBBomb, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 					  }
 					else if(weap_type[x]==WDonkey)
 					  {
 							CamFocusY(wepy);
 
-							ClipSprite16_OR_R(wepx-5-(scrollx), wepy-scrolly-15, 19, Donkey, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-							ClipSprite16_OR_R(wepx-5-(scrollx), wepy-scrolly-15, 19, Donkey, GrayDBufGetHiddenPlane(DARK_PLANE));
+							GrayClipSprite16_OR_R(wepx - 5 - (scrollx), wepy - scrolly - 15, 19, Donkey, Donkey, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 					  }
 					else if(weap_type[x]==WCarpet)
 					  {
@@ -1267,12 +1183,10 @@ void DrawWeap()
 
 							if(weap_dirx[x]<0)
 					  	  {
-					  	  	ClipSprite16_OR_R(wepx-(fixs(scrollx)*8)-5-(scrollx&7), wepy-scrolly-5, 8, SheepLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-									ClipSprite16_OR_R(wepx-(fixs(scrollx)*8)-5-(scrollx&7), wepy-scrolly-5, 8, SheepLeft, GrayDBufGetHiddenPlane(DARK_PLANE));
+					  	  	GrayClipSprite16_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 8, SheepLeft, SheepLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 					  	  }else
 					  	  {
-					  	  	ClipSprite16_OR_R(wepx-(fixs(scrollx)*8)-5-(scrollx&7), wepy-scrolly-5, 8, SheepRight, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-									ClipSprite16_OR_R(wepx-(fixs(scrollx)*8)-5-(scrollx&7), wepy-scrolly-5, 8, SheepRight, GrayDBufGetHiddenPlane(DARK_PLANE));
+					  	  	GrayClipSprite16_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 8, SheepRight, SheepRight, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 					  	  }
 					  }
 					
@@ -1280,12 +1194,10 @@ void DrawWeap()
 					  {
 					    if(weap_x[x]<xspotx)
 					      {
-					      	ClipSprite16_OR_R(wepx-(fixs(scrollx)*8)-5-(scrollx&7), wepy-scrolly-5, 8, PigeonRight, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-									ClipSprite16_OR_R(wepx-(fixs(scrollx)*8)-5-(scrollx&7), wepy-scrolly-5, 8, PigeonRight, GrayDBufGetHiddenPlane(DARK_PLANE));
+					      	GrayClipSprite16_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 8, PigeonRight, PigeonRight, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 					      }else
 					      {
-					      	ClipSprite16_OR_R(wepx-(fixs(scrollx)*8)-5-(scrollx&7), wepy-scrolly-5, 8, PigeonLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-									ClipSprite16_OR_R(wepx-(fixs(scrollx)*8)-5-(scrollx&7), wepy-scrolly-5, 8, PigeonLeft, GrayDBufGetHiddenPlane(DARK_PLANE));
+					      	GrayClipSprite16_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 8, PigeonLeft, PigeonLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 					      }
 					      CamFocus(wepx,wepy);
 					  }
@@ -1374,12 +1286,10 @@ void DrawWeap()
 					  {
 					  	if(weap_dirx[x]<0)
 					  	  {
-					  	  	ClipSprite16_OR_R(wepx-(fixs(scrollx)*8)-5-(scrollx&7), wepy-scrolly-5, 8, SheepLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-									ClipSprite16_OR_R(wepx-(fixs(scrollx)*8)-5-(scrollx&7), wepy-scrolly-5, 8, SheepLeft, GrayDBufGetHiddenPlane(DARK_PLANE));
+					  	  	GrayClipSprite16_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 8, SheepLeft, SheepLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 					  	  }else
 					  	  {
-					  	  	ClipSprite16_OR_R(wepx-(fixs(scrollx)*8)-5-(scrollx&7), wepy-scrolly-5, 8, SheepRight, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-									ClipSprite16_OR_R(wepx-(fixs(scrollx)*8)-5-(scrollx&7), wepy-scrolly-5, 8, SheepRight, GrayDBufGetHiddenPlane(DARK_PLANE));
+					  	  	GrayClipSprite16_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 8, SheepRight, SheepRight, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 					  	  }
 					  	CamFocus(wepx,wepy);
 					  }
@@ -1387,12 +1297,10 @@ void DrawWeap()
 					  {
 					  	if(weap_dirx[x]==-1)
 					  	  {
-					  	  	ClipSprite16_OR_R(wepx-(fixs(scrollx)*8)-5-(scrollx&7), wepy-scrolly-5, 9, CowLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-									ClipSprite16_OR_R(wepx-(fixs(scrollx)*8)-5-(scrollx&7), wepy-scrolly-5, 9, CowLeft, GrayDBufGetHiddenPlane(DARK_PLANE));
+					  	  	GrayClipSprite16_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 9, CowLeft, CowLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 					  	  }else
 					  	  {
-					  	  	ClipSprite16_OR_R(wepx-(fixs(scrollx)*8)-5-(scrollx&7), wepy-scrolly-5, 9, CowRight, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-									ClipSprite16_OR_R(wepx-(fixs(scrollx)*8)-5-(scrollx&7), wepy-scrolly-5, 9, CowRight, GrayDBufGetHiddenPlane(DARK_PLANE));
+					  	  	GrayClipSprite16_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 9, CowRight, CowRight, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 					  	  }
 					  	if(x==0) CamFocus(wepx,wepy);
 					  }
@@ -1400,12 +1308,10 @@ void DrawWeap()
 					  {
 					  	if(weap_dirx[x]==-1)
 					  	  {
-					  	  	ClipSprite16_OR_R(wepx-(fixs(scrollx)*8)-5-(scrollx&7), wepy-scrolly-5, 8, SkunkLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-									ClipSprite16_OR_R(wepx-(fixs(scrollx)*8)-5-(scrollx&7), wepy-scrolly-5, 8, SkunkLeft, GrayDBufGetHiddenPlane(DARK_PLANE));
+					  	  	GrayClipSprite16_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 8, SkunkLeft, SkunkLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 					  	  }else
 					  	  {
-					  	  	ClipSprite16_OR_R(wepx-(fixs(scrollx)*8)-5-(scrollx&7), wepy-scrolly-5, 8, SkunkRight, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-									ClipSprite16_OR_R(wepx-(fixs(scrollx)*8)-5-(scrollx&7), wepy-scrolly-5, 8, SkunkRight, GrayDBufGetHiddenPlane(DARK_PLANE));
+					  	  	GrayClipSprite16_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 8, SkunkRight, SkunkRight, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 					  	  }
 					  	CamFocus(wepx,wepy);
 					  }
@@ -1413,12 +1319,10 @@ void DrawWeap()
 					  {
 					  	if(weap_dirx[x]==-1)
 					  	  {
-					  	  	ClipSprite16_OR_R(wepx-(fixs(scrollx)*8)-5-(scrollx&7), wepy-scrolly, 6, MoleLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-									ClipSprite16_OR_R(wepx-(fixs(scrollx)*8)-5-(scrollx&7), wepy-scrolly, 6, MoleLeft, GrayDBufGetHiddenPlane(DARK_PLANE));
+					  	  	GrayClipSprite16_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly, 6, MoleLeft, MoleLeft, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 					  	  }else
 					  	  {
-					  	  	ClipSprite16_OR_R(wepx-(fixs(scrollx)*8)-5-(scrollx&7), wepy-scrolly, 6, MoleRight, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-									ClipSprite16_OR_R(wepx-(fixs(scrollx)*8)-5-(scrollx&7), wepy-scrolly, 6, MoleRight, GrayDBufGetHiddenPlane(DARK_PLANE));
+					  	  	GrayClipSprite16_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly, 6, MoleRight, MoleRight, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
 					  	  }
 					  	CamFocus(wepx,wepy);
 					  }
