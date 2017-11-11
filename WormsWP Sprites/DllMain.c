@@ -33,10 +33,12 @@ short WeaponSet[5][14]={ //HOW MANY OF EACH WEAPON DO YOU HAVE? LIST IS SET UP I
 	
 //THE MAP VARZ!!
 short scrollx,scrolly; //WHERE IS THE MAP SCROLLED TO?
-LCD_BUFFER(MapLeft); //THE MAP IS COMPOSED OF FOUR CORNERS: LEFT RIGHT UP and DOWN
-LCD_BUFFER(MapRight);
-LCD_BUFFER(MapLeftUp);
-LCD_BUFFER(MapRightUp);
+//THE MAP IS COMPOSED OF FOUR CORNERS: LEFT RIGHT UP and DOWN
+char * MapLeft;
+char * MapRight;
+char * MapLeftUp;
+char * MapRightUp;
+char MapDummy[1];
 
 
 //FUNCTION DECLARATIONS
@@ -48,6 +50,13 @@ static __attribute__((regparm)) int fixs(int ToFix)
 }
 int Facing(); //returns if the worms are facing left or right
 void DllGrayOn(); //turns grayscale on within the dll
+void SetMapBuffers(char * Maps)
+{
+  MapLeft = Maps;
+  MapRight = MapLeft + LCD_SIZE;
+  MapLeftUp = MapRight + LCD_SIZE;
+  MapRightUp = MapLeftUp + LCD_SIZE;
+}
 void CamFocus(int x, int y); //sets the camera to look at x,y
 void CamFocus2(short x, short y); //basically the same thing
 void CamFocusY(int y); //sets just the cameras vertical position
@@ -88,7 +97,7 @@ enum Weapons {WJetPack, WLowG, WFastWalk, WLaser, WInvis, WBazooka, WHoming, WMo
 DLL_ID 593223953
 DLL_VERSION 1,0
 //the some 220 variables i export!
-DLL_EXPORTS  Wave1, Wave2, Wave3, Wave1I, Wave2I, Wave3I, CandleCake, CandleCake2, WormRight, WormLeft, WormRightI, WormLeftI, WormRight2, WormLeft2, WormRight2I, WormLeft2I, WormRightJump, WormLeftJump, WormRightJumpI, WormLeftJumpI, WormRightJump2, WormLeftJump2, WormRightJump2I, WormLeftJump2I, WormRightU, WormLeftU, WormRightUI, WormLeftUI, WormLeftSideU, WormRightSideU, WormLeftSideUI, WormRightSideUI, WormRightSide, WormLeftSide, WormRightSideI, WormLeftSideI, WormHammer, WormHammerI, Rot1, Rot2, Rot3, Rot4, Oil, OilI, Health, Crate, CrateI, Toolz, ToolzI, Mine, MineI, Weapons1, Weapons2, Weapons3, Weapons4, Weapons5, SelBox, XHair, CursorLeft, CursorLeftI, CursorRight, CursorRightI, XSpot, XSpotI, Banana, BananaI, Banana2, Banana2I, Dynamite, DynamiteI, Molotov, MolotovI, Radio, RadioI, MingVase, MingVaseI, Rocket, RocketI, ShotGLeft, ShotGLeftI, ShotGRight, ShotGRightI, HandGLeft, HandGLeftI, HandGRight, HandGRightI, UziLeft, UziLeftI, UziRight, UziRightI, MiniGLeft, MiniGLeftI, MiniGRight, MiniGRightI, BowLeft, BowLeftI, BowRight, BowRightI, FlameLeft, FlameLeftI, FlameRight, FlameRightI, Grenade, GrenadeI, HolyG, HolyGI, Bat, BatI, Axe, AxeI, Ninja, NinjaI, Flag, FlagI, BlowLeft, BlowLeftI, BlowRight, BlowRightI, JetRight, JetRightI, JetLeft, JetLeftI, Bazook, Ming2, Bullet, ArrowLeft, ArrowRight, white_x, white_y, white_h, white_dir, &white_w, &white_weap, black_x, black_y, black_h, black_dir, &black_w, &black_weap, crate_x, crate_y, crate_type, mine_x, mine_y, oil_x, oil_y, exp_x, exp_y, exp_t, exp_max, &curre, weap_type, weap_time, weap_x, weap_y, weap_dirx, weap_diry, &GameMode, &team, &maxworms, &jumping, &jtime, &jdir, &backflip, &moving, &crosshair, &XHx, &XHy, &xspotx, &xspoty, &CursorDir, &CursorX, &CursorY, &weapson, &currw, &chargew, &charge, &canfire, &cluster, &firetime, &Wx, &Wy, &LockX, &LockY, &LockTime, &Lock, &xhpos, MapLeft, MapLeftUp, MapRight, MapRightUp, &scrollx, &scrolly, DrawWorms, fixs, Facing, DllGrayOn, DrawMap, DrawMap2, DrawChunk, DrawChunk2, DrawSel, DrawObjects, DrawWaves, DrawWeaps, DrawXHair, DrawCursor, DrawXSpot, DrawExp, DrawCharge, DrawWeap, CamFocus, drawgfx, DllGrayOff, DrawCake, &girder, &girdermode, &girders, &MapGirder, &ParaMode, &Falling, &lowgrav, &fastwalk, &whiteinvis, &blackinvis, WeaponSet
+DLL_EXPORTS  Wave1, Wave2, Wave3, Wave1I, Wave2I, Wave3I, CandleCake, CandleCake2, WormRight, WormLeft, WormRightI, WormLeftI, WormRight2, WormLeft2, WormRight2I, WormLeft2I, WormRightJump, WormLeftJump, WormRightJumpI, WormLeftJumpI, WormRightJump2, WormLeftJump2, WormRightJump2I, WormLeftJump2I, WormRightU, WormLeftU, WormRightUI, WormLeftUI, WormLeftSideU, WormRightSideU, WormLeftSideUI, WormRightSideUI, WormRightSide, WormLeftSide, WormRightSideI, WormLeftSideI, WormHammer, WormHammerI, Rot1, Rot2, Rot3, Rot4, Oil, OilI, Health, Crate, CrateI, Toolz, ToolzI, Mine, MineI, Weapons1, Weapons2, Weapons3, Weapons4, Weapons5, SelBox, XHair, CursorLeft, CursorLeftI, CursorRight, CursorRightI, XSpot, XSpotI, Banana, BananaI, Banana2, Banana2I, Dynamite, DynamiteI, Molotov, MolotovI, Radio, RadioI, MingVase, MingVaseI, Rocket, RocketI, ShotGLeft, ShotGLeftI, ShotGRight, ShotGRightI, HandGLeft, HandGLeftI, HandGRight, HandGRightI, UziLeft, UziLeftI, UziRight, UziRightI, MiniGLeft, MiniGLeftI, MiniGRight, MiniGRightI, BowLeft, BowLeftI, BowRight, BowRightI, FlameLeft, FlameLeftI, FlameRight, FlameRightI, Grenade, GrenadeI, HolyG, HolyGI, Bat, BatI, Axe, AxeI, Ninja, NinjaI, Flag, FlagI, BlowLeft, BlowLeftI, BlowRight, BlowRightI, JetRight, JetRightI, JetLeft, JetLeftI, Bazook, Ming2, Bullet, ArrowLeft, ArrowRight, white_x, white_y, white_h, white_dir, &white_w, &white_weap, black_x, black_y, black_h, black_dir, &black_w, &black_weap, crate_x, crate_y, crate_type, mine_x, mine_y, oil_x, oil_y, exp_x, exp_y, exp_t, exp_max, &curre, weap_type, weap_time, weap_x, weap_y, weap_dirx, weap_diry, &GameMode, &team, &maxworms, &jumping, &jtime, &jdir, &backflip, &moving, &crosshair, &XHx, &XHy, &xspotx, &xspoty, &CursorDir, &CursorX, &CursorY, &weapson, &currw, &chargew, &charge, &canfire, &cluster, &firetime, &Wx, &Wy, &LockX, &LockY, &LockTime, &Lock, &xhpos, MapDummy, MapDummy, MapDummy, MapDummy, &scrollx, &scrolly, DrawWorms, fixs, Facing, DllGrayOn, DrawMap, DrawMap2, DrawChunk, DrawChunk2, DrawSel, DrawObjects, DrawWaves, DrawWeaps, DrawXHair, DrawCursor, DrawXSpot, DrawExp, DrawCharge, DrawWeap, CamFocus, drawgfx, DllGrayOff, DrawCake, &girder, &girdermode, &girders, &MapGirder, &ParaMode, &Falling, &lowgrav, &fastwalk, &whiteinvis, &blackinvis, WeaponSet, SetMapBuffers
 
 //And here we go...
 DLL_IMPLEMENTATION

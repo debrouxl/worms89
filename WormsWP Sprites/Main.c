@@ -80,10 +80,10 @@
 #define LockTime _DLL_glbvar (short, 184)
 #define Lock _DLL_glbvar (short, 185)
 #define xhpos _DLL_glbvar (float, 186)
-#define MapLeft _DLL_reference (char, 187)
-#define MapLeftUp _DLL_reference (char, 188)
-#define MapRight _DLL_reference (char, 189)
-#define MapRightUp _DLL_reference (char, 190)
+//#define MapLeft _DLL_reference (char, 187)
+//#define MapLeftUp _DLL_reference (char, 188)
+//#define MapRight _DLL_reference (char, 189)
+//#define MapRightUp _DLL_reference (char, 190)
 #define scrollx _DLL_glbvar (short, 191)
 #define scrolly _DLL_glbvar (short, 192)
 #define girder _DLL_glbvar (short, 215)
@@ -95,7 +95,7 @@
 #define fastwalk _DLL_glbvar (short, 222)
 #define whiteinvis _DLL_glbvar (short, 223)
 #define blackinvis _DLL_glbvar (short, 224)
-#define WeaponSet _DLL_glbvar (short, 224)
+#define WeaponSet _DLL_glbvar (short, 225)
 
 
 //IMPORT FUNCTIONS!!
@@ -122,6 +122,7 @@
 #define DllGrayOff _DLL_call (void, (), 213)
 #define DrawCake _DLL_call (void, (), 214)
 #define MapGirder _DLL_call (void, (), 218)
+#define SetMapBuffers _DLL_call (void, (char *), 226)
 
 //FUNCTION DECLARATION
 //void drawgfx();
@@ -185,11 +186,11 @@ short LockX,LockY,LockTime,Lock;
 float xhpos;
 
 //THE MAP VARZ!!
-short scrollx,scrolly;
-LCD_BUFFER(MapLeft);
-LCD_BUFFER(MapRight);
-LCD_BUFFER(MapLeftUp);
-LCD_BUFFER(MapRightUp);*/
+short scrollx,scrolly;*/
+char * MapLeft;
+char * MapRight;
+char * MapLeftUp;
+char * MapRightUp;
 
 short weap_temp, orgx, orgy, WormLock, changed;
 
@@ -251,14 +252,27 @@ void _main(void)
 	
 	//clears the screen
 	ClearScreen();
-	
+
+	MapLeft = malloc(4 * LCD_SIZE);
+	if (MapLeft == NULL)
+    {
+      DlgMessage ("ERROR", "Error allocating memory!", BT_OK, BT_NONE);
+      return;
+    }
+  MapRight = MapLeft + LCD_SIZE;
+  MapLeftUp = MapRight + LCD_SIZE;
+  MapRightUp = MapLeftUp + LCD_SIZE;
+  memset(MapLeft, 0, 4 * LCD_SIZE);
 	//attempts to load the ddl, otherwise errors
 	if (LoadDLL ("wormsdll", 593223953, 1, 0) != DLL_OK) 
     {
       DlgMessage ("ERROR", "Error loading DLL!", BT_OK, BT_NONE);
+      free(MapLeft);
       return;
     }
-    
+
+	SetMapBuffers(MapLeft);
+
 	// Sets It Up For _keytest usage..
 	INT_HANDLER save_1 = GetIntVec(AUTO_INT_1); 
 	INT_HANDLER save_5 = GetIntVec(AUTO_INT_5); 
@@ -289,6 +303,7 @@ void _main(void)
 	
 	//unloads the ddl from memory
 	UnloadDLL();
+	free(MapLeft);
 }
 
 
