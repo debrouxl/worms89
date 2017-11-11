@@ -8,7 +8,7 @@ Copy Data Variable if Archived=1
 Pack=0
 Packed Variable=wwpdat
 Project Name=WWP
-GCC Switches=-Os -fomit-frame-pointer -Wall -W -Wwrite-strings -ffunction-sections -fdata-sections -mno-bss
+GCC Switches=-Os -fomit-frame-pointer -Wall -W -Wwrite-strings -ffunction-sections -fdata-sections -mno-bss -mregparm=5
 GNU Assembler Switches=--all-relocs
 Assembler Switches=-g -t
 Debug Info=0
@@ -44,7 +44,7 @@ BSS Ref Format=Kernel
 Data Ref Format=Kernel
 Use F-Line Jumps=0
 Use 4-Byte F-Line Jumps=0
-Optimize ROM Calls=0
+Optimize ROM Calls=1
 Use Internal F-Line Emulator=0
 Use Return Value=0
 Enable Error Return=0
