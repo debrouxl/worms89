@@ -100,7 +100,7 @@
 
 //IMPORT FUNCTIONS!!
 #define DrawWorms _DLL_call (void, (), 193)
-#define fixs _DLL_call (int, (int), 194)
+//#define fixs _DLL_call (int, (int), 194)
 #define Facing _DLL_call (int, (), 195)
 #define DllGrayOn _DLL_call (void, (), 196)
 #define DrawMap _DLL_call (void, (), 197)
@@ -1692,7 +1692,7 @@ void FocusWorm(int TheWorm, int teamzor)
   	{
   		scrolly=white_y[TheWorm]-50;
 			scrollx=white_x[TheWorm]-70;
-			/*temp=white_x[TheWorm]%8;
+			/*temp=white_x[TheWorm]&7;
 			temp=white_x[TheWorm]-temp;
 			temp=temp/8;
 			scrollx=temp-9;*/
@@ -1701,7 +1701,7 @@ void FocusWorm(int TheWorm, int teamzor)
   	{
   		scrolly=black_y[TheWorm]-50;
   		scrollx=black_x[TheWorm]-70;
-			/*temp=black_x[TheWorm]%8;
+			/*temp=black_x[TheWorm]&7;
 			temp=black_x[TheWorm]-temp;
 			temp=temp/8;
 			scrollx=temp-9;*/
