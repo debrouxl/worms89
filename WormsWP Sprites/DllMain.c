@@ -32,7 +32,8 @@ short WeaponSet[5][14]={ //HOW MANY OF EACH WEAPON DO YOU HAVE? LIST IS SET UP I
 	{0,5,0,9,1,1,0,3,2,0,0,0,3,1},
 	{0,0,2,0,0,0,0,1,2,0,0,0,0,1},
 	{0,0,0,2,9,0,0,0,0,0,0,0,0,1}};
-	
+static const char directions[14] = {0, 1,  0, 1, 1, 0,  1, 0, 1, 0,  1, 0, 1, 0};
+
 //THE MAP VARZ!!
 short scrollx,scrolly; //WHERE IS THE MAP SCROLLED TO?
 //THE MAP IS COMPOSED OF FOUR CORNERS: LEFT RIGHT UP and DOWN
@@ -100,7 +101,7 @@ enum Weapons {WJetPack, WLowG, WFastWalk, WLaser, WInvis, WBazooka, WHoming, WMo
 DLL_ID 593223953
 DLL_VERSION 1,0
 //the some 220 variables i export!
-DLL_EXPORTS  Wave1, Wave2, Wave3, Wave1I, Wave2I, Wave3I, CandleCake, CandleCake2, WormRight, WormLeft, WormRightI, WormLeftI, WormRight2, WormLeft2, WormRight2I, WormLeft2I, WormRightJump, WormLeftJump, WormRightJumpI, WormLeftJumpI, WormRightJump2, WormLeftJump2, WormRightJump2I, WormLeftJump2I, WormRightU, WormLeftU, WormRightUI, WormLeftUI, WormLeftSideU, WormRightSideU, WormLeftSideUI, WormRightSideUI, WormRightSide, WormLeftSide, WormRightSideI, WormLeftSideI, WormHammer, WormHammerI, Rot1, Rot2, Rot3, Rot4, Oil, OilI, Health, Crate, CrateI, Toolz, ToolzI, Mine, MineI, Weapons1, Weapons2, Weapons3, Weapons4, Weapons5, SelBox, XHair, CursorLeft, CursorLeftI, CursorRight, CursorRightI, XSpot, XSpotI, Banana, BananaI, Banana2, Banana2I, Dynamite, DynamiteI, Molotov, MolotovI, Radio, RadioI, MingVase, MingVaseI, Rocket, RocketI, ShotGLeft, ShotGLeftI, ShotGRight, ShotGRightI, HandGLeft, HandGLeftI, HandGRight, HandGRightI, UziLeft, UziLeftI, UziRight, UziRightI, MiniGLeft, MiniGLeftI, MiniGRight, MiniGRightI, BowLeft, BowLeftI, BowRight, BowRightI, FlameLeft, FlameLeftI, FlameRight, FlameRightI, Grenade, GrenadeI, HolyG, HolyGI, Bat, BatI, Axe, AxeI, Ninja, NinjaI, Flag, FlagI, BlowLeft, BlowLeftI, BlowRight, BlowRightI, JetRight, JetRightI, JetLeft, JetLeftI, Bazook, Ming2, Bullet, ArrowLeft, ArrowRight, white_x, white_y, white_h, white_dir, &white_w, &white_weap, black_x, black_y, black_h, black_dir, &black_w, &black_weap, crate_x, crate_y, crate_type, mine_x, mine_y, oil_x, oil_y, exp_x, exp_y, exp_t, exp_max, &curre, weap_type, weap_time, weap_x, weap_y, weap_dirx, weap_diry, &GameMode, &team, &maxworms, &jumping, &jtime, &jdir, &backflip, &moving, &crosshair, &XHx, &XHy, &xspotx, &xspoty, &CursorDir, &CursorX, &CursorY, &weapson, &currw, &chargew, &charge, &canfire, &cluster, &firetime, &Wx, &Wy, &LockX, &LockY, &LockTime, &Lock, &xhpos, MapDummy, MapDummy, MapDummy, MapDummy, &scrollx, &scrolly, DrawWorms, fixs, Facing, DllGrayOn, DrawMap, DrawMap2, DrawChunk, DrawChunk2, DrawSel, DrawObjects, DrawWaves, DrawWeaps, DrawXHair, DrawCursor, DrawXSpot, DrawExp, DrawCharge, DrawWeap, CamFocus, drawgfx, DllGrayOff, DrawCake, &girder, &girdermode, &girders, &MapGirder, &ParaMode, &Falling, &lowgrav, &fastwalk, &whiteinvis, &blackinvis, WeaponSet, SetMapBuffers
+DLL_EXPORTS  Wave1, Wave2, Wave3, Wave1I, Wave2I, Wave3I, CandleCake, CandleCake2, WormRight, WormLeft, WormRightI, WormLeftI, WormRight2, WormLeft2, WormRight2I, WormLeft2I, WormRightJump, WormLeftJump, WormRightJumpI, WormLeftJumpI, WormRightJump2, WormLeftJump2, WormRightJump2I, WormLeftJump2I, WormRightU, WormLeftU, WormRightUI, WormLeftUI, WormLeftSideU, WormRightSideU, WormLeftSideUI, WormRightSideUI, WormRightSide, WormLeftSide, WormRightSideI, WormLeftSideI, WormHammer, WormHammerI, Rot1, Rot2, Rot3, Rot4, Oil, OilI, Health, Crate, CrateI, Toolz, ToolzI, Mine, MineI, Weapons1, Weapons2, Weapons3, Weapons4, Weapons5, SelBox, XHair, CursorLeft, CursorLeftI, CursorRight, CursorRightI, XSpot, XSpotI, Banana, BananaI, Banana2, Banana2I, Dynamite, DynamiteI, Molotov, MolotovI, Radio, RadioI, MingVase, MingVaseI, Rocket, RocketI, ShotGLeft, ShotGLeftI, ShotGRight, ShotGRightI, HandGLeft, HandGLeftI, HandGRight, HandGRightI, UziLeft, UziLeftI, UziRight, UziRightI, MiniGLeft, MiniGLeftI, MiniGRight, MiniGRightI, BowLeft, BowLeftI, BowRight, BowRightI, FlameLeft, FlameLeftI, FlameRight, FlameRightI, Grenade, GrenadeI, HolyG, HolyGI, Bat, BatI, Axe, AxeI, Ninja, NinjaI, Flag, FlagI, BlowLeft, BlowLeftI, BlowRight, BlowRightI, JetRight, JetRightI, JetLeft, JetLeftI, Bazook, Ming2, Bullet, ArrowLeft, ArrowRight, white_x, white_y, white_h, white_dir, &white_w, &white_weap, black_x, black_y, black_h, black_dir, &black_w, &black_weap, crate_x, crate_y, crate_type, mine_x, mine_y, oil_x, oil_y, exp_x, exp_y, exp_t, exp_max, &curre, weap_type, weap_time, weap_x, weap_y, weap_dirx, weap_diry, &GameMode, &team, &maxworms, &jumping, &jtime, &jdir, &backflip, &moving, &crosshair, &XHx, &XHy, &xspotx, &xspoty, &CursorDir, &CursorX, &CursorY, &weapson, &currw, &chargew, &charge, &canfire, &cluster, &firetime, &Wx, &Wy, &LockX, &LockY, &LockTime, &Lock, &xhpos, MapDummy, MapDummy, MapDummy, MapDummy, &scrollx, &scrolly, DrawWorms, fixs, Facing, DllGrayOn, DrawMap, DrawMap2, DrawChunk, DrawChunk2, DrawSel, DrawObjects, DrawWaves, DrawWeaps, DrawXHair, DrawCursor, DrawXSpot, DrawExp, DrawCharge, DrawWeap, CamFocus, drawgfx, DllGrayOff, DrawCake, &girder, &girdermode, &girders, &MapGirder, &ParaMode, &Falling, &lowgrav, &fastwalk, &whiteinvis, &blackinvis, WeaponSet, SetMapBuffers, directions
 
 //And here we go...
 DLL_IMPLEMENTATION
@@ -481,14 +482,15 @@ void DrawWorms()
 
 
 //RETURNS WHAT DIRECIONT THE CURRENT WORM IS FACING
-int Facing()
+int __attribute__((noinline)) Facing()
 {
   int ToReturn=0;
   
   //dir just isnt left or right, its the action the worm is doing (such as jumping, or walking) so it quite complicatedly returns what dir based on the action
 	if(team==TWhite)
 	  {
-      if(white_dir[white_w]==0) ToReturn=0;
+			ToReturn = directions[white_dir[white_w]];
+      /*if(white_dir[white_w]==0) ToReturn=0;
 			else if(white_dir[white_w]==1) ToReturn=1;
 	  	else if(white_dir[white_w]==2) ToReturn=0;
 			else if(white_dir[white_w]==3) ToReturn=1;
@@ -501,11 +503,12 @@ int Facing()
 			else if(white_dir[white_w]==10) ToReturn=1;
 			else if(white_dir[white_w]==11) ToReturn=0;
 			else if(white_dir[white_w]==12) ToReturn=1;
-			else if(white_dir[white_w]==13) ToReturn=0;
+			else if(white_dir[white_w]==13) ToReturn=0;*/
 	  }
 	else //if(team==TBlack)
 	  {
-	  	if(black_dir[black_w]==0) ToReturn=0;
+			ToReturn = directions[black_dir[black_w]];
+	  	/*if(black_dir[black_w]==0) ToReturn=0;
 			else if(black_dir[black_w]==1) ToReturn=1;
 	  	else if(black_dir[black_w]==2) ToReturn=0;
 			else if(black_dir[black_w]==3) ToReturn=1;
@@ -518,7 +521,7 @@ int Facing()
 			else if(black_dir[black_w]==10) ToReturn=1;
 			else if(black_dir[black_w]==11) ToReturn=0;
 			else if(black_dir[black_w]==12) ToReturn=1;
-			else if(black_dir[black_w]==13) ToReturn=0;
+			else if(black_dir[black_w]==13) ToReturn=0;*/
 	  }
 	
 	return ToReturn;
