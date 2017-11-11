@@ -5,7 +5,9 @@
 #include "extgraph.h"
 
 //Tis a DLL
+#ifdef DO_DLL
 DLL_INTERFACE
+#endif
 
 #include "Sprites.c"
 
@@ -42,46 +44,46 @@ char MapDummy[1];
 
 
 //FUNCTION DECLARATIONS
-void DrawWorms(); //Draw the worms
+static void DrawWorms(); //Draw the worms
 //Usualy used for calculating "min"
 static __attribute__((regparm)) int fixs(int ToFix)
 {
 	return (ToFix-(ToFix&7))>>3;
 }
-int Facing(); //returns if the worms are facing left or right
-void DllGrayOn(); //turns grayscale on within the dll
-void SetMapBuffers(char * Maps)
+static int Facing(); //returns if the worms are facing left or right
+static void DllGrayOn(); //turns grayscale on within the dll
+static void SetMapBuffers(char * Maps)
 {
   MapLeft = Maps;
   MapRight = MapLeft + LCD_SIZE;
   MapLeftUp = MapRight + LCD_SIZE;
   MapRightUp = MapLeftUp + LCD_SIZE;
 }
-void CamFocus(int x, int y); //sets the camera to look at x,y
-void CamFocus2(short x, short y); //basically the same thing
-void CamFocusY(int y); //sets just the cameras vertical position
-void MapGirder(); //places a grider on the map (makes it part of the map)
+static void CamFocus(int x, int y); //sets the camera to look at x,y
+static void CamFocus2(short x, short y); //basically the same thing
+static void CamFocusY(int y); //sets just the cameras vertical position
+static void MapGirder(); //places a grider on the map (makes it part of the map)
 
 //draw funcs
-void DrawMap(); //draws the map
-void DrawMap2(); //draws the map
-void DrawChunk(void *mem, void *out, short width, short height, short xout, short xin, int yout, int yin); //draws a peice of the map
-void DrawChunk2(void *mem, void *out, short width, short height, short xout, int yout, int yin); //draws a peice of the map
-void DrawSel(); //draws the selection cursor over the worms head
+static void DrawMap(); //draws the map
+static void DrawMap2(); //draws the map
+static void DrawChunk(void *mem, void *out, short width, short height, short xout, short xin, int yout, int yin); //draws a peice of the map
+static void DrawChunk2(void *mem, void *out, short width, short height, short xout, int yout, int yin); //draws a peice of the map
+static void DrawSel(); //draws the selection cursor over the worms head
 //void DrawWorms();
-void DrawObjects(); //draws ingame random objects
-void DrawWaves(); //draws the waves at the bottom of the screens
-void DrawWeaps(); //draws the weapon selection menu
-void DrawXHair(); //draws the cross hair for aiming a weapon
-void DrawCursor(); //draws the mouse-arrow currsor for air strikes, teleport, etc..
-void DrawXSpot(); //draws the "X" marks the spot x for airstrikes and such
-void DrawExp(); //draws the ring of fire in an explosions
-void DrawCharge(); //draws the weapon charge meter at the top of the screen (for holding power on weaps like bazooka)
-void DrawWeap(); //draws the weapon you fired (ie: cows, a rockect, a grenade, etc..)
-void drawgfx(); //the main grafix drawing routing
-void DllGrayOff(); //turns grayscale off from within the dll
-void DrawCake(); //draws the loading map cake, (doesnt work for somereason or another)
-void DrawNumber(short x, short y, int num); //unfinish, was supposed to draw a number for the health above a worms head
+static void DrawObjects(); //draws ingame random objects
+static void DrawWaves(); //draws the waves at the bottom of the screens
+static void DrawWeaps(); //draws the weapon selection menu
+static void DrawXHair(); //draws the cross hair for aiming a weapon
+static void DrawCursor(); //draws the mouse-arrow currsor for air strikes, teleport, etc..
+static void DrawXSpot(); //draws the "X" marks the spot x for airstrikes and such
+static void DrawExp(); //draws the ring of fire in an explosions
+static void DrawCharge(); //draws the weapon charge meter at the top of the screen (for holding power on weaps like bazooka)
+static void DrawWeap(); //draws the weapon you fired (ie: cows, a rockect, a grenade, etc..)
+static void drawgfx(); //the main grafix drawing routing
+static void DllGrayOff(); //turns grayscale off from within the dll
+static void DrawCake(); //draws the loading map cake, (doesnt work for somereason or another)
+static void DrawNumber(short x, short y, int num); //unfinish, was supposed to draw a number for the health above a worms head
 
 //CONSTANTS
 const short true=1; //fairly obvious
@@ -94,6 +96,7 @@ enum Weapons {WJetPack, WLowG, WFastWalk, WLaser, WInvis, WBazooka, WHoming, WMo
 
 
 //generic dll junk
+#ifdef DO_DLL
 DLL_ID 593223953
 DLL_VERSION 1,0
 //the some 220 variables i export!
@@ -102,6 +105,7 @@ DLL_EXPORTS  Wave1, Wave2, Wave3, Wave1I, Wave2I, Wave3I, CandleCake, CandleCake
 //And here we go...
 DLL_IMPLEMENTATION
 //DLL CODE GOES HERE
+#endif
 
 
 //DRAWS THE WORMS

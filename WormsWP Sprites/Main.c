@@ -14,6 +14,7 @@
 #include <tigcclib.h>         // Include All Header Files
 #include "extgraph.h"
 
+#ifdef DO_DLL
 //SPRITES FROM DLL!!
 #define ArrowLeft _DLL_reference (unsigned char, 125)
 #define ArrowRight _DLL_reference (unsigned char, 126)
@@ -123,53 +124,56 @@
 #define DrawCake _DLL_call (void, (), 214)
 #define MapGirder _DLL_call (void, (), 218)
 #define SetMapBuffers _DLL_call (void, (char *), 226)
+#else
+#include "DllMain.c"
+#endif
 
 //FUNCTION DECLARATION
 //void drawgfx();
-void MainLoop();
-void KeyStuff();
-void makemap();
-void InitVars();
-void StartGame();
-void CollDetect();
-void CollDetect2();
-void Gravity(int worm);
-void Gravity2();
-void MoveLeft();
-void MoveRight();
-void FocusWorm(int TheWorm, int teamzor);
-void ToggleWDir(int dir);
-void Jump();
-void JumpLeft();
-void JumpRight();
-void BackFlip();
-void MoveJump();
-void EndJump();
+static void MainLoop();
+static void KeyStuff();
+static void makemap();
+static void InitVars();
+static void StartGame();
+static void CollDetect();
+static void CollDetect2();
+static void Gravity(int worm);
+static void Gravity2();
+static void MoveLeft();
+static void MoveRight();
+static void FocusWorm(int TheWorm, int teamzor);
+static void ToggleWDir(int dir);
+static void Jump();
+static void JumpLeft();
+static void JumpRight();
+static void BackFlip();
+static void MoveJump();
+static void EndJump();
 //int fixs(int ToFix);
-int point(short x, short y);
-int testpos(short x);
-void GetWeap();
-void UseWeapon();
-void CursorClick();
+static int point(short x, short y);
+static int testpos(short x);
+static void GetWeap();
+static void UseWeapon();
+static void CursorClick();
 //int Facing();
-void pointoff(short x, short y);
-void TextOut(short x, short y, const char *TOutStr);
-void SetExp(short x, short y, short max);
-void MoveWeaps();
-void WeapCollide(short weap);
-void TimeExpire(short weap);
-void SetCluster(short x, short y, short type);
-short ClusterOver();
-void LockCam();
-void EndWeap(short weap);
-void EndGun();
-void MapArrow(short dir, short x, short y);
-void SecondWeap();
-void LockWorm();
-void UnLockWorm();
-void SetWorm();
-void ToggleTeam();
-void WeapsOff();
+static void pointoff(short x, short y);
+static void TextOut(short x, short y, const char *TOutStr);
+static void SetExp(short x, short y, short max);
+static void MoveWeaps();
+static void WeapCollide(short weap);
+static void TimeExpire(short weap);
+static void SetCluster(short x, short y, short type);
+static short ClusterOver();
+static void LockCam();
+static void EndWeap(short weap);
+static void EndGun();
+static void MapArrow(short dir, short x, short y);
+static void SecondWeap();
+static void LockWorm();
+static void UnLockWorm();
+static void SetWorm();
+static void ToggleTeam();
+static void WeapsOff();
 
 
 /*//VAIBABLES
@@ -195,6 +199,7 @@ char * MapRightUp;
 short weap_temp, orgx, orgy, WormLock, changed;
 
 //SOME CONSTANTS
+#ifdef DO_DLL
 const short true=1;
 const short false=0;
 const short TWhite=1;
@@ -202,7 +207,7 @@ const short TBlack=2;
 
 enum GameModes {M_Select, M_Game, M_Weapon, M_Cursor};
 enum Weapons {WJetPack, WLowG, WFastWalk, WLaser, WInvis, WBazooka, WHoming, WMorter, WHomingP, WSheepLaunch, WGrenade, WCluster, WBanana, WAxe, WQuake, WShotG, WHandG, WUzi, WMiniG, WBow, WPunch, WDragonBall, WDeath, WSBomb, WProd, WDyna, WMine, WSheep, WSSheep, WMole, WAirStrike, WNapStrike, WMailStrike, WMineStrike, WMoleStrike, WBlow, WDrill, WGirder, WBaseball, WGirderPak, WNinja, WBungee, WParachute, WTeleport, WScales, WSBanana, WHolyGrenade, WFlame, WSalArmy, WMB, WMolotov, WSkunk, WMingVase, WSheepStrike, WCarpet, WCows, WOldLady, WDonkey, WNuke, WGeddon, WSkip, WSurrender, WSwitch, WIce, WMagicB, WCluster2, WMing2, WBowLeft, WBowRight, WHoming2, WMole2, WLady2, WSheepStrike2, WBatLeft, WBatRight, WCarpet2};
-
+#endif
 
 void InitVars()
 {
@@ -264,12 +269,14 @@ void _main(void)
   MapRightUp = MapLeftUp + LCD_SIZE;
   memset(MapLeft, 0, 4 * LCD_SIZE);
 	//attempts to load the ddl, otherwise errors
+#ifdef DO_DLL
 	if (LoadDLL ("wormsdll", 593223953, 1, 0) != DLL_OK) 
     {
       DlgMessage ("ERROR", "Error loading DLL!", BT_OK, BT_NONE);
       free(MapLeft);
       return;
     }
+#endif
 
 	SetMapBuffers(MapLeft);
 
@@ -302,7 +309,9 @@ void _main(void)
 	SetIntVec(AUTO_INT_5, save_5); 
 	
 	//unloads the ddl from memory
+#ifdef DO_DLL
 	UnloadDLL();
+#endif
 	free(MapLeft);
 }
 

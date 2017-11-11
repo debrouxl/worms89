@@ -62,26 +62,26 @@
 #include "WWPSprites.c"
 
 //FUNCTION DECLARATIONS
-void GGrayOn();
-void GGrayOff();
-void MainLoop();
-void DrawScreen();
-void KeyHandle();
-void drawtxt(int x, int y, const char *str, short col);
-void drawtxtbox(int x, int y, int width, const char *str, short col);
-void drawdropbox(int x, int y, int width, const char *cap);
-void DoAni();
-void drawokx();
-void InputStr(int x, int y, char *buffer, unsigned short maxlen);
-void SaveTeam();
-void LoadTeam();
-void GetTeams(short boxx, short boxy);
-void MsgBox(const char *msg, const char *cap);
-short DoPopUp(short x, short y, const char *List, short MaxList);
-short CheckAr(const char *fold, const char *str);
-void ClrNames();
-void SaveSettings();
-void StartGame();
+static void GGrayOn();
+static void GGrayOff();
+static void MainLoop();
+static void DrawScreen();
+static void KeyHandle();
+static void drawtxt(int x, int y, const char *str, short col);
+static void drawtxtbox(int x, int y, int width, const char *str, short col);
+static void drawdropbox(int x, int y, int width, const char *cap);
+static void DoAni();
+static void drawokx();
+static void InputStr(int x, int y, char *buffer, unsigned short maxlen);
+static void SaveTeam();
+static void LoadTeam();
+static void GetTeams(short boxx, short boxy);
+static void MsgBox(const char *msg, const char *cap);
+static short DoPopUp(short x, short y, const char *List, short MaxList);
+static short CheckAr(const char *fold, const char *str);
+static void ClrNames();
+static void SaveSettings();
+static void StartGame();
 
 
 //VARIABLES!
