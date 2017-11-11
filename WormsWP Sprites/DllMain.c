@@ -1472,12 +1472,8 @@ void MapGirder()
 			case 0:
 				{
     	    ClipSprite8_OR_R(CursorX-5, CursorY-99, 3, Girder0, MapLeft);
-					ClipSprite8_OR_R(CursorX-5, CursorY-99, 3, Girder0, MapLeft);
-					ClipSprite8_OR_R(CursorX-165, CursorY-99, 3, Girder0, MapRight);
 					ClipSprite8_OR_R(CursorX-165, CursorY-99, 3, Girder0, MapRight);
 					ClipSprite8_OR_R(CursorX-5, CursorY+1, 3, Girder0, MapLeftUp);
-					ClipSprite8_OR_R(CursorX-5, CursorY+1, 3, Girder0, MapLeftUp);
-					ClipSprite8_OR_R(CursorX-165, CursorY+1, 3, Girder0, MapRightUp);
 					ClipSprite8_OR_R(CursorX-165, CursorY+1, 3, Girder0, MapRightUp);
 					
 					break;
@@ -1485,84 +1481,56 @@ void MapGirder()
 			case 1:
 				{
     	    ClipSprite8_OR_R(CursorX-5, CursorY-99, 7, Girder45, MapLeft);
-					ClipSprite8_OR_R(CursorX-5, CursorY-99, 7, Girder45, MapLeft);
-					ClipSprite8_OR_R(CursorX-165, CursorY-99, 7, Girder45, MapRight);
 					ClipSprite8_OR_R(CursorX-165, CursorY-99, 7, Girder45, MapRight);
 					ClipSprite8_OR_R(CursorX-5, CursorY+1, 7, Girder45, MapLeftUp);
-					ClipSprite8_OR_R(CursorX-5, CursorY+1, 7, Girder45, MapLeftUp);
-					ClipSprite8_OR_R(CursorX-165, CursorY+1, 7, Girder45, MapRightUp);
 					ClipSprite8_OR_R(CursorX-165, CursorY+1, 7, Girder45, MapRightUp);
 					break;
     	  }
 			case 2:
     	  {
     	    ClipSprite8_OR_R(CursorX-5, CursorY-99, 8, Girder90, MapLeft);
-					ClipSprite8_OR_R(CursorX-5, CursorY-99, 8, Girder90, MapLeft);
-					ClipSprite8_OR_R(CursorX-165, CursorY-99, 8, Girder90, MapRight);
 					ClipSprite8_OR_R(CursorX-165, CursorY-99, 8, Girder90, MapRight);
 					ClipSprite8_OR_R(CursorX-5, CursorY+1, 8, Girder90, MapLeftUp);
-					ClipSprite8_OR_R(CursorX-5, CursorY+1, 8, Girder90, MapLeftUp);
-					ClipSprite8_OR_R(CursorX-165, CursorY+1, 8, Girder90, MapRightUp);
 					ClipSprite8_OR_R(CursorX-165, CursorY+1, 8, Girder90, MapRightUp);
 					break;
 				}
 			case 3:
     	  {
     	    ClipSprite8_OR_R(CursorX-5, CursorY-99, 7, GirderN45, MapLeft);
-					ClipSprite8_OR_R(CursorX-5, CursorY-99, 7, GirderN45, MapLeft);
-					ClipSprite8_OR_R(CursorX-165, CursorY-99, 7, GirderN45, MapRight);
 					ClipSprite8_OR_R(CursorX-165, CursorY-99, 7, GirderN45, MapRight);
 					ClipSprite8_OR_R(CursorX-5, CursorY+1, 7, GirderN45, MapLeftUp);
-					ClipSprite8_OR_R(CursorX-5, CursorY+1, 7, GirderN45, MapLeftUp);
-					ClipSprite8_OR_R(CursorX-165, CursorY+1, 7, GirderN45, MapRightUp);
 					ClipSprite8_OR_R(CursorX-165, CursorY+1, 7, GirderN45, MapRightUp);
 					break;
     	  }
 			case 4:
     	  {
     	    ClipSprite16_OR_R(CursorX-5, CursorY-99, 3, BigGirder0, MapLeft);
-					ClipSprite16_OR_R(CursorX-5, CursorY-99, 3, BigGirder0, MapLeft);
-					ClipSprite16_OR_R(CursorX-165, CursorY-99, 3, BigGirder0, MapRight);
 					ClipSprite16_OR_R(CursorX-165, CursorY-99, 3, BigGirder0, MapRight);
 					ClipSprite16_OR_R(CursorX-4, CursorY+1, 3, BigGirder0, MapLeftUp);
-					ClipSprite16_OR_R(CursorX-4, CursorY+1, 3, BigGirder0, MapLeftUp);
-					ClipSprite16_OR_R(CursorX-165, CursorY+1, 3, BigGirder0, MapRightUp);
 					ClipSprite16_OR_R(CursorX-165, CursorY+1, 3, BigGirder0, MapRightUp);
 					break;
     	  }
 			case 5:
     	  {
     	    ClipSprite16_OR_R(CursorX-5, CursorY-99, 12, BigGirder45, MapLeft);
-					ClipSprite16_OR_R(CursorX-5, CursorY-99, 12, BigGirder45, MapLeft);
-					ClipSprite16_OR_R(CursorX-165, CursorY-99, 12, BigGirder45, MapRight);
 					ClipSprite16_OR_R(CursorX-165, CursorY-99, 12, BigGirder45, MapRight);
 					ClipSprite16_OR_R(CursorX-5, CursorY+1, 12, BigGirder45, MapLeftUp);
-					ClipSprite16_OR_R(CursorX-5, CursorY+1, 12, BigGirder45, MapLeftUp);
-					ClipSprite16_OR_R(CursorX-165, CursorY+1, 12, BigGirder45, MapRightUp);
 					ClipSprite16_OR_R(CursorX-165, CursorY+1, 12, BigGirder45, MapRightUp);
 					break;
     	  }
 			case 6:
     	  {
     	    ClipSprite8_OR_R(CursorX-5, CursorY-99, 15, BigGirder90, MapLeft);
-					ClipSprite8_OR_R(CursorX-5, CursorY-99, 15, BigGirder90, MapLeft);
-					ClipSprite8_OR_R(CursorX-165, CursorY-99, 15, BigGirder90, MapRight);
 					ClipSprite8_OR_R(CursorX-165, CursorY-99, 15, BigGirder90, MapRight);
 					ClipSprite8_OR_R(CursorX-5, CursorY+1, 15, BigGirder90, MapLeftUp);
-					ClipSprite8_OR_R(CursorX-5, CursorY+1, 15, BigGirder90, MapLeftUp);
-					ClipSprite8_OR_R(CursorX-165, CursorY+1, 15, BigGirder90, MapRightUp);
 					ClipSprite8_OR_R(CursorX-165, CursorY+1, 15, BigGirder90, MapRightUp);
 					break;
 				}
 			case 7:
     	  {
     	    ClipSprite16_OR_R(CursorX-5, CursorY-99, 12, BigGirderN45, MapLeft);
-					ClipSprite16_OR_R(CursorX-5, CursorY-99, 12, BigGirderN45, MapLeft);
-					ClipSprite16_OR_R(CursorX-165, CursorY-99, 12, BigGirderN45, MapRight);
 					ClipSprite16_OR_R(CursorX-165, CursorY-99, 12, BigGirderN45, MapRight);
 					ClipSprite16_OR_R(CursorX-5, CursorY+1, 12, BigGirderN45, MapLeftUp);
-					ClipSprite16_OR_R(CursorX-5, CursorY+1, 12, BigGirderN45, MapLeftUp);
-					ClipSprite16_OR_R(CursorX-165, CursorY+1, 12, BigGirderN45, MapRightUp);
 					ClipSprite16_OR_R(CursorX-165, CursorY+1, 12, BigGirderN45, MapRightUp);
 					break;
 				}
