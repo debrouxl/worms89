@@ -225,27 +225,29 @@ void DrawScreen()
 	ClrScr();
 	GrayDBufSetHiddenAMSPlane(DARK_PLANE);
 	ClrScr();
-	
+  void * lplane = GrayDBufGetHiddenPlane(LIGHT_PLANE);
+  void * dplane = GrayDBufGetHiddenPlane(DARK_PLANE);
+
 	//draws the screen based on the screen num, as well as certain variables
 	if(screen==gtronics)
 		{
 
 		  //draws the gt logo
-		  GrayClipSprite32_OR_R(30, 5, 53, gt1, gt1, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-			ClipSprite32_OR_R(30+3, 5+3, 53, gt1, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-	    GrayClipSprite32_OR_R(30 + 32, 5, 74, gt2, gt2, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-			ClipSprite32_OR_R(30+32+3, 5+3, 74, gt2, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-	    GrayClipSprite32_OR_R(30 + 64, 5, 74, gt3, gt3, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-			ClipSprite32_OR_R(30+64+3, 5+3, 74, gt3, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+		  GrayClipSprite32_OR_R(30, 5, 53, gt1, gt1, lplane, dplane);
+			ClipSprite32_OR_R(30+3, 5+3, 53, gt1, lplane);
+	    GrayClipSprite32_OR_R(30 + 32, 5, 74, gt2, gt2, lplane, dplane);
+			ClipSprite32_OR_R(30+32+3, 5+3, 74, gt2, lplane);
+	    GrayClipSprite32_OR_R(30 + 64, 5, 74, gt3, gt3, lplane, dplane);
+			ClipSprite32_OR_R(30+64+3, 5+3, 74, gt3, lplane);
 	
 			
 			drawtxt(30,85,"Proudly Presents...", 0);
 		}//end if gtronics
 	else if(screen==team17)
 	  {
-	  	GrayClipSprite32_OR_R(35, 18, 52, t171, t171, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-			GrayClipSprite32_OR_R(35 + 32, 18, 55, t172, t172, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-			GrayClipSprite32_OR_R(35 + 64, 18, 46, t173, t173, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+	  	GrayClipSprite32_OR_R(35, 18, 52, t171, t171, lplane, dplane);
+			GrayClipSprite32_OR_R(35 + 32, 18, 55, t172, t172, lplane, dplane);
+			GrayClipSprite32_OR_R(35 + 64, 18, 46, t173, t173, lplane, dplane);
 			
 			drawtxt(15,5,"A Game Originally By:",0);
 			
@@ -253,40 +255,40 @@ void DrawScreen()
 	  }//end if team17
   else if(screen==titus)
 	  {
-	  	GrayClipSprite32_OR_R(45, 23, 59, tit1, tit1, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-			GrayClipSprite32_OR_R(45 + 32, 23, 59, tit2, tit2, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-			ClipSprite8_OR_R(45+64, 23, 59, tit3, GrayDBufGetHiddenPlane(DARK_PLANE));
-			ClipSprite8_OR_R(45+64, 23, 59, tit3, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+	  	GrayClipSprite32_OR_R(45, 23, 59, tit1, tit1, lplane, dplane);
+			GrayClipSprite32_OR_R(45 + 32, 23, 59, tit2, tit2, lplane, dplane);
+			ClipSprite8_OR_R(45+64, 23, 59, tit3, dplane);
+			ClipSprite8_OR_R(45+64, 23, 59, tit3, lplane);
 			
 			drawtxt(60,5,"And By:",0);
 	  }//end if titus
 	else if(screen==title)
 	  {
 	  	//draws the animated clouds
-			GrayClipSprite32_OR_R(cx, cy, 17, cloudi, cloud, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-			GrayClipSprite32_OR_R(cx2, cy2, 17, cloudi, cloud, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			GrayClipSprite32_OR_R(cx, cy, 17, cloudi, cloud, lplane, dplane);
+			GrayClipSprite32_OR_R(cx2, cy2, 17, cloudi, cloud, lplane, dplane);
 			
-	  	GrayClipSprite32_AND_R(5, 0, 100, tsm1, tsm1, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-			GrayClipSprite32_AND_R(5 + 32, 0, 100, tsm2, tsm2, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-			GrayClipSprite32_AND_R(5 + 64, 0, 100, tsm3, tsm3, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-			GrayClipSprite32_AND_R(5 + 96, 0, 100, tsm4, tsm4, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-			GrayClipSprite32_AND_R(5 + 128, 0, 100, tsm5, tsm5, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+	  	GrayClipSprite32_AND_R(5, 0, 100, tsm1, tsm1, lplane, dplane);
+			GrayClipSprite32_AND_R(5 + 32, 0, 100, tsm2, tsm2, lplane, dplane);
+			GrayClipSprite32_AND_R(5 + 64, 0, 100, tsm3, tsm3, lplane, dplane);
+			GrayClipSprite32_AND_R(5 + 96, 0, 100, tsm4, tsm4, lplane, dplane);
+			GrayClipSprite32_AND_R(5 + 128, 0, 100, tsm5, tsm5, lplane, dplane);
 
-	  	GrayClipSprite32_OR_R(5, 0, 97, tsi1, ts1, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-			GrayClipSprite32_OR_R(5 + 32, 0, 100, tsi2, ts2, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-			GrayClipSprite32_OR_R(5 + 64, 0, 100, tsi3, ts3, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-			GrayClipSprite32_OR_R(5 + 96, 0, 96, tsi4, ts4, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-			GrayClipSprite32_OR_R(5 + 128, 0, 85, tsi5, ts5, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+	  	GrayClipSprite32_OR_R(5, 0, 97, tsi1, ts1, lplane, dplane);
+			GrayClipSprite32_OR_R(5 + 32, 0, 100, tsi2, ts2, lplane, dplane);
+			GrayClipSprite32_OR_R(5 + 64, 0, 100, tsi3, ts3, lplane, dplane);
+			GrayClipSprite32_OR_R(5 + 96, 0, 96, tsi4, ts4, lplane, dplane);
+			GrayClipSprite32_OR_R(5 + 128, 0, 85, tsi5, ts5, lplane, dplane);
 	  }//end if title
 	
 	else if(screen==mainmenu)
 	  {
-	  	GrayClipSprite32_OR_R(43, 30, 21, BttnVersus, BttnVersus, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-			GrayClipSprite32_OR_R(83, 30, 21, BttnTeams, BttnTeams, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-			//ClipSprite32_OR_R(41, 55, 21, BttnTeams, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-			//ClipSprite32_OR_R(80, 54, 21, BttnOptions, GrayDBufGetHiddenPlane(DARK_PLANE));
-			//ClipSprite32_OR_R(80, 54, 21, BttnOptions, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-			//ClipSprite32_OR_R(81, 55, 21, BttnOptions, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+	  	GrayClipSprite32_OR_R(43, 30, 21, BttnVersus, BttnVersus, lplane, dplane);
+			GrayClipSprite32_OR_R(83, 30, 21, BttnTeams, BttnTeams, lplane, dplane);
+			//ClipSprite32_OR_R(41, 55, 21, BttnTeams, lplane);
+			//ClipSprite32_OR_R(80, 54, 21, BttnOptions, dplane);
+			//ClipSprite32_OR_R(80, 54, 21, BttnOptions, lplane);
+			//ClipSprite32_OR_R(81, 55, 21, BttnOptions, lplane);
 			
 			drawokx();
 			
@@ -299,19 +301,19 @@ void DrawScreen()
 			//draws the selection for what ever is selected
 			if(sel==1)
 			  {
-			  	ClipSprite32_OR_R(44, 31, 21, BttnVersus, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+			  	ClipSprite32_OR_R(44, 31, 21, BttnVersus, lplane);
 			  	drawtxt(25,90,"Make A Versus Game",0);
 			  }
 			else if(sel>1)
 			  {
-			  	ClipSprite32_OR_R(84, 31, 21, BttnTeams, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+			  	ClipSprite32_OR_R(84, 31, 21, BttnTeams, lplane);
 			  	drawtxt(28,90,"Set Up Your Teams",0);
 			  	sel=2;
 			  }
 			/*if(sel==3 || sel>3)
 			  {
 			  	sel=3;
-			  	ClipSprite32_OR_R(82, 56, 21, BttnOptions, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+			  	ClipSprite32_OR_R(82, 56, 21, BttnOptions, lplane);
 			  	drawtxt(37,90,"Set Up Options",0);
 			  }*/
 	  }//end if main menu
@@ -468,32 +470,32 @@ void DrawScreen()
 		  }
 		else if(sel==4)
 		  {
-		  	ClipSprite32_OR_R(79, 18, 21, BttnWeaps, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+		  	ClipSprite32_OR_R(79, 18, 21, BttnWeaps, lplane);
 		  	drawtxt(37,90,"Choose Weapons",0);
 		  }
 		else if(sel>4)
 		  {
-		  	ClipSprite32_OR_R(114, 18, 21, BttnOptions, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+		  	ClipSprite32_OR_R(114, 18, 21, BttnOptions, lplane);
 		  	drawtxt(37,90,"Choose Options",0);
 		  	sel=5;
 		  }
 		  
 		//draws the dark buttons
-		ClipSprite32_OR_R(79, 18, 21, BttnWeaps, GrayDBufGetHiddenPlane(DARK_PLANE));
-		ClipSprite32_OR_R(114, 18, 21, BttnOptions, GrayDBufGetHiddenPlane(DARK_PLANE));
+		ClipSprite32_OR_R(79, 18, 21, BttnWeaps, dplane);
+		ClipSprite32_OR_R(114, 18, 21, BttnOptions, dplane);
 		
 		//draws worms for team...
 		drawtxtbox(82,44,60,"",1);
 		for(x=0;x<Worms1;x++)
 		  {
-		  	GrayClipSprite16_AND_R((76 + (Worms1 * 6)) - (x * 6), 42, 15, WormRightI, WormRightI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-		  	GrayClipSprite16_OR_R((76 + (Worms1 * 6)) - (x * 6), 42, 15, WormRight, WormRight, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+		  	GrayClipSprite16_AND_R((76 + (Worms1 * 6)) - (x * 6), 42, 15, WormRightI, WormRightI, lplane, dplane);
+		  	GrayClipSprite16_OR_R((76 + (Worms1 * 6)) - (x * 6), 42, 15, WormRight, WormRight, lplane, dplane);
 		  }
 		drawtxtbox(82,65,60,"",1);
 		for(x=0;x<Worms2;x++)
 		  {
-		  	GrayClipSprite16_AND_R((76 + (Worms2 * 6)) - (x * 6), 63, 15, WormRightI, WormRightI, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-		  	GrayClipSprite16_OR_R((76 + (Worms2 * 6)) - (x * 6), 63, 15, WormRight, WormRight, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+		  	GrayClipSprite16_AND_R((76 + (Worms2 * 6)) - (x * 6), 63, 15, WormRightI, WormRightI, lplane, dplane);
+		  	GrayClipSprite16_OR_R((76 + (Worms2 * 6)) - (x * 6), 63, 15, WormRight, WormRight, lplane, dplane);
 		  }
 	}//end if set up
 	
@@ -506,11 +508,11 @@ void DrawScreen()
 			drawtxt(48,5,"WEAPONS:",1);
 			FontSetSys(1);
 			
-			GrayClipSprite32_OR_R(1, 15, 61, Weapons1, Weapons1, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-			GrayClipSprite32_OR_R(33, 15, 61, Weapons2, Weapons2, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-			GrayClipSprite32_OR_R(65, 15, 61, Weapons3, Weapons3, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-			GrayClipSprite32_OR_R(97, 15, 61, Weapons4, Weapons4, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-			GrayClipSprite32_OR_R(129, 15, 61, Weapons5, Weapons5, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			GrayClipSprite32_OR_R(1, 15, 61, Weapons1, Weapons1, lplane, dplane);
+			GrayClipSprite32_OR_R(33, 15, 61, Weapons2, Weapons2, lplane, dplane);
+			GrayClipSprite32_OR_R(65, 15, 61, Weapons3, Weapons3, lplane, dplane);
+			GrayClipSprite32_OR_R(97, 15, 61, Weapons4, Weapons4, lplane, dplane);
+			GrayClipSprite32_OR_R(129, 15, 61, Weapons5, Weapons5, lplane, dplane);
 		  
 		  //draws the inverted square for the selected weapon..
 		  GrayDBufSetHiddenAMSPlane(LIGHT_PLANE);
@@ -663,130 +665,130 @@ void DrawScreen()
 			//HEALTH SETTINGS
 			if(Opt[0]==0)
 			  {
-			  	GrayClipSprite16_OR_R(32, 25, 14, Health50, Health50, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(32, 25, 14, Health50, Health50, lplane, dplane);
 			  }
 			else if(Opt[0]==1)
 			  {
-			  	GrayClipSprite16_OR_R(32, 25, 14, Health100, Health100, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(32, 25, 14, Health100, Health100, lplane, dplane);
 			  }
 			else if(Opt[0]==2)
 			  {
-			  	GrayClipSprite16_OR_R(32, 25, 14, Health200, Health200, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(32, 25, 14, Health200, Health200, lplane, dplane);
 			  }
 			//SELCTION SETTINGS
 			if(Opt[1]==0)
 			  {
-			  	GrayClipSprite16_OR_R(52, 25, 14, SelSel, SelSel, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(52, 25, 14, SelSel, SelSel, lplane, dplane);
 			  }
 			else if(Opt[1]==1)
 			  {
-			  	GrayClipSprite16_OR_R(52, 25, 14, SelStat, SelStat, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(52, 25, 14, SelStat, SelStat, lplane, dplane);
 			  }
 			//PlACE SETTINGS
 			if(Opt[2]==0)
 			  {
-			  	GrayClipSprite16_OR_R(72, 25, 13, PlaceYes, PlaceYes, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(72, 25, 13, PlaceYes, PlaceYes, lplane, dplane);
 			  }
 			else if(Opt[2]==1)
 			  {
-			  	GrayClipSprite16_OR_R(72, 25, 13, PlaceNo, PlaceNo, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(72, 25, 13, PlaceNo, PlaceNo, lplane, dplane);
 			  }
 			//TIME SETTINGS 
 			if(Opt[3]==0)
 			  {
-			  	GrayClipSprite16_OR_R(92, 25, 14, Time30, Time30, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(92, 25, 14, Time30, Time30, lplane, dplane);
 			  }
 			else if(Opt[3]==1)
 			  {
-			  	GrayClipSprite16_OR_R(92, 25, 14, Time60, Time60, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(92, 25, 14, Time60, Time60, lplane, dplane);
 			  }
 			else if(Opt[3]==2)
 			  {
-			  	GrayClipSprite16_OR_R(92, 25, 14, Time90, Time90, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(92, 25, 14, Time90, Time90, lplane, dplane);
 			  }
 			//ALTERY MODE SETTINGS
 			if(Opt[4]==0)
 				{
-					GrayClipSprite16_OR_R(112, 25, 13, ArtileryNo, ArtileryNo, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+					GrayClipSprite16_OR_R(112, 25, 13, ArtileryNo, ArtileryNo, lplane, dplane);
 				}
 			else if(Opt[4]==1)
 				{
-					GrayClipSprite16_OR_R(112, 25, 13, ArtileryYes, ArtileryYes, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+					GrayClipSprite16_OR_R(112, 25, 13, ArtileryYes, ArtileryYes, lplane, dplane);
 				}
 			//MINE SETTINGS
 			if(Opt[5]==0)
 			  {
-			  	GrayClipSprite16_OR_R(8, 57, 9, MinesYes, MinesYes, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(8, 57, 9, MinesYes, MinesYes, lplane, dplane);
 			  }
 			else if(Opt[5]==1)
 			  {
-			  	GrayClipSprite16_OR_R(8, 57, 13, MinesNo, MinesNo, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(8, 57, 13, MinesNo, MinesNo, lplane, dplane);
 			  }
 			//MINE FUSE SETTINGS
 			if(Opt[6]==0)
 			  {
-			  	GrayClipSprite16_OR_R(28, 57, 13, MineRnd, MineRnd, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(28, 57, 13, MineRnd, MineRnd, lplane, dplane);
 			  }
 			else if(Opt[6]==1)
 			  {
-			  	GrayClipSprite16_OR_R(28, 57, 13, Mine0, Mine0, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(28, 57, 13, Mine0, Mine0, lplane, dplane);
 			  }
 			else if(Opt[6]==2)
 			  {
-			  	GrayClipSprite16_OR_R(28, 57, 13, Mine1, Mine1, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(28, 57, 13, Mine1, Mine1, lplane, dplane);
 			  }
 			else if(Opt[6]==3)
 			  {
-			  	GrayClipSprite16_OR_R(28, 57, 13, Mine2, Mine2, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(28, 57, 13, Mine2, Mine2, lplane, dplane);
 			  }
 			else if(Opt[6]==4)
 			  {
-			  	GrayClipSprite16_OR_R(28, 57, 13, Mine3, Mine3, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(28, 57, 13, Mine3, Mine3, lplane, dplane);
 			  }
 			//MINE SETTINGS
 			if(Opt[7]==0)
 			  {
-			  	GrayClipSprite16_OR_R(48, 57, 13, DudMineYes, DudMineYes, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(48, 57, 13, DudMineYes, DudMineYes, lplane, dplane);
 			  }
 			else if(Opt[7]==1)
 			  {
-			  	GrayClipSprite16_OR_R(48, 57, 13, DudMineNo, DudMineNo, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(48, 57, 13, DudMineNo, DudMineNo, lplane, dplane);
 			  }
 			//BARROL SETTINGS
 			if(Opt[8]==0)
 			  {
-			  	GrayClipSprite16_OR_R(68, 57, 12, BarrolsYes, BarrolsYes, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(68, 57, 12, BarrolsYes, BarrolsYes, lplane, dplane);
 			  }
 			else if(Opt[8]==1)
 			  {
-			  	GrayClipSprite16_OR_R(68, 57, 13, BarrolsNo, BarrolsNo, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(68, 57, 13, BarrolsNo, BarrolsNo, lplane, dplane);
 			  }
 			//TOOL SETTINGS
 			if(Opt[9]==0)
 			  {
-			  	GrayClipSprite16_OR_R(96, 57, 12, ToolYes, ToolYes, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(96, 57, 12, ToolYes, ToolYes, lplane, dplane);
 			  }
 			else if(Opt[9]==1)
 			  {
-			  	GrayClipSprite16_OR_R(96, 57, 13, ToolNo, ToolNo, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(96, 57, 13, ToolNo, ToolNo, lplane, dplane);
 			  }
 			//HEALTH SETTINGS
 			if(Opt[10]==0)
 			  {
-			  	GrayClipSprite16_OR_R(116, 57, 12, HealthYes, HealthYes, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(116, 57, 12, HealthYes, HealthYes, lplane, dplane);
 			  }
 			else if(Opt[10]==1)
 			  {
-			  	GrayClipSprite16_OR_R(116, 57, 13, HealthNo, HealthNo, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(116, 57, 13, HealthNo, HealthNo, lplane, dplane);
 			  }
 			//CRATE SETTINGS
 			if(Opt[11]==0)
 			  {
-			  	GrayClipSprite16_OR_R(136, 57, 13, CratesYes, CratesYes, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(136, 57, 13, CratesYes, CratesYes, lplane, dplane);
 			  }
 			else if(Opt[11]==1)
 			  {
-			  	GrayClipSprite16_OR_R(136, 57, 13, CratesNo, CratesNo, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
+			  	GrayClipSprite16_OR_R(136, 57, 13, CratesNo, CratesNo, lplane, dplane);
 			  }
 			
 			FontSetSys(1);
@@ -804,16 +806,18 @@ void DrawScreen()
 //DRAWS THE CLOSE \ CHECK BUTTONS
 void drawokx()
 {
+  void * lplane = GrayDBufGetHiddenPlane(LIGHT_PLANE);
+  void * dplane = GrayDBufGetHiddenPlane(DARK_PLANE);
   //close button
-	GrayClipSprite32_OR_R(5, 80, 18, BttnClose, BttnClose, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-	ClipSprite32_OR_R(6, 81, 18, BttnClose, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-	ClipSprite32_OR_R(6, 81, 18, BttnCloseI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+	GrayClipSprite32_OR_R(5, 80, 18, BttnClose, BttnClose, lplane, dplane);
+	ClipSprite32_OR_R(6, 81, 18, BttnClose, lplane);
+	ClipSprite32_OR_R(6, 81, 18, BttnCloseI, lplane);
 	
 	
 	//ok button
-	GrayClipSprite32_OR_R(135, 78, 20, BttnOk, BttnOk, GrayDBufGetHiddenPlane(LIGHT_PLANE), GrayDBufGetHiddenPlane(DARK_PLANE));
-	ClipSprite32_OR_R(136, 79, 20, BttnOk, GrayDBufGetHiddenPlane(LIGHT_PLANE));
-	ClipSprite32_OR_R(136, 79, 20, BttnOkI, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+	GrayClipSprite32_OR_R(135, 78, 20, BttnOk, BttnOk, lplane, dplane);
+	ClipSprite32_OR_R(136, 79, 20, BttnOk, lplane);
+	ClipSprite32_OR_R(136, 79, 20, BttnOkI, lplane);
 }
 
 //DRAWS A TEXT BOX
