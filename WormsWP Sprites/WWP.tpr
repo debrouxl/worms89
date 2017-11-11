@@ -30,8 +30,8 @@ Merge Constants=1
 Initialize BSS=1
 [Library Options]
 Use TI-89=1
-Use TI-92 Plus=1
-Use V200=1
+Use TI-92 Plus=0
+Use V200=0
 Optimize Calc Consts=0
 Use Kernel=0
 Use PreOS=0
