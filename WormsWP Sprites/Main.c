@@ -191,10 +191,10 @@ short weap_temp, orgx, orgy, WormLock, changed;
 
 //SOME CONSTANTS
 #ifdef DO_DLL
-const short true=1;
-const short false=0;
-const short TWhite=1;
-const short TBlack=2;
+#define false 0
+#define true 1
+#define TWhite 0
+#define TBlack 1
 
 enum GameModes {M_Select, M_Game, M_Weapon, M_Cursor};
 enum Weapons {WJetPack, WLowG, WFastWalk, WLaser, WInvis, WBazooka, WHoming, WMorter, WHomingP, WSheepLaunch, WGrenade, WCluster, WBanana, WAxe, WQuake, WShotG, WHandG, WUzi, WMiniG, WBow, WPunch, WDragonBall, WDeath, WSBomb, WProd, WDyna, WMine, WSheep, WSSheep, WMole, WAirStrike, WNapStrike, WMailStrike, WMineStrike, WMoleStrike, WBlow, WDrill, WGirder, WBaseball, WGirderPak, WNinja, WBungee, WParachute, WTeleport, WScales, WSBanana, WHolyGrenade, WFlame, WSalArmy, WMB, WMolotov, WSkunk, WMingVase, WSheepStrike, WCarpet, WCows, WOldLady, WDonkey, WNuke, WGeddon, WSkip, WSurrender, WSwitch, WIce, WMagicB, WCluster2, WMing2, WBowLeft, WBowRight, WHoming2, WMole2, WLady2, WSheepStrike2, WBatLeft, WBatRight, WCarpet2};
@@ -2309,7 +2309,7 @@ clusterweapons:
 	  	weap_x[0]=zWormLeft;
 	  	weap_y[0]=WormTop+8;
 	  	
-	  	if(Facing()==1)
+	  	if(Facing())
 	  	  weap_dirx[0]=-1;
 	  	else
 	  	  weap_dirx[0]=1;
@@ -2317,7 +2317,7 @@ clusterweapons:
 	  	//ladies move slower
 	  	if((currw==WOldLady) || (currw==WSalArmy))
 	  	  {
-	  	  	if(Facing()==1)
+	  	  	if(Facing())
 			  	  weap_dirx[0]=-.5;
 			  	else
 			  	  weap_dirx[0]=.5;
@@ -2359,14 +2359,14 @@ clusterweapons:
       else if(currw==WHoming) weap_time[0]=20;
       
       //give it the x component
-      if(Facing()==0)
+      if(!Facing())
         weap_dirx[0]=sin(xhpos)*charge;
       else
         weap_dirx[0]=-(sin(xhpos)*charge);
       
       if(currw==WBow)
         {
-        	if(Facing()==1)
+        	if(Facing())
 		        weap_type[0]=WBowLeft;
 		      else
 		        weap_type[0]=WBowRight;
@@ -2486,7 +2486,7 @@ void MoveWeaps()
 									  	
 									  	weap_type[weap_temp]=WCows;
 									  	
-									  	if(Facing()==1)
+									  	if(Facing())
 									  	  weap_dirx[weap_temp]=-1;
 									  	else
 									  	  weap_dirx[weap_temp]=1;
@@ -2542,7 +2542,7 @@ void MoveWeaps()
 								      weap_type[currb]=WUzi;
 								        
 								      //give it the x component
-								      if(Facing()==0)
+								      if(!Facing())
 								        weap_dirx[currb]=sin(xhpos)*15;
 								      else
 								        weap_dirx[currb]=-(sin(xhpos)*15);

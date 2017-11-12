@@ -87,10 +87,10 @@ static void DrawCake(); //draws the loading map cake, (doesnt work for somereaso
 static void DrawNumber(short x, short y, int num); //unfinish, was supposed to draw a number for the health above a worms head
 
 //CONSTANTS
-const short true=1; //fairly obvious
-const short false=0; //same
-const short TWhite=1; //so i can refer to the WHITE TEAM as TWhite
-const short TBlack=2; //so i can use TBlack for the BLACK TEAM, when a function needs the team number as a paramenter
+#define false 0
+#define true 1
+#define TWhite 0
+#define TBlack 1
 
 enum GameModes {M_Select, M_Game, M_Weapon, M_Cursor}; //THE DIFFERENT MODES THE GAME OPERATES IN, M_Select: choose a worm to play with. M_Game: game play. M_Weapon: choose a weapon. M_Cursor: move the arrow
 enum Weapons {WJetPack, WLowG, WFastWalk, WLaser, WInvis, WBazooka, WHoming, WMorter, WHomingP, WSheepLaunch, WGrenade, WCluster, WBanana, WAxe, WQuake, WShotG, WHandG, WUzi, WMiniG, WBow, WPunch, WDragonBall, WDeath, WSBomb, WProd, WDyna, WMine, WSheep, WSSheep, WMole, WAirStrike, WNapStrike, WMailStrike, WMineStrike, WMoleStrike, WBlow, WDrill, WGirder, WBaseball, WGirderPak, WNinja, WBungee, WParachute, WTeleport, WScales, WSBanana, WHolyGrenade, WFlame, WSalArmy, WMB, WMolotov, WSkunk, WMingVase, WSheepStrike, WCarpet, WCows, WOldLady, WDonkey, WNuke, WGeddon, WSkip, WSurrender, WSwitch, WIce, WMagicB, WCluster2, WMing2, WBowLeft, WBowRight, WHoming2, WMole2, WLady2, WSheepStrike2, WBatLeft, WBatRight, WCarpet2}; //handy weapons enumeration
@@ -358,7 +358,7 @@ void DrawWorms()
 				  break;
 				//right or left cases
 				case WShotG:
-				  if(Facing()==1)
+				  if(Facing())
 				    {
 				    	GrayClipSprite16_AND_R(zWormLeft - (fixs(scrollx) * 8) - 15 - min, WormTop - scrolly + 1 + 8, 5, ShotGLeftI, ShotGLeftI, lplane, dplane);
 				      GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) - 15 - min, WormTop - scrolly + 1 + 8, 5, ShotGLeft, ShotGLeft, lplane, dplane);
@@ -370,7 +370,7 @@ void DrawWorms()
 				    }
 				    break;
 				case WHandG:
-				  if(Facing()==1)
+				  if(Facing())
 				    {
 				    	GrayClipSprite16_AND_R(zWormLeft - (fixs(scrollx) * 8) - 15 - min, WormTop - scrolly + 1 + 8, 7, HandGLeftI, HandGLeftI, lplane, dplane);
 				      GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) - 15 - min, WormTop - scrolly + 1 + 8, 7, HandGLeft, HandGLeft, lplane, dplane);
@@ -382,7 +382,7 @@ void DrawWorms()
 				    }
 					  break;
 				case WMiniG:
-				  if(Facing()==1)
+				  if(Facing())
 				    {
 				    	GrayClipSprite16_AND_R(zWormLeft - (fixs(scrollx) * 8) - 17 - min, WormTop - scrolly + 1 + 8, 6, MiniGLeftI, MiniGLeftI, lplane, dplane);
 				      GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) - 17 - min, WormTop - scrolly + 1 + 8, 6, MiniGLeft, MiniGLeft, lplane, dplane);
@@ -394,7 +394,7 @@ void DrawWorms()
 				    }
 					break;
 				case WUzi:
-				  if(Facing()==1)
+				  if(Facing())
 				    {
 				    	GrayClipSprite16_AND_R(zWormLeft - (fixs(scrollx) * 8) - 15 - min, WormTop - scrolly + 1 + 5, 10, UziLeftI, UziLeftI, lplane, dplane);
 				      GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) - 15 - min, WormTop - scrolly + 1 + 5, 10, UziLeft, UziLeft, lplane, dplane);
@@ -406,7 +406,7 @@ void DrawWorms()
 				    }
 					  break;
 				case WBow:
-				  if(Facing()==1)
+				  if(Facing())
 				    {
 				    	GrayClipSprite16_AND_R(zWormLeft - (fixs(scrollx) * 8) - 15 - min, WormTop - scrolly + 1 + 4, 11, BowLeftI, BowLeftI, lplane, dplane);
 				      GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) - 15 - min, WormTop - scrolly + 1 + 4, 11, BowLeft, BowLeft, lplane, dplane);
@@ -418,7 +418,7 @@ void DrawWorms()
 				    }
 					break;
 				case WBlow:
-				  if(Facing()==1)
+				  if(Facing())
 				    {
 				    	GrayClipSprite8_AND_R(zWormLeft - (fixs(scrollx) * 8) - 7 - min, WormTop - scrolly + 1 + 4, 11, BlowLeftI, BlowLeftI, lplane, dplane);
 				      GrayClipSprite8_OR_R(zWormLeft - (fixs(scrollx) * 8) - 7 - min, WormTop - scrolly + 1 + 4, 11, BlowLeft, BlowLeft, lplane, dplane);
@@ -430,19 +430,19 @@ void DrawWorms()
 				    }
 					break;
 				case WJetPack:
-				  if(Facing()==0)
-				    {
-				    	GrayClipSprite8_AND_R(zWormLeft - (fixs(scrollx) * 8) - 5 - min, WormTop - scrolly + 1 + 5, 6, JetRightI, JetRightI, lplane, dplane);
-				      GrayClipSprite8_OR_R(zWormLeft - (fixs(scrollx) * 8) - 5 - min, WormTop - scrolly + 1 + 5, 6, JetRight, JetRight, lplane, dplane);
-				    }
-				    else
+				  if(Facing())
 				    {
 				    	GrayClipSprite8_AND_R(zWormLeft - (fixs(scrollx) * 8) + 5 - min, WormTop - scrolly + 1 + 4, 6, JetLeftI, JetLeftI, lplane, dplane);
 				      GrayClipSprite8_OR_R(zWormLeft - (fixs(scrollx) * 8) + 5 - min, WormTop - scrolly + 1 + 4, 6, JetLeft, JetLeft, lplane, dplane);
 				    }
+				    else
+				    {
+				    	GrayClipSprite8_AND_R(zWormLeft - (fixs(scrollx) * 8) - 5 - min, WormTop - scrolly + 1 + 5, 6, JetRightI, JetRightI, lplane, dplane);
+				      GrayClipSprite8_OR_R(zWormLeft - (fixs(scrollx) * 8) - 5 - min, WormTop - scrolly + 1 + 5, 6, JetRight, JetRight, lplane, dplane);
+				    }
 					break;
 				case WFlame:
-				  if(Facing()==1)
+				  if(Facing())
 				    {
 				    	GrayClipSprite16_AND_R(zWormLeft - (fixs(scrollx) * 8) - 9 - min, WormTop - scrolly + 1 + 2, 12, FlameLeftI, FlameLeftI, lplane, dplane);
 				      GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) - 9 - min, WormTop - scrolly + 1 + 2, 12, FlameLeft, FlameLeft, lplane, dplane);
@@ -864,13 +864,13 @@ void DrawXHair()
 			WormWeapon=black_weap;
 		}//endif white team
 	
-	if(Facing()==0)
+	if(Facing())
 		{
-			GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) - min + XHx, WormTop - scrolly + 1 + XHy, 9, XHair, XHair, lplane, dplane);
+			GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) - min - XHx - 6, WormTop - scrolly + 1 + XHy, 9, XHair, XHair, lplane, dplane);
 		}
 	else
 		{
-			GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) - min - XHx - 6, WormTop - scrolly + 1 + XHy, 9, XHair, XHair, lplane, dplane);
+			GrayClipSprite16_OR_R(zWormLeft - (fixs(scrollx) * 8) - min + XHx, WormTop - scrolly + 1 + XHy, 9, XHair, XHair, lplane, dplane);
 		}
 }
 
