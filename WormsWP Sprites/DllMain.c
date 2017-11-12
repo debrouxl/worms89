@@ -24,8 +24,8 @@ short Wx=0,Wy=0; //for the current weapong selection in the weapon screen
 short LockX,LockY,LockTime,Lock; //THE X,Y POS THE CAMERA IS LOCKED AT, and HOW LONG ITS LOCKED UNTIL YOU CAN USE IT AGAIN and THE BOOLEAN IF ITS LOCKED OR NOT
 void *GblDBuffer; //GLOBAL DOUBLE BUFFER
 float xhpos; //xh=crosshair, so this is the CROSSHAIR POSITION, more specifically, the THETA of its rotationg
-int girder, girdermode, girders; //girder: I FORGET, girdermode: IS THE USER PLACEING GIRDERS? THIS IS A BOOLEAN. girders: I FORGET =(
-short ParaMode, Falling, lowgrav, fastwalk; //ParaMode: BOOLEAN: ARE YOU PARACHUTING? Falling: BOOLEAN: ARE YOU FALLING? lowgrav: BOOLEAN: IS LOWGRAVITY ON? fastwalk: BOOLEAN: IS FASTWALK ENABLED?
+char girder, girdermode, girders; //girder: I FORGET, girdermode: IS THE USER PLACEING GIRDERS? THIS IS A BOOLEAN. girders: I FORGET =(
+char ParaMode, Falling, lowgrav, fastwalk; //ParaMode: BOOLEAN: ARE YOU PARACHUTING? Falling: BOOLEAN: ARE YOU FALLING? lowgrav: BOOLEAN: IS LOWGRAVITY ON? fastwalk: BOOLEAN: IS FASTWALK ENABLED?
 short WeaponSet[5][14]={ //HOW MANY OF EACH WEAPON DO YOU HAVE? LIST IS SET UP IDENTICALLY TO HOW IT IS ON THE SCREEN / WWP WEAPON MENU. FOR NOW ITS DEFAULT TO THE VALUES BELOW
 	{0,9,9,9,9,1,1,3,5,0,2,0,9,1},
 	{0,1,3,9,9,2,1,3,2,0,1,0,9,1},
@@ -53,6 +53,7 @@ static __attribute__((regparm)) int fixs(int ToFix)
 }
 static int Facing(); //returns if the worms are facing left or right
 static void DllGrayOn(); //turns grayscale on within the dll
+#ifdef DO_DLL
 static void SetMapBuffers(char * Maps)
 {
   MapLeft = Maps;
@@ -60,6 +61,7 @@ static void SetMapBuffers(char * Maps)
   MapLeftUp = MapRight + LCD_SIZE;
   MapRightUp = MapLeftUp + LCD_SIZE;
 }
+#endif
 static void CamFocus(int x, int y); //sets the camera to look at x,y
 static void CamFocus2(short x, short y); //basically the same thing
 static void CamFocusY(int y); //sets just the cameras vertical position
@@ -101,6 +103,7 @@ enum Weapons {WJetPack, WLowG, WFastWalk, WLaser, WInvis, WBazooka, WHoming, WMo
 DLL_ID 593223953
 DLL_VERSION 1,0
 //the some 220 variables i export!
+// FIXME the sprites do not need to be exported.
 DLL_EXPORTS  Wave1, Wave2, Wave3, Wave1I, Wave2I, Wave3I, CandleCake, CandleCake2, WormRight, WormLeft, WormRightI, WormLeftI, WormRight2, WormLeft2, WormRight2I, WormLeft2I, WormRightJump, WormLeftJump, WormRightJumpI, WormLeftJumpI, WormRightJump2, WormLeftJump2, WormRightJump2I, WormLeftJump2I, WormRightU, WormLeftU, WormRightUI, WormLeftUI, WormLeftSideU, WormRightSideU, WormLeftSideUI, WormRightSideUI, WormRightSide, WormLeftSide, WormRightSideI, WormLeftSideI, WormHammer, WormHammerI, Rot1, Rot2, Rot3, Rot4, Oil, OilI, Health, Crate, CrateI, Toolz, ToolzI, Mine, MineI, Weapons1, Weapons2, Weapons3, Weapons4, Weapons5, SelBox, XHair, CursorLeft, CursorLeftI, CursorRight, CursorRightI, XSpot, XSpotI, Banana, BananaI, Banana2, Banana2I, Dynamite, DynamiteI, Molotov, MolotovI, Radio, RadioI, MingVase, MingVaseI, Rocket, RocketI, ShotGLeft, ShotGLeftI, ShotGRight, ShotGRightI, HandGLeft, HandGLeftI, HandGRight, HandGRightI, UziLeft, UziLeftI, UziRight, UziRightI, MiniGLeft, MiniGLeftI, MiniGRight, MiniGRightI, BowLeft, BowLeftI, BowRight, BowRightI, FlameLeft, FlameLeftI, FlameRight, FlameRightI, Grenade, GrenadeI, HolyG, HolyGI, Bat, BatI, Axe, AxeI, Ninja, NinjaI, Flag, FlagI, BlowLeft, BlowLeftI, BlowRight, BlowRightI, JetRight, JetRightI, JetLeft, JetLeftI, Bazook, Ming2, Bullet, ArrowLeft, ArrowRight, white_x, white_y, white_h, white_dir, &white_w, &white_weap, black_x, black_y, black_h, black_dir, &black_w, &black_weap, crate_x, crate_y, crate_type, mine_x, mine_y, oil_x, oil_y, exp_x, exp_y, exp_t, exp_max, &curre, weap_type, weap_time, weap_x, weap_y, weap_dirx, weap_diry, &GameMode, &team, &maxworms, &jumping, &jtime, &jdir, &backflip, &moving, &crosshair, &XHx, &XHy, &xspotx, &xspoty, &CursorDir, &CursorX, &CursorY, &weapson, &currw, &chargew, &charge, &canfire, &cluster, &firetime, &Wx, &Wy, &LockX, &LockY, &LockTime, &Lock, &xhpos, MapDummy, MapDummy, MapDummy, MapDummy, &scrollx, &scrolly, DrawWorms, fixs, Facing, DllGrayOn, DrawMap, DrawMap2, DrawChunk, DrawChunk2, DrawSel, DrawObjects, DrawWaves, DrawWeaps, DrawXHair, DrawCursor, DrawXSpot, DrawExp, DrawCharge, DrawWeap, CamFocus, drawgfx, DllGrayOff, DrawCake, &girder, &girdermode, &girders, &MapGirder, &ParaMode, &Falling, &lowgrav, &fastwalk, &whiteinvis, &blackinvis, WeaponSet, SetMapBuffers, directions
 
 //And here we go...
@@ -1180,26 +1183,29 @@ void DrawWeap()
 					  }
 					else if(weap_type[x]==WSheepStrike || weap_type[x]==WSheepStrike2)
 					  {
-
 							CamFocusY(wepy);
 
+							short xcoord = wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7);
+							short ycoord = wepy - scrolly - 5;
 							if(weap_dirx[x]<0)
 					  	  {
-					  	  	GrayClipSprite16_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 8, SheepLeft, SheepLeft, lplane, dplane);
+					  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 8, SheepLeft, SheepLeft, lplane, dplane);
 					  	  }else
 					  	  {
-					  	  	GrayClipSprite16_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 8, SheepRight, SheepRight, lplane, dplane);
+					  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 8, SheepRight, SheepRight, lplane, dplane);
 					  	  }
 					  }
 					
 					else if(weap_type[x]==WHomingP)
 					  {
+							short xcoord = wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7);
+							short ycoord = wepy - scrolly - 5;
 					    if(weap_x[x]<xspotx)
 					      {
-					      	GrayClipSprite16_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 8, PigeonRight, PigeonRight, lplane, dplane);
+					      	GrayClipSprite16_OR_R(xcoord, ycoord, 8, PigeonRight, PigeonRight, lplane, dplane);
 					      }else
 					      {
-					      	GrayClipSprite16_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 8, PigeonLeft, PigeonLeft, lplane, dplane);
+					      	GrayClipSprite16_OR_R(xcoord, ycoord, 8, PigeonLeft, PigeonLeft, lplane, dplane);
 					      }
 					      CamFocus(wepx,wepy);
 					  }
@@ -1210,44 +1216,29 @@ void DrawWeap()
 					  }
 
 					  
-					else if(weap_type[x]==WBanana)
+					else if(weap_type[x]==WBanana || weap_type[x]==WSBanana)
 					  {
-					  	GrayClipSprite8_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 10, Banana2, Banana2, lplane, dplane);
+							const char * sprite = (weap_type[x] == WBanana) ? Banana2 : Banana;
+					  	GrayClipSprite8_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 10, sprite, sprite, lplane, dplane);
 							CamFocus(wepx,wepy);
 					  }
-					else if(weap_type[x]==WSBanana)
+					else if(weap_type[x]==WHolyGrenade || weap_type[x]==WDyna)
 					  {
-					  	GrayClipSprite8_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 10, Banana, Banana, lplane, dplane);
+							const char * sprite = (weap_type[x] == WHolyGrenade) ? HolyG : Dynamite;
+					  	GrayClipSprite8_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 10, sprite, sprite, lplane, dplane);
 							CamFocus(wepx,wepy);
 					  }
-					else if(weap_type[x]==WHolyGrenade)
+					else if(weap_type[x]==WCluster2 || weap_type[x]==WMing2)
 					  {
-					  	GrayClipSprite8_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 10, HolyG, HolyG, lplane, dplane);
-							CamFocus(wepx,wepy);
-					  }
-					else if(weap_type[x]==WMolotov)
-					  {
-					  	GrayClipSprite8_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 11, Petrol, Petrol, lplane, dplane);
-							CamFocus(wepx,wepy);
-					  }
-					else if(weap_type[x]==WCluster2)
-					  {
-					  	GrayClipSprite8_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 4, Bazook, Bazook, lplane, dplane);
+							const char * sprite = (weap_type[x] == WCluster2) ? Bazook : Ming2;
+					  	GrayClipSprite8_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 4, sprite, sprite, lplane, dplane);
 							//CamFocus(wepx,wepy);
 					  }
-					else if(weap_type[x]==WDyna)
+					else if(weap_type[x]==WMolotov || weap_type[x]==WMingVase)
 					  {
-					  	GrayClipSprite8_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 10, Dynamite, Dynamite, lplane, dplane);
-							//CamFocus(wepx,wepy);
-					  }
-					else if(weap_type[x]==WMing2)
-					  {
-					  	GrayClipSprite8_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 4, Ming2, Ming2, lplane, dplane);
-							//CamFocus(wepx,wepy);
-					  }
-					else if(weap_type[x]==WMingVase)
-					  {
-					  	GrayClipSprite8_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 10, MingVase, MingVase, lplane, dplane);
+							const char * sprite = (weap_type[x] == WMolotov) ? Petrol : MingVase;
+							short height = (weap_type[x] == WMolotov) ? 11 : 10;
+					  	GrayClipSprite8_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, height, sprite, sprite, lplane, dplane);
 							//CamFocus(wepx,wepy);
 					  }
 					else if(weap_type[x]==WShotG || weap_type[x]==WHandG || weap_type[x]==WUzi || weap_type[x]==WMiniG)
@@ -1255,15 +1246,10 @@ void DrawWeap()
 					  	GrayClipSprite8_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 1, Bullet, Bullet, lplane, dplane);
 							if(weap_type[x]!=WUzi && weap_type[x]!=WMiniG) CamFocus(wepx,wepy);
 					  }
-					else if(weap_type[x]==WBowLeft)
+					else if(weap_type[x]==WBowLeft || weap_type[x]==WBowRight)
 					  {
-					  	
-					  	GrayClipSprite8_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 3, ArrowLeft, ArrowLeft, lplane, dplane);
-					    CamFocus(wepx,wepy);
-					  }
-					else if(weap_type[x]==WBowRight)
-					  {
-					  	GrayClipSprite8_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 3, ArrowRight, ArrowRight, lplane, dplane);
+							const char * sprite = (weap_type[x] == WBowLeft) ? ArrowLeft : ArrowRight;
+					  	GrayClipSprite8_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 3, sprite, sprite, lplane, dplane);
 					    CamFocus(wepx,wepy);
 					  }
 					else if(weap_type[x]==WLady2)
@@ -1273,67 +1259,79 @@ void DrawWeap()
 					  }
 					else if(weap_type[x]==WSheep)
 					  {
+							short xcoord = wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7);
+							short ycoord = wepy - scrolly - 5;
 					  	if(weap_dirx[x]<0)
 					  	  {
-					  	  	GrayClipSprite16_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 8, SheepLeft, SheepLeft, lplane, dplane);
+					  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 8, SheepLeft, SheepLeft, lplane, dplane);
 					  	  }else
 					  	  {
-					  	  	GrayClipSprite16_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 8, SheepRight, SheepRight, lplane, dplane);
+					  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 8, SheepRight, SheepRight, lplane, dplane);
 					  	  }
 					  	CamFocus(wepx,wepy);
 					  }
 					else if(weap_type[x]==WCows)
 					  {
+							short xcoord = wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7);
+							short ycoord = wepy - scrolly - 5;
 					  	if(weap_dirx[x]==-1)
 					  	  {
-					  	  	GrayClipSprite16_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 9, CowLeft, CowLeft, lplane, dplane);
+					  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 9, CowLeft, CowLeft, lplane, dplane);
 					  	  }else
 					  	  {
-					  	  	GrayClipSprite16_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 9, CowRight, CowRight, lplane, dplane);
+					  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 9, CowRight, CowRight, lplane, dplane);
 					  	  }
 					  	if(x==0) CamFocus(wepx,wepy);
 					  }
 					else if(weap_type[x]==WSkunk)
 					  {
+							short xcoord = wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7);
+							short ycoord = wepy - scrolly - 5;
 					  	if(weap_dirx[x]==-1)
 					  	  {
-					  	  	GrayClipSprite16_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 8, SkunkLeft, SkunkLeft, lplane, dplane);
+					  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 8, SkunkLeft, SkunkLeft, lplane, dplane);
 					  	  }else
 					  	  {
-					  	  	GrayClipSprite16_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 8, SkunkRight, SkunkRight, lplane, dplane);
+					  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 8, SkunkRight, SkunkRight, lplane, dplane);
 					  	  }
 					  	CamFocus(wepx,wepy);
 					  }
 					else if(weap_type[x]==WMole || weap_type[x]==WMole2)
 					  {
+							short xcoord = wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7);
+							short ycoord = wepy - scrolly;
 					  	if(weap_dirx[x]==-1)
 					  	  {
-					  	  	GrayClipSprite16_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly, 6, MoleLeft, MoleLeft, lplane, dplane);
+					  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 6, MoleLeft, MoleLeft, lplane, dplane);
 					  	  }else
 					  	  {
-					  	  	GrayClipSprite16_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly, 6, MoleRight, MoleRight, lplane, dplane);
+					  	  	GrayClipSprite16_OR_R(xcoord, ycoord, 6, MoleRight, MoleRight, lplane, dplane);
 					  	  }
 					  	CamFocus(wepx,wepy);
 					  }
 					else if(weap_type[x]==WOldLady)
 					  {
+							short xcoord = wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7);
+							short ycoord = wepy - scrolly - 5;
 					  	if(weap_dirx[x]<0)
 					  	  {
-					  	  	GrayClipSprite8_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 11, LadyLeft, LadyLeft, lplane, dplane);
+					  	  	GrayClipSprite8_OR_R(xcoord, ycoord, 11, LadyLeft, LadyLeft, lplane, dplane);
 					  	  }else
 					  	  {
-					  	  	GrayClipSprite8_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 11, LadyRight, LadyRight, lplane, dplane);
+					  	  	GrayClipSprite8_OR_R(xcoord, ycoord, 11, LadyRight, LadyRight, lplane, dplane);
 					  	  }
 					  	CamFocus(wepx,wepy);
 					  }
 					else if(weap_type[x]==WSalArmy)
 					  {
+							short xcoord = wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7);
+							short ycoord = wepy - scrolly - 5;
 					  	if(weap_dirx[x]<0)
 					  	  {
-					  	  	GrayClipSprite8_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 11, SalLeft, SalLeft, lplane, dplane);
+					  	  	GrayClipSprite8_OR_R(xcoord, ycoord, 11, SalLeft, SalLeft, lplane, dplane);
 					  	  }else
 					  	  {
-					  	  	GrayClipSprite8_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 11, SalRight, SalRight, lplane, dplane);
+					  	  	GrayClipSprite8_OR_R(xcoord, ycoord, 11, SalRight, SalRight, lplane, dplane);
 					  	  }
 					  	if(x==0) CamFocus(wepx,wepy);
 					  }
@@ -1342,17 +1340,19 @@ void DrawWeap()
 					  	static short frame=0;
 					  	frame++; if(frame>3) frame=1;
 					  	
+							short xcoord = wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7);
+							short ycoord = wepy - scrolly - 5;
 					  	if(frame==1)
 					  	  {
-					  	 		GrayClipSprite8_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 7, Napalm1, Napalm1, lplane, dplane); 
+					  	 		GrayClipSprite8_OR_R(xcoord, ycoord, 7, Napalm1, Napalm1, lplane, dplane); 
 								}
 						  else if(frame==2)
 					  	  {
-					  	 		GrayClipSprite8_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 6, Napalm2, Napalm2, lplane, dplane); 
+					  	 		GrayClipSprite8_OR_R(xcoord, ycoord, 6, Napalm2, Napalm2, lplane, dplane); 
 								}
 						  else if(frame==3)
 					  	  {
-					  	 		GrayClipSprite8_OR_R(wepx - (fixs(scrollx) * 8) - 5 - (scrollx & 7), wepy - scrolly - 5, 9, Napalm3, Napalm3, lplane, dplane); 
+					  	 		GrayClipSprite8_OR_R(xcoord, ycoord, 9, Napalm3, Napalm3, lplane, dplane); 
 								}
 						  
 						  CamFocusY(wepy);
@@ -1488,8 +1488,8 @@ void drawgfx()
 
 void DrawCake()
 {
-	Sprite32(60, 30, 23, CandleCake, GrayDBufGetHiddenPlane(DARK_PLANE), SPRT_OR);
-	Sprite32(60, 30, 23, CandleCake2, GrayDBufGetHiddenPlane(LIGHT_PLANE), SPRT_OR);
+	ClipSprite32_OR_R(60, 30, 23, CandleCake2, GrayDBufGetHiddenPlane(LIGHT_PLANE));
+	ClipSprite32_OR_R(60, 30, 23, CandleCake, GrayDBufGetHiddenPlane(DARK_PLANE));
 }
 
 

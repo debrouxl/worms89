@@ -2,6 +2,7 @@
 // Created 6/27/2004; 1:52:27 PM
 
 // Delete or comment out the items you do not need.
+#if 0
 #define COMMENT_STRING         "Place your comment here."
 #define COMMENT_PROGRAM_NAME   "Place your program name here."
 #define COMMENT_VERSION_STRING "Place your version string here."
@@ -56,6 +57,7 @@
 	 0b0000000000000000, \
 	 0b0000000000000000, \
 	 0b0000000000000000}
+#endif
 
 #include <tigcclib.h>
 #include "extgraph.h"
@@ -128,8 +130,8 @@ enum SCREENS {gtronics, team17, titus, title, mainmenu, setup, teams, teamsetup,
 // Main Function
 void _main(void)
 {
-  INT_HANDLER save_1 = GetIntVec(AUTO_INT_1); 
-  INT_HANDLER save_5 = GetIntVec(AUTO_INT_5); 
+  //INT_HANDLER save_1 = GetIntVec(AUTO_INT_1); 
+  //INT_HANDLER save_5 = GetIntVec(AUTO_INT_5); 
   save_1a= GetIntVec(AUTO_INT_1);
   save_5a = GetIntVec(AUTO_INT_5); 
   // Sets It Up For _keytest usage..
@@ -149,8 +151,8 @@ void _main(void)
 	GGrayOff();
 	
 	//resets some stuff
-	SetIntVec(AUTO_INT_1, save_1); 
-	SetIntVec(AUTO_INT_5, save_5); 
+	SetIntVec(AUTO_INT_1, save_1a); 
+	SetIntVec(AUTO_INT_5, save_5a); 
 }
 
 
@@ -1032,13 +1034,13 @@ void KeyHandle()
 	  	   	    	PopResult=DoPopUp(15,23,"Rndm Map\0Default \0Dots    \0Hills   \0",4);
 	  	   	    	if(PopResult==0)
 	  	   	    	  strcpy(map,"Rndm Map");
-	  	   	    	if(PopResult==1)
+	  	   	    	else if(PopResult==1)
 	  	   	    	  strcpy(map,"Default");
-	  	   	    	if(PopResult==2)
+	  	   	    	else if(PopResult==2)
 	  	   	    	  strcpy(map,"Dots");
-	  	   	    	if(PopResult==3)
+	  	   	    	else if(PopResult==3)
 	  	   	    	  strcpy(map,"Hills");
-	  	   	    	if(PopResult>3)
+	  	   	    	else if(PopResult>3)
 	  	   	    	  strcpy(map,&maps[PopResult-3]);
 	  	   	    }
 	  	   	  else if(sel==2)
@@ -1324,7 +1326,7 @@ void SaveTeam()
 	SYM_ENTRY *SymPtr = (DerefSym (hsym));
   MULTI_EXPR *VarPtr = HeapDeref (SymPtr->handle = handle);
   
-  
+  // FIXME STR variables containing 0x00 do not transfer correctly using TI-Connect nowadays (TILP is fine) => Worms89 should switch to OTH files, like many other games.
   pos=1;
   VarPtr->Size = length;
   VarPtr->Expr[0] = 0;         // zero marks the beginning of the actual variable data
@@ -1520,7 +1522,8 @@ short CheckAr(const char *fold, const char *str)
   strcat(dir,"\\");
   strcat(dir,str);
   
-	if(SymFindPtr(SYMSTR(dir),0)->flags.bits.locked==1 || SymFindPtr(SYMSTR(dir),0)->flags.bits.archived==1)
+	SYM_ENTRY * ptr = SymFindPtr(SYMSTR(dir),0);
+	if(ptr->flags.bits.locked==1 || ptr->flags.bits.archived==1)
 	  	return true;
 	  else
     	return false;
@@ -1529,7 +1532,7 @@ short CheckAr(const char *fold, const char *str)
 //clears teh names
 void ClrNames()
 {
-	names[0][0]=0;
+	//names[0][0]=0;
 	names[1][0]=0;
 	names[2][0]=0;
 	names[3][0]=0;
@@ -1596,19 +1599,6 @@ void StartGame()
 
 //THIS SUB SAVES THE GAMES CURRENT SETTINGS SO THE GAME CAN LOAD THEM...
 //SOME STUFF
-/*
-char team1[]="<Name>  ";
-char team2[]="<Name>  ";
-char map[]="<Map>   ";
-char *maps;
-short WX=0, WY=0;
-short WeaponSet[5][14]={
-	{0,9,9,9,9,1,1,3,5,0,2,0,9,1},
-	{0,1,3,9,9,2,1,3,2,0,1,0,9,1},
-	{0,5,0,9,1,1,0,3,2,0,0,0,3,1},
-	{0,0,2,0,0,0,0,1,2,0,0,0,0,1},
-	{0,0,0,2,9,0,0,0,0,0,0,0,0,1}};
-	*/
 void SaveSettings()
 {
 	short x, length, pos;
@@ -1651,6 +1641,8 @@ void SaveSettings()
   VarPtr->Size = length;
   VarPtr->Expr[0] = 0;         // zero marks the beginning of the actual variable data
   
+  // FIXME this is unoptimized code.
+  // FIXME STR variables containing 0x00 do not transfer correctly using TI-Connect nowadays (TILP is fine) => Worms89 should switch to OTH files, like many other games.
   //saves the weapon data
   for(x=0;x<70;x++)
     {

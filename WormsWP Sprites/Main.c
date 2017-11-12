@@ -77,13 +77,13 @@
 //#define MapRightUp _DLL_reference (char, 190)
 #define scrollx _DLL_glbvar (short, 191)
 #define scrolly _DLL_glbvar (short, 192)
-#define girder _DLL_glbvar (short, 215)
-#define girdermode _DLL_glbvar (short, 216)
-#define girders _DLL_glbvar (short, 217)
-#define ParaMode _DLL_glbvar (short, 219)
-#define Falling _DLL_glbvar (short, 220)
-#define lowgrav _DLL_glbvar (short, 221)
-#define fastwalk _DLL_glbvar (short, 222)
+#define girder _DLL_glbvar (char, 215)
+#define girdermode _DLL_glbvar (char, 216)
+#define girders _DLL_glbvar (char, 217)
+#define ParaMode _DLL_glbvar (char, 219)
+#define Falling _DLL_glbvar (char, 220)
+#define lowgrav _DLL_glbvar (char, 221)
+#define fastwalk _DLL_glbvar (char, 222)
 #define whiteinvis _DLL_glbvar (short, 223)
 #define blackinvis _DLL_glbvar (short, 224)
 #define WeaponSet _DLL_glbvar (short, 225)
@@ -267,9 +267,9 @@ void _main(void)
       free(MapLeft);
       return;
     }
-#endif
 
-	SetMapBuffers(MapLeft);
+		SetMapBuffers(MapLeft);
+#endif
 
 	// Sets It Up For _keytest usage..
 	INT_HANDLER save_1 = GetIntVec(AUTO_INT_1); 
@@ -1250,7 +1250,7 @@ void Gravity(int TheWorm)
 		if(team==TWhite)
 		  {
 		  	if(WOrg != white_y[white_w]) //if the original position doesn not match the new one, then it must be falling..
-		  	  Falling=true;
+		  	  Falling=0xFF;
 		  	else if(ParaMode)//otherwise it must have landed..
 		  	  {
 		  	  	ParaMode=false;
@@ -1260,7 +1260,7 @@ void Gravity(int TheWorm)
 		else
 		  {
 		  	if(BOrg != black_y[black_w]) //if the original position doesn not match the new one, then it must be falling..
-		  	  Falling=true;
+		  	  Falling=0xFF;
 		  	else if(ParaMode)//otherwise it must have landed..
 		  	  {
 		  	  	ParaMode=false;
@@ -1521,7 +1521,7 @@ void CollDetect()
 		if(team==TWhite)
 		  {
 		  	if(WOrg==white_y[white_w]) //if the original position doesn not match the new one, then it must be falling..
-		  	  Falling=true;
+		  	  Falling=0xFF;
 		  	else if(ParaMode) //otherwise it must have landed..
 		  	  {
 		  	  	ParaMode=false;
@@ -1531,7 +1531,7 @@ void CollDetect()
 		else
 		  {
 		  	if(BOrg==black_y[black_w]) //if the original position doesn not match the new one, then it must be falling..
-		  	  Falling=true;
+		  	  Falling=0xFF;
 		  	else if(ParaMode)//otherwise it must have landed..
 		  	  {
 		  	  	ParaMode=false;
@@ -1602,8 +1602,7 @@ void CollDetect2()
 }	
 
 
-
-void MoveLeft()
+static void MoveLeftRight(short normalincrement, short fastwalkincrement, short dirvalue)
 {
   int x=0;
   
@@ -1613,11 +1612,11 @@ void MoveLeft()
   if(team==TWhite)
   	{ 
   		//makes the worm look left
-		  if((white_dir[white_w]!=1) & (white_dir[white_w]!=3)) white_dir[white_w]=1;
+		  if((white_dir[white_w]!=dirvalue) && (white_dir[white_w]!=dirvalue+2)) white_dir[white_w]=dirvalue;
 		  
 		  //TEST CODE
-  	  white_x[white_w]-=1;
-  	  if(fastwalk) white_x[white_w]-=2;
+  	  white_x[white_w]+=normalincrement;
+  	  if(fastwalk) white_x[white_w]+=fastwalkincrement;
   	  
   	  white_y[white_w]=white_y[white_w]-15;
   	  for(x=0;x<15;x++)
@@ -1634,73 +1633,50 @@ void MoveLeft()
   else //if(team==TBlack)
   	{ 
   		//makes the worm look left
-		  if((black_dir[black_w]!=1) & (black_dir[black_w]!=3)) black_dir[black_w]=1;
+		  if((black_dir[black_w]!=dirvalue) && (black_dir[black_w]!=dirvalue+2)) black_dir[black_w]=dirvalue;
 		  
 		  //TEST CODE
-  	  black_x[black_w]-=1;
-  	  if(fastwalk) black_x[black_w]-=2;
+  	  black_x[black_w]+=normalincrement;
+  	  if(fastwalk) black_x[black_w]+=fastwalkincrement;
   	  
   	  black_y[black_w]=black_y[black_w]-15;
   	  for(x=0;x<15;x++)
   	    {
 	  	    Gravity(black_w);
-					if(lowgrav) Gravity(white_w);
+					if(lowgrav) Gravity(black_w);
   	    }
 		  //makes sure they didnt go off screen
 		  if(black_x[black_w]<0) black_x[black_w]=0;
   	}//endif BLACK TEAM
 }
 
+void MoveLeft()
+{
+	MoveLeftRight(-1, -2, 1);
+  //makes sure they didnt go off screen
+  if(team==TWhite)
+  	{
+		  if(white_x[white_w]<0) white_x[white_w]=0;
+  	}//endif WHITE TEAM
+  else //if(team==TBlack)
+  	{ 
+		  if(black_x[black_w]<0) black_x[black_w]=0;
+  	}//endif BLACK TEAM
+}
 
 void MoveRight()
 {
-  int x=0;
-  
-  moving=true;
-  
+	MoveLeftRight(1, 2, 0);
+  //makes sure they didnt go off screen
   if(team==TWhite)
   	{
-  		//makes the worm look right
-		  if((white_dir[white_w]!=0) & (white_dir[white_w]!=2)) white_dir[white_w]=0;
-		  
-		  //TEST CODE
-  	  white_x[white_w]+=1;
-  	  if(fastwalk) white_x[white_w]+=2;
-  	  
-  	  white_y[white_w]=white_y[white_w]-15;
-  	  for(x=0;x<15;x++)
-  	    {
-  	    	Gravity(white_w);
-  	    	if(lowgrav) Gravity(white_w);
-  	    }
-  	    
-
-			//makes sure they didnt go off screen
 		  if(white_x[white_w]>310) white_x[white_w]=310;
-  	}//end if WHITE TEAM
-
+  	}//endif WHITE TEAM
   else //if(team==TBlack)
   	{ 
-  		//makes the worm look right
-		  if((black_dir[black_w]!=0) & (black_dir[black_w]!=2)) black_dir[black_w]=0;
-		  
-		  //TEST CODE
-  	  black_x[black_w]+=1;
-  	  if(fastwalk) black_x[black_w]+=2;
-  	  
-  	  black_y[black_w]=black_y[black_w]-15;
-  	  for(x=0;x<15;x++)
-  	    {
-  	    	Gravity(black_w);
-  	    	if(lowgrav) Gravity(black_w);
-  	    }
-  	    
-
-			//makes sure they didnt go off screen
 		  if(black_x[black_w]>310) black_x[black_w]=310;
-  	}//end if BLACK TEAM
+  	}//endif BLACK TEAM
 }
-
 
 //focuss on the worm..
 void FocusWorm(int TheWorm, int teamzor)
@@ -2143,7 +2119,7 @@ void GetWeap()
 	  	  	if(TheWeap==WGirder) girders=1;
 	  	  	else if(TheWeap==WGirderPak) girders=5;
 	  	  	
-	  	  	girdermode=true;
+	  	  	girdermode=0xFF;
 	  	  	girder=1;
 	  	  }
 	  	  
@@ -2208,13 +2184,13 @@ void UseWeapon()
 	//TOOLS TOOLS TOOLS TOOLS TOOLS
 	if(currw==WLowG)
 	  {
-	  	lowgrav=true;
+	  	lowgrav=0xFF;
 	  	WeapsOff();
 	  	return;
 	  }
 	else if(currw==WFastWalk)
 	  {
-	  	fastwalk=true;
+	  	fastwalk=0xFF;
 	  	WeapsOff();
 	  	return;
 	  }
@@ -2246,7 +2222,7 @@ void UseWeapon()
 	//sets up animals
 	else if(currw==WParachute)
 	  {
-	  	ParaMode=true;
+	  	ParaMode=0xFF;
 	  	return;
 	  }
 	  	  
